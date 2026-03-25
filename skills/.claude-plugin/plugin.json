@@ -1,0 +1,13 @@
+{
+  "name": "super-pm",
+  "description": "Product Manager Skills Pack for Claude Code: Demand insight, solution design, growth iteration, and risk management",
+  "version": "1.0.0",
+  "author": {
+    "name": "Kong Long",
+    "email": "konglong87@gmail.com"
+  },
+  "homepage": "https://github.com/konglong87/superPM",
+  "repository": "https://github.com/konglong87/superPM",
+  "license": "MIT",
+  "keywords": ["product-manager", "skills", "demand-insight", "solution-design", "growth", "risk-management"]
+}
