@@ -1,9 +1,9 @@
 ---
 name: pm-position
-version: 1.0.0
+version: 2.0.0
 description: |
-  产品定位与商业化方案 - 明确产品定位、目标市场、商业模式
-  Use when: 需要明确产品定位、设计商业模式、规划盈利方式
+  产品定位与商业化方案 - 明确产品定位、目标市场、商业模式、定价策略和盈利预测
+  Use when: 需要明确产品定位、设计商业模式、规划盈利方式、定价策略、盈利预测
 allowed-tools:
   - Read
   - Write
