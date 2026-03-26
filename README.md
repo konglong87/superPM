@@ -1,28 +1,27 @@
-# PM-Skills v2.0
+# super-pm 产品经理技能包
 
-> 工业级产品经理技能包，25个核心技能覆盖产品全生命周期
+**版本**: v1.1.0
+**状态**: 生产就绪 ✅
+**对标**: [superpowers](https://github.com/anthropics/superpowers) 工业级标准
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/pm-skills/pm-skills)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/super-pm/super-pm)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-≥0.15.0-orange.svg)](https://claude.com/code)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-≥0.15.0-orange.svg)](https://claude.ai/code)
 
 ---
 
-## 🎯 项目定位
+## 📖 项目简介
 
-**为谁设计**: 专注产品工作的产品经理（非技术背景友好）
+**super-pm** 是专为产品经理设计的 Claude Code Skill Pack，提供全生命周期的产品管理工作流支持。
 
-**解决什么问题**:
-- ❌ 缺乏结构化方法论指导
-- ❌ 文档编写耗时，格式不规范
-- ❌ 缺乏数据支撑，决策拍脑袋
-- ❌ 需求频繁变更，项目失控
+### 核心特性
 
-**核心价值**:
-- ✅ 全生命周期方法论嵌入
-- ✅ 自动化文档生成
-- ✅ 数据驱动决策
-- ✅ 标准化工作流程
+- ✅ **27个核心技能** - 覆盖需求、方案、增长、风控全流程
+- ✅ **轻量级设计** - 纯 Markdown 指令，无代码依赖
+- ✅ **智能交互** - 一次一问，逐步引导
+- ✅ **数据流转** - Markdown 文档自动传递，人类可读
+- ✅ **风险前置** - 早期验证需求真伪，避免无效工作
+- ✅ **兜底完善** - 异常处理、跨会话恢复、灵活跳过
 
 ---
 
