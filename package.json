@@ -13,10 +13,10 @@
     "growth-iteration",
     "risk-management"
   ],
-  "author": "super-pm team",
+  "author": "konglong87",
   "repository": {
     "type": "git",
-    "url": "https://github.com/super-pm/super-pm"
+    "url": "https://github.com/konglong87/super-pm"
   },
   "engines": {
     "claude-code": ">=0.15.0"

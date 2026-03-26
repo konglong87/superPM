@@ -4,7 +4,7 @@
 **状态**: 生产就绪 ✅
 **对标**: [superpowers](https://github.com/anthropics/superpowers) 工业级标准
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/super-pm/super-pm)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/konglong87/super-pm)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥0.15.0-orange.svg)](https://claude.ai/code)
 
@@ -33,7 +33,7 @@
 
 ```bash
 # 安装最新版本
-git clone https://github.com/super-pm/super-pm.git ~/.claude/skills/super-pm
+git clone https://github.com/konglong87/super-pm.git ~/.claude/skills/super-pm
 ```
 
 重启 Claude Code 后自动生效。
@@ -42,7 +42,7 @@ git clone https://github.com/super-pm/super-pm.git ~/.claude/skills/super-pm
 
 ```bash
 # 克隆仓库
-git clone https://github.com/super-pm/super-pm.git
+git clone https://github.com/konglong87/super-pm.git
 cd super-pm
 
 # 创建软链接到 Claude Code skills 目录
@@ -57,7 +57,7 @@ ls -la ~/.claude/skills/super-pm/SKILL.md
 ```bash
 # 下载最新发布版本
 cd /tmp
-curl -L https://github.com/super-pm/super-pm/archive/refs/tags/v2.0.0.tar.gz -o super-pm.tar.gz
+curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.0.0.tar.gz -o super-pm.tar.gz
 tar -xzf super-pm.tar.gz
 mv super-pm-2.0.0 ~/.claude/skills/super-pm
 ```
@@ -217,10 +217,9 @@ web_search: true
 
 ## 📧 联系方式
 
-- 📧 Email: support@pm-skills.dev
-- 💬 微信群: 扫码加入PM-Skills用户群
-- 🐛 Bug反馈: [GitHub Issues](https://github.com/pm-skills/pm-skills/issues)
-- 💡 功能建议: [GitHub Discussions](https://github.com/pm-skills/pm-skills/discussions)
+- 📧 Email: konglong87@users.noreply.github.com
+- 🐛 Bug反馈: [GitHub Issues](https://github.com/konglong87/super-pm/issues)
+- 💡 功能建议: [GitHub Discussions](https://github.com/konglong87/super-pm/discussions)
 
 ---
 

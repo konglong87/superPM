@@ -1,0 +1,20 @@
+{
+  "name": "super-pm-marketplace",
+  "description": "Product Manager Skills Pack for Claude Code - Full lifecycle support from demand to delivery",
+  "owner": {
+    "name": "konglong87",
+    "email": "konglong87@users.noreply.github.com"
+  },
+  "plugins": [
+    {
+      "name": "super-pm",
+      "description": "Product Manager Skills Pack - 27 skills for demand insight, solution design, growth iteration, and risk management",
+      "version": "2.0.0",
+      "source": "./",
+      "author": {
+        "name": "konglong87",
+        "email": "konglong87@users.noreply.github.com"
+      }
+    }
+  ]
+}
