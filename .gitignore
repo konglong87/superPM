@@ -1,0 +1,48 @@
+# IDE 配置
+.idea/
+
+# 项目记忆系统
+memory/
+
+# 临时规划文档
+plan/
+
+# 临时文件目录
+tmp/
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器备份文件
+*~
+*.swp
+*.swo
+
+# 日志文件
+*.log
+
+# 依赖目录
+node_modules/
+vendor/
+
+# 编译输出
+dist/
+build/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# 测试覆盖率
+coverage/
+.coverage
+*.coverprofile
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# 文档目录
+docs/
