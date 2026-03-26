@@ -2,7 +2,6 @@
 
 **版本**: v2.0.0
 **状态**: 生产就绪 ✅
-**对标**: [superpowers](https://github.com/anthropics/superpowers) 工业级标准
 
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/konglong87/super-pm)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -227,8 +226,6 @@ web_search: true
 
 感谢以下开源项目的启发:
 - [Claude Code](https://claude.com/code) - AI编程助手
-- [gstack](https://github.com/anthropics/gstack) - Claude Code技能框架
-- [superpowers](https://github.com/anthropics/superpowers) - 技能集合参考
 
 ---
 
