@@ -1,10 +1,10 @@
 # super-pm 产品经理技能包
 
-**版本**: v1.1.0
+**版本**: v2.0.0
 **状态**: 生产就绪 ✅
 **对标**: [superpowers](https://github.com/anthropics/superpowers) 工业级标准
 
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/super-pm/super-pm)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/super-pm/super-pm)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥0.15.0-orange.svg)](https://claude.ai/code)
 
@@ -27,13 +27,50 @@
 
 ## 🚀 快速开始
 
-### 安装
+### 方式一：Claude Code 一键安装（推荐）
+
+在 Claude Code 会话中直接执行：
 
 ```bash
-git clone https://github.com/pm-skills/pm-skills.git ~/.claude/skills/pm-skills
-cd ~/.claude/skills/pm-skills
-chmod +x ./setup && ./setup
+# 安装最新版本
+git clone https://github.com/super-pm/super-pm.git ~/.claude/skills/super-pm
 ```
+
+重启 Claude Code 后自动生效。
+
+### 方式二：本地开发安装
+
+```bash
+# 克隆仓库
+git clone https://github.com/super-pm/super-pm.git
+cd super-pm
+
+# 创建软链接到 Claude Code skills 目录
+ln -s $(pwd)/skills ~/.claude/skills/super-pm
+
+# 验证安装
+ls -la ~/.claude/skills/super-pm/SKILL.md
+```
+
+### 方式三：从发布版本安装
+
+```bash
+# 下载最新发布版本
+cd /tmp
+curl -L https://github.com/super-pm/super-pm/archive/refs/tags/v2.0.0.tar.gz -o super-pm.tar.gz
+tar -xzf super-pm.tar.gz
+mv super-pm-2.0.0 ~/.claude/skills/super-pm
+```
+
+### 验证安装
+
+在 Claude Code 中执行：
+
+```
+/super-pm
+```
+
+如果看到 super-pm 的欢迎信息，说明安装成功！
 
 ### 创建配置文件
 
@@ -129,21 +166,26 @@ web_search: true
 
 ## 📈 版本计划
 
-### v2.0.0 (Phase 1 - 进行中)
-- ✅ 5个核心技能（需求调研、搜索、优先级、MVP、文档生成）
-- ✅ 核心工具库
-- ✅ 参数化设计
-- 🔄 用户验证中
+### v2.0.0 (当前版本 - 已发布 ✅)
+- ✅ 27个核心技能全部完成
+- ✅ 5大模块：需求洞察、方案设计、增长迭代、风控管理、产品战略
+- ✅ 中英文双语支持
+- ✅ 完整文档和示例
 
-### v2.1.0 (Phase 2 - 计划中)
-- ⏳ 剩余20个技能开发
-- ⏳ 联网搜索API对接
-- ⏳ 模板质量优化
+### v2.1.0 (计划中)
+- ⏳ 性能优化和体验改进
+- ⏳ 更多行业模板
+- ⏳ 用户反馈收集和优化
 
-### v2.2.0 (Phase 3 - 计划中)
-- ⏳ 用户体验优化
+### v2.2.0 (计划中)
 - ⏳ 自定义模板支持
 - ⏳ 团队协作功能
+- ⏳ 数据导出功能
+
+### v3.0.0 (未来规划)
+- ⏳ 多模型支持
+- ⏳ 自定义 skill 开发框架
+- ⏳ 插件生态系统
 
 ---
 
