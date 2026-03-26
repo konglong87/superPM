@@ -1,5 +1,8 @@
 # CLAUDE.md - super-pm 项目配置文件
 
+## first
+ call me 🦖恐龙
+
 ## 项目基本信息
 
 **项目名称**: super-pm 产品经理技能包
