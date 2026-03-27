@@ -1,9 +1,9 @@
 # super-pm 产品经理技能包
 
-**版本**: v2.0.0
+**版本**: v2.1.0
 **状态**: 生产就绪 ✅
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/konglong87/super-pm)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/konglong87/super-pm)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥0.15.0-orange.svg)](https://claude.ai/code)
 
@@ -72,9 +72,9 @@ ls -la ~/.claude/skills/super-pm/SKILL.md
 ```bash
 # 下载最新发布版本
 cd /tmp
-curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.0.0.tar.gz -o super-pm.tar.gz
+curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.1.0.tar.gz -o super-pm.tar.gz
 tar -xzf super-pm.tar.gz
-mv super-pm-2.0.0 ~/.claude/skills/super-pm
+mv super-pm-2.1.0 ~/.claude/skills/super-pm
 ```
 
 ### 方式四：OpenCode 安装

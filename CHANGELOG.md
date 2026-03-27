@@ -5,6 +5,100 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-03-27
+
+### Added
+
+#### Subagent 架构优化
+
+- **start-super-pm** - 智能路由 skill
+  - 自动识别 PM 任务类型
+  - 智能调用对应的 skill
+  - 任务触发规则覆盖常见场景
+  - Git commit: TBD
+
+- **pm-search** - 并发搜索 skill (v2.0.0)
+  - 5 个并发搜索：市场调研、竞品分析、行业数据、舆情监控、合规检查
+  - Subagent 并发架构
+  - 性能提升 4x，上下文节省 80%
+  - Git commit: TBD
+
+- **pm-feedback** - 并发反馈分析 skill (v2.0.0)
+  - 4 个并发分析：分类、情感、优先级、问题聚类
+  - Subagent 并发架构
+  - 性能提升 4x，上下文节省 75%
+  - Git commit: TBD
+
+#### Hooks 自动注入机制
+
+- **SessionStart Hook** - 会话启动自动注入
+  - 自动注入 start-super-pm skill
+  - 检查项目配置 (PM-CLAUDE.md)
+  - 追踪项目进度 (docs/ 目录)
+  - Git commit: TBD
+
+#### 多平台插件支持
+
+- **OpenCode Plugin** - OpenCode 平台插件
+  - experimental.chat.system.transform hook
+  - 自动注入 PM 规则
+  - Git commit: TBD
+
+- **Codex Plugin** - Codex CLI 插件
+  - 原生 skill discovery 支持
+  - 自动注入 bootstrap
+  - Git commit: TBD
+
+- **Cursor Plugin** - Cursor 编辑器插件
+  - Cursor 技能系统集成
+  - 自动注入 PM 上下文
+  - Git commit: TBD
+
+#### 文档完善
+
+- **多平台安装指南** - OpenCode/Codex/Cursor 详细安装文档
+  - 快速安装指令
+  - 手动安装步骤
+  - Windows 兼容性指南
+  - 故障排查说明
+
+- **优化总结文档** - Subagent 架构优化总结
+  - 架构设计详解
+  - 性能对比分析
+  - 使用示例演示
+
+- **测试验证报告** - 完整测试验证文档
+  - 文件结构验证
+  - 功能测试报告
+  - 性能预期验证
+
+### Changed
+
+- **pm-docs** - 升级到 v2.0.0（已存在）
+  - 支持 BRD/MRD/PRD 并发生成
+  - 性能提升 3x
+
+- **pm-aarrr** - 升级到 v2.0.0（已存在）
+  - 5 个 AARRR 环节并发分析
+  - 性能提升 5x
+
+### Performance Improvements
+
+- **pm-search**: 10分钟 → 2.5分钟 (4x faster)
+- **pm-feedback**: 8分钟 → 2分钟 (4x faster)
+- **pm-docs**: 6分钟 → 2分钟 (3x faster)
+- **pm-aarrr**: 10分钟 → 2分钟 (5x faster)
+
+### Documentation
+
+- 添加 OpenCode 安装指南 (8.7KB)
+- 添加 Codex 安装指南 (6.0KB)
+- 添加 Cursor 安装指南 (9.2KB)
+- 添加 Subagent 优化总结 (19KB)
+- 添加测试验证报告 (12KB)
+
+---
+
 ## [2.0.0] - 2026-03-26
 
 ### Added

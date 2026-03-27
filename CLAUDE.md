@@ -29,7 +29,7 @@ git commit -m "fix: 修复日期错误"
 ```bash
 git commit -m "feat: 实现功能
 
-Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+Co-Authored-By: Claude Sonnet 4.7 <noreply@anthropic.com>"
 ```
 
 ---
