@@ -26,7 +26,23 @@
 
 ## 🚀 快速开始
 
-### 方式一：Claude Code 一键安装（推荐）
+### 方式一：Claude Code Marketplace 安装（最推荐 ⭐）
+
+在 Claude Code 中直接通过 Marketplace 安装：
+
+```bash
+# 在 Claude Code 会话中执行
+/skill install konglong87/super-pm
+```
+
+或者通过 Marketplace URL：
+```bash
+https://github.com/konglong87/super-pm
+```
+
+安装后重启 Claude Code 自动生效。
+
+### 方式二：Git Clone 一键安装
 
 在 Claude Code 会话中直接执行：
 
@@ -37,7 +53,7 @@ git clone https://github.com/konglong87/super-pm.git ~/.claude/skills/super-pm
 
 重启 Claude Code 后自动生效。
 
-### 方式二：本地开发安装
+### 方式三：本地开发安装
 
 ```bash
 # 克隆仓库
@@ -61,6 +77,90 @@ tar -xzf super-pm.tar.gz
 mv super-pm-2.0.0 ~/.claude/skills/super-pm
 ```
 
+### 方式四：OpenCode 安装
+
+**适用于 OpenCode.ai 用户**
+
+```bash
+# macOS / Linux
+# 1. 克隆仓库
+git clone https://github.com/konglong87/super-pm.git ~/.config/opencode/super-pm
+
+# 2. 创建 skills 目录并链接
+mkdir -p ~/.config/opencode/skills
+ln -s ~/.config/opencode/super-pm/skills ~/.config/opencode/skills/super-pm
+
+# 3. 重启 OpenCode
+```
+
+**Windows (PowerShell):**
+```powershell
+# 1. 克隆仓库
+git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.config\opencode\super-pm"
+
+# 2. 创建 skills 目录和链接
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.config\opencode\skills"
+New-Item -ItemType Junction -Path "$env:USERPROFILE\.config\opencode\skills\super-pm" -Target "$env:USERPROFILE\.config\opencode\super-pm\skills"
+
+# 3. 重启 OpenCode
+```
+
+### 方式五：Codex 安装
+
+**适用于 OpenAI Codex CLI 用户**
+
+```bash
+# macOS / Linux
+# 1. 克隆仓库
+git clone https://github.com/konglong87/super-pm.git ~/.codex/super-pm
+
+# 2. 创建 skills 链接
+mkdir -p ~/.agents/skills
+ln -s ~/.codex/super-pm/skills ~/.agents/skills/super-pm
+
+# 3. 重启 Codex
+```
+
+**Windows (PowerShell):**
+```powershell
+# 1. 克隆仓库
+git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.codex\super-pm"
+
+# 2. 创建 skills 链接
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills"
+cmd /c mklink /J "$env:USERPROFILE\.agents\skills\super-pm" "$env:USERPROFILE\.codex\super-pm\skills"
+
+# 3. 重启 Codex
+```
+
+### 方式六：Cursor 安装
+
+**适用于 Cursor 编辑器用户**
+
+```bash
+# macOS / Linux
+# 1. 克隆仓库
+git clone https://github.com/konglong87/super-pm.git ~/.cursor/super-pm
+
+# 2. 创建 skills 链接
+mkdir -p ~/.cursor/skills
+ln -s ~/.cursor/super-pm/skills ~/.cursor/skills/super-pm
+
+# 3. 重启 Cursor
+```
+
+**Windows (PowerShell):**
+```powershell
+# 1. 克隆仓库
+git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.cursor\super-pm"
+
+# 2. 创建 skills 链接
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.cursor\skills"
+New-Item -ItemType Junction -Path "$env:USERPROFILE\.cursor\skills\super-pm" -Target "$env:USERPROFILE\.cursor\super-pm\skills"
+
+# 3. 重启 Cursor
+```
+
 ### 验证安装
 
 在 Claude Code 中执行：
@@ -70,6 +170,21 @@ mv super-pm-2.0.0 ~/.claude/skills/super-pm
 ```
 
 如果看到 super-pm 的欢迎信息，说明安装成功！
+
+**OpenCode 用户验证：**
+```
+use skill tool to list all skills
+```
+
+**Codex 用户验证：**
+```
+list available skills
+```
+
+**Cursor 用户验证：**
+```
+list skills
+```
 
 ### 创建配置文件
 
@@ -136,6 +251,103 @@ web_search: true
 - **pm-risk** - 风险管控
 - **pm-release** - 上线方案
 - **pm-change** - 需求变更管理
+
+---
+
+## 💡 核心优化
+
+### 平台特定说明
+
+#### Claude Code
+- ✅ **推荐方式**：使用 Marketplace 安装（方式一）
+- 自动发现所有 skills
+- 支持 `/skill-name` 快捷调用
+
+#### OpenCode
+- 使用 OpenCode 的原生 `skill` 工具
+- Skills 位置：`~/.config/opencode/skills/super-pm/`
+- 支持项目级 skills (`.opencode/skills/`)
+
+#### Codex
+- Codex 原生扫描 `~/.agents/skills/` 目录
+- Skills 自动发现并加载
+- 通过 `using-super-pm` skill 强制使用
+
+#### Cursor
+- Cursor 支持自定义 skills 目录
+- Skills 通过符号链接集成
+- 需要重启 Cursor 加载新 skills
+
+### 更新插件
+
+#### Claude Code
+```bash
+/plugin update super-pm
+```
+
+#### OpenCode
+```bash
+cd ~/.config/opencode/super-pm
+git pull
+# 重启 OpenCode
+```
+
+#### Codex
+```bash
+cd ~/.codex/super-pm
+git pull
+# 重启 Codex
+```
+
+#### Cursor
+```bash
+cd ~/.cursor/super-pm
+git pull
+# 重启 Cursor
+```
+
+### 卸载插件
+
+#### Claude Code
+```bash
+/plugin uninstall super-pm
+```
+
+#### OpenCode (macOS/Linux)
+```bash
+rm ~/.config/opencode/skills/super-pm
+rm -rf ~/.config/opencode/super-pm
+```
+
+#### OpenCode (Windows)
+```powershell
+Remove-Item "$env:USERPROFILE\.config\opencode\skills\super-pm"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.config\opencode\super-pm"
+```
+
+#### Codex (macOS/Linux)
+```bash
+rm ~/.agents/skills/super-pm
+rm -rf ~/.codex/super-pm
+```
+
+#### Codex (Windows)
+```powershell
+Remove-Item "$env:USERPROFILE\.agents\skills\super-pm"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\super-pm"
+```
+
+#### Cursor (macOS/Linux)
+```bash
+rm ~/.cursor/skills/super-pm
+rm -rf ~/.cursor/super-pm
+```
+
+#### Cursor (Windows)
+```powershell
+Remove-Item "$env:USERPROFILE\.cursor\skills\super-pm"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.cursor\super-pm"
+```
 
 ---
 

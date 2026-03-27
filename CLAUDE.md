@@ -6,7 +6,7 @@
 ## 项目基本信息
 
 **项目名称**: super-pm 产品经理技能包
-**版本**: v1.0.0 (开发中)
+**版本**: v2.0.1 (开发中)
 **定位**: Claude Code Skill Pack，对标 superpowers/gstack
 **目标用户**: 产品经理
 
