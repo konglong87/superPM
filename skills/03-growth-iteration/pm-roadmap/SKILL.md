@@ -14,6 +14,7 @@ allowed-tools:
 ## Preamble
 
 ```bash
+bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
 mkdir -p docs/03-增长迭代
 
 echo "🗺️  产品路线图工具已启动"

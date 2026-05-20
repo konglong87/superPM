@@ -15,6 +15,7 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
+bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
 # 创建需求调研目录
 mkdir -p docs/01-需求调研
 

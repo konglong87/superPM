@@ -14,6 +14,7 @@ allowed-tools:
 ## Preamble
 
 ```bash
+bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
 mkdir -p docs/03-增长迭代/迭代复盘
 
 echo "📝 迭代复盘工具已启动"

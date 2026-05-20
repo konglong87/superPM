@@ -15,6 +15,7 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
+bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
 mkdir -p docs/02-方案设计
 
 echo "📊 正在检查前置文档..."

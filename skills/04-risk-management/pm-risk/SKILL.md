@@ -14,6 +14,7 @@ allowed-tools:
 ## Preamble
 
 ```bash
+bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
 mkdir -p docs/04-风控管理
 
 echo "⚠️ 风险管控工具已启动"

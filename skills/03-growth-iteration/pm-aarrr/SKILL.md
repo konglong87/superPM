@@ -16,6 +16,7 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
+bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
 # 创建增长迭代目录
 mkdir -p docs/03-增长迭代
 

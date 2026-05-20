@@ -17,6 +17,7 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
+bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
 # 创建文档目录（中英文双语支持）
 mkdir -p docs/01-需求洞察 docs/01-demand-insight
 mkdir -p docs/02-方案设计 docs/02-solution-design

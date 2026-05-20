@@ -14,6 +14,7 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
+bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
 # 检查方案设计目录
 mkdir -p docs/02-方案设计
 
