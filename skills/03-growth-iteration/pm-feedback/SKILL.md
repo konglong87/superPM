@@ -290,7 +290,7 @@ read docs/03-增长迭代/problem-clusters.md
 ### 示例 1: 从文件读取反馈
 
 ```
-用户: 分析这批用户反馈，文件路径：docs/user-feedback.txt
+用户: 分析这批用户反馈，文件路径：docs/03-增长迭代/user-feedback.txt
 
 AI: 🎯 读取反馈数据...
     [Read file...]

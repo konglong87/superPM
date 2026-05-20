@@ -1,6 +1,12 @@
 ---
 name: start-super-pm
+version: 1.0.0
 description: Use when starting any product management task - automatically detects task type and invokes appropriate PM skill using intelligent routing
+allowed-tools:
+  - Skill
+  - AskUserQuestion
+  - Read
+  - Bash
 ---
 
 <EXTREMELY-IMPORTANT>
