@@ -1,6 +1,6 @@
 ---
 name: start-super-pm
-version: 1.0.0
+version: 1.1.0
 description: Use when starting any product management task - automatically detects task type and invokes appropriate PM skill using intelligent routing
 allowed-tools:
   - Skill
@@ -18,6 +18,19 @@ allowed-tools:
 
 这不可协商，不是可选项，你不能找借口跳过。
 </EXTREMELY-IMPORTANT>
+
+---
+
+## 常见误区 / Red Flags — STOP
+
+出现以下情况立即停止并回溯：
+
+| 误区 | 正确做法 |
+|------|---------|
+| 使用"应该"、"大概"、"看起来"做结论 | 必须基于实际数据和验证 |
+| 未运行检查就声称已完成 | 先验证，再陈述 |
+| 因时间紧迫跳过关键步骤 | 没有例外，时间紧更要严格 |
+| "这次应该没问题"的想法 | 每次都要重新验证 |
 
 ---
 
@@ -406,6 +419,15 @@ Super-PM 会自动追踪项目状态：
 
 📄 已生成文档：
 - docs/01-需求调研/需求调研报告.md
+
+---
+
+## 产出质量检查 / Verification Checklist
+
+- [ ] 已检测用户意图并路由到对应 skill
+- [ ] 触发关键词匹配正确
+
+> ⚠️ 如无法确定路由，使用 AskUserQuestion 询问用户。
 
 💡 建议下一步：
 1. /pm-search --type=market - 市场调研分析
