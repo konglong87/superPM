@@ -1,10 +1,11 @@
 ---
 name: pm-clarify
-version: 1.1.0
+version: 2.0.0
 description: |
   Use when: 有初步需求清单需要细化细节、需明确需求场景和边界条件、需求描述模糊需要结构化
   Do NOT use when: 需求已足够详细可直达开发、仅需快速立项无需深入
 allowed-tools:
+  - Agent
   - Read
   - Write
   - AskUserQuestion
@@ -33,6 +34,55 @@ fi
 ---
 
 ## 执行流程
+
+```dot
+digraph pm_clarify {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+
+    subgraph cluster_input {
+        label="前置数据读取";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "读取需求调研报告" [shape=box];
+        "读取创意方案库" [shape=box, fillcolor="#fff9c4"];
+        "快速模式手动输入" [shape=box, fillcolor="#ffccbc"];
+    }
+
+    subgraph cluster_refine {
+        label="逐个需求细化（循环）";
+        style=filled;
+        fillcolor="#e8f5e9";
+        "确定使用场景" [shape=box];
+        "描述具体行为" [shape=box, fillcolor="#c8e6c9"];
+        "明确边界条件" [shape=diamond, fillcolor="#bbdefb"];
+        "设计异常处理" [shape=diamond, fillcolor="#fff9c4"];
+        "定义验收标准" [shape=box, fillcolor="#ffe0b2"];
+    }
+
+    subgraph cluster_subagent {
+        label="Subagent 并行分析（v2.0）";
+        style=filled;
+        fillcolor="#f3e5f5";
+        "市场对标分析" [shape=box, fillcolor="#e1bee7"];
+        "技术可行性评估" [shape=box, fillcolor="#e1bee7"];
+    }
+
+    "汇总生成确认需求清单" [shape=box, fillcolor="#ffccbc"];
+
+    "读取需求调研报告" -> "确定使用场景";
+    "读取创意方案库" -> "确定使用场景";
+    "快速模式手动输入" -> "确定使用场景";
+    "确定使用场景" -> "描述具体行为";
+    "描述具体行为" -> "明确边界条件";
+    "明确边界条件" -> "设计异常处理";
+    "设计异常处理" -> "定义验收标准";
+    "定义验收标准" -> "市场对标分析" [label="并行"];
+    "定义验收标准" -> "技术可行性评估" [label="并行"];
+    "市场对标分析" -> "汇总生成确认需求清单";
+    "技术可行性评估" -> "汇总生成确认需求清单";
+}
+```
 
 ### 步骤 1: 读取前置数据
 
@@ -255,6 +305,32 @@ AI 将每个需求的细化信息整理成结构化格式。
 > B) 执行 /pm-priority - 优先级排序，决定需求优先级
 > C) 执行 /pm-mvp - MVP规划，确定第一版功能
 > D) 查看确认需求清单
+
+---
+
+## Subagent 并行分析（v2.0 新增）
+
+在需求细化完成后，可派发 subagent 并行进行外部验证：
+
+**Agent 1: 市场对标分析**
+```
+type: "general-purpose"
+prompt: "搜索与当前产品对标的市场同类功能详情，提供参考标准..."
+```
+
+**Agent 2: 技术可行性评估**
+```
+type: "general-purpose"
+prompt: "评估各需求的技术实现难度和备选方案..."
+```
+
+## V1 vs V2 对比
+
+| 维度 | v1（串行） | v2（Subagent 并行） |
+|------|-----------|-------------------|
+| 外部验证 | 手动搜索或跳过 | Subagent 并行搜索分析 |
+| Token 占用 | 搜索结果占主上下文 | Subagent 独立处理 |
+| 执行效率 | 线性顺序 | 并行 2x 加速 |
 
 ---
 

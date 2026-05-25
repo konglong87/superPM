@@ -31,6 +31,55 @@ fi
 
 ## 执行流程
 
+```dot
+digraph pm_market {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+
+    subgraph cluster_input {
+        label="前置数据读取（主 Agent）";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "读取需求调研报告" [shape=box];
+        "快速模式输入" [shape=box];
+    }
+
+    subgraph cluster_direction {
+        label="搜索方向选择（主 Agent）";
+        style=filled;
+        fillcolor="#fff3e0";
+        "确定搜索方向" [shape=diamond];
+    }
+
+    subgraph cluster_subagent {
+        label="Subagent 并行搜索";
+        style=filled;
+        fillcolor="#e8f5e9";
+        "市场规模调研 Subagent" [shape=box, fillcolor="#a5d6a7"];
+        "竞品分析 Subagent" [shape=box, fillcolor="#a5d6a7"];
+        "用户行为 Subagent" [shape=box, fillcolor="#a5d6a7"];
+    }
+
+    subgraph cluster_merge {
+        label="结果整合";
+        style=filled;
+        fillcolor="#fce4ec";
+        "主 Agent 整合结果" [shape=box, fillcolor="#ffccbc"];
+        "生成市场调研报告" [shape=box];
+    }
+
+    "读取需求调研报告" -> "确定搜索方向";
+    "快速模式输入" -> "确定搜索方向";
+    "确定搜索方向" -> "市场规模调研 Subagent" [label="派发任务"];
+    "确定搜索方向" -> "竞品分析 Subagent" [label="派发任务"];
+    "确定搜索方向" -> "用户行为 Subagent" [label="派发任务"];
+    "市场规模调研 Subagent" -> "主 Agent 整合结果" [label="并行返回"];
+    "竞品分析 Subagent" -> "主 Agent 整合结果" [label="并行返回"];
+    "用户行为 Subagent" -> "主 Agent 整合结果" [label="并行返回"];
+    "主 Agent 整合结果" -> "生成市场调研报告";
+}
+```
+
 ### 步骤 1: 读取前置数据（主 agent）
 
 **如果有需求调研报告**：

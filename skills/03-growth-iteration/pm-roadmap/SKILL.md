@@ -1,10 +1,11 @@
 ---
 name: pm-roadmap
-version: 1.1.0
+version: 2.0.0
 description: |
   Use when: 需要规划产品中长期发展、设定里程碑、对齐团队方向、制定季度/年度计划
   Do NOT use when: 短期执行无需长期规划、方向已锁定无需路线图
 allowed-tools:
+  - Agent
   - Read
   - Write
   - AskUserQuestion
@@ -31,6 +32,55 @@ fi
 ---
 
 ## 执行流程
+
+```dot
+digraph pm_roadmap {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    
+    subgraph cluster_vision {
+        label="战略规划";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "明确愿景与目标" [shape=box];
+        "设定时间范围" [shape=diamond];
+    }
+    
+    subgraph cluster_phases {
+        label="阶段规划";
+        style=filled;
+        fillcolor="#e8f5e9";
+        "近期规划（3月）" [shape=box, fillcolor="#c8e6c9"];
+        "中期规划（6月）" [shape=box, fillcolor="#bbdefb"];
+        "年度规划（12月）" [shape=box, fillcolor="#fff9c4"];
+        "长期规划（2-3年）" [shape=box, fillcolor="#ffe0b2"];
+    }
+    
+    subgraph cluster_detail {
+        label="细节填充";
+        style=filled;
+        fillcolor="#f3e5f5";
+        "各阶段里程碑设定" [shape=box];
+        "关键功能编排" [shape=box];
+        "资源与依赖标注" [shape=box];
+    }
+    
+    "生成产品路线图" [shape=box, fillcolor="#ffccbc"];
+    
+    "明确愿景与目标" -> "设定时间范围";
+    "设定时间范围" -> "近期规划（3月）" [label="A"];
+    "设定时间范围" -> "中期规划（6月）" [label="B"];
+    "设定时间范围" -> "年度规划（12月）" [label="C"];
+    "设定时间范围" -> "长期规划（2-3年）" [label="D"];
+    "近期规划（3月）" -> "各阶段里程碑设定";
+    "中期规划（6月）" -> "各阶段里程碑设定";
+    "年度规划（12月）" -> "各阶段里程碑设定";
+    "长期规划（2-3年）" -> "各阶段里程碑设定";
+    "各阶段里程碑设定" -> "关键功能编排";
+    "关键功能编排" -> "资源与依赖标注";
+    "资源与依赖标注" -> "生成产品路线图";
+}
+```
 
 ### 步骤 1: 明确产品愿景与战略目标
 

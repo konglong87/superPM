@@ -45,6 +45,36 @@ fi
 
 ## 执行流程
 
+```dot
+digraph pm_docs {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    
+    "确定文档类型" [shape=box, fillcolor="#bbdefb"];
+    "读取前置数据" [shape=box, fillcolor="#bbdefb"];
+    "汇总报告" [shape=box, fillcolor="#fff9c4"];
+    
+    subgraph cluster_subagent {
+        label="Subagent 并行生成文档";
+        style=filled;
+        fillcolor="#f3e5f5";
+        "Subagent PRD" [shape=box, fillcolor="#c8e6c9"];
+        "Subagent BRD" [shape=box, fillcolor="#c8e6c9"];
+        "Subagent MRD" [shape=box, fillcolor="#c8e6c9"];
+        "文档验证" [shape=box, fillcolor="#e1bee7"];
+        "Subagent PRD" -> "文档验证" [style=dashed];
+        "Subagent BRD" -> "文档验证" [style=dashed];
+        "Subagent MRD" -> "文档验证" [style=dashed];
+    }
+    
+    "确定文档类型" -> "读取前置数据";
+    "读取前置数据" -> "Subagent PRD";
+    "读取前置数据" -> "Subagent BRD";
+    "读取前置数据" -> "Subagent MRD";
+    "文档验证" -> "汇总报告";
+}
+```
+
 ### 步骤 1: 确定文档类型（主 agent - 用户交互）
 
 使用 AskUserQuestion 询问：

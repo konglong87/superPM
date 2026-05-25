@@ -34,6 +34,77 @@ fi
 
 ## 执行流程
 
+```dot
+digraph pm_mvp {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+
+    subgraph cluster_input {
+        label="前置数据";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "读取优先级排序报告" [shape=box];
+        "读取需求调研报告" [shape=box];
+        "快速模式手动选择" [shape=box, fillcolor="#fff9c4"];
+    }
+
+    subgraph cluster_mode {
+        label="MVP模式选择";
+        style=filled;
+        fillcolor="#fff3e0";
+        "选择MVP模式" [shape=diamond];
+        "最小MVP\n（2-4周）" [shape=box, fillcolor="#c8e6c9"];
+        "标准MVP\n（1-2月）" [shape=box, fillcolor="#bbdefb"];
+        "全链路MVP\n（2-3月）" [shape=box, fillcolor="#fff9c4"];
+        "自定义MVP" [shape=box, fillcolor="#f8bbd0"];
+    }
+
+    subgraph cluster_decide {
+        label="功能集确定";
+        style=filled;
+        fillcolor="#e8f5e9";
+        "选取核心3-5个P0功能" [shape=box];
+        "选取全部P0功能" [shape=box];
+        "选取P0+部分P1功能" [shape=box];
+        "逐个询问纳入MVP" [shape=box];
+    }
+
+    subgraph cluster_risk {
+        label="风险评估";
+        style=filled;
+        fillcolor="#fce4ec";
+        "技术风险评估" [shape=box];
+        "业务风险评估" [shape=box, fillcolor="#f8bbd0"];
+        "资源风险评估" [shape=box];
+    }
+
+    "生成MVP方案" [shape=box, fillcolor="#ffccbc"];
+
+    "读取优先级排序报告" -> "选择MVP模式";
+    "读取需求调研报告" -> "选择MVP模式";
+    "快速模式手动选择" -> "选择MVP模式";
+
+    "选择MVP模式" -> "最小MVP\n（2-4周）" [label="快速验证"];
+    "选择MVP模式" -> "标准MVP\n（1-2月）" [label="平衡方案"];
+    "选择MVP模式" -> "全链路MVP\n（2-3月）" [label="完整流程"];
+    "选择MVP模式" -> "自定义MVP" [label="用户选择"];
+
+    "最小MVP\n（2-4周）" -> "选取核心3-5个P0功能";
+    "标准MVP\n（1-2月）" -> "选取全部P0功能";
+    "全链路MVP\n（2-3月）" -> "选取P0+部分P1功能";
+    "自定义MVP" -> "逐个询问纳入MVP";
+
+    "选取核心3-5个P0功能" -> "技术风险评估";
+    "选取全部P0功能" -> "技术风险评估";
+    "选取P0+部分P1功能" -> "技术风险评估";
+    "逐个询问纳入MVP" -> "技术风险评估";
+
+    "技术风险评估" -> "业务风险评估";
+    "业务风险评估" -> "资源风险评估";
+    "资源风险评估" -> "生成MVP方案";
+}
+```
+
 ### 步骤 1: 读取前置数据
 
 使用 Read 工具读取：

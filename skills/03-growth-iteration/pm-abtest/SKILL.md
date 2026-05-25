@@ -1,6 +1,6 @@
 ---
 name: pm-abtest
-version: 1.1.0
+version: 2.0.0
 description: |
   Use when: 需要验证产品优化效果、进行数据驱动的A/B实验决策、评估功能改动的因果影响
   Do NOT use when: 改动无法量化测量、样本量不足、不需要严格统计验证
@@ -8,6 +8,7 @@ allowed-tools:
   - Read
   - Write
   - AskUserQuestion
+  - Agent
   - Bash
 ---
 
@@ -30,6 +31,18 @@ fi
 ---
 
 ## 执行流程
+
+```dot
+digraph pm_abtest {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    "定义测试假设" -> "设计实验方案";
+    "设计实验方案" -> "样本量计算";
+    "样本量计算" -> "设定测试周期";
+    "设定测试周期" -> "数据收集框架";
+    "数据收集框架" -> "输出A/B测试方案";
+}
+```
 
 ### 步骤 1: 定义测试假设
 
@@ -229,6 +242,68 @@ fi
 - 电商/工具产品：每组至少1000个用户
 - 内容/社交产品：每组至少5000个用户
 - 测试周期：至少7天
+
+---
+
+## V2 并行架构升级
+
+### 架构概览
+
+```dot
+digraph pm_abtest_subagent {
+    rankdir=LR;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    subgraph cluster_main {
+        label="主Agent";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "主Agent交互";
+    }
+    subgraph cluster_parallel {
+        label="并行分析Subagent (V2)";
+        style=filled;
+        fillcolor="#f8f9fa";
+        "统计方案设计Subagent" [fillcolor="#c8e6c9"];
+        "样本量计算Subagent" [fillcolor="#bbdefb"];
+        "埋点方案设计Subagent" [fillcolor="#fff9c4"];
+        "风险分析Subagent" [fillcolor="#f8bbd0"];
+    }
+    "主Agent交互" -> "统计方案设计Subagent";
+    "主Agent交互" -> "样本量计算Subagent";
+    "主Agent交互" -> "埋点方案设计Subagent";
+    "主Agent交互" -> "风险分析Subagent";
+    "统计方案设计Subagent" -> "主Agent整合";
+    "样本量计算Subagent" -> "主Agent整合";
+    "埋点方案设计Subagent" -> "主Agent整合";
+    "风险分析Subagent" -> "主Agent整合";
+    "主Agent整合" -> "输出完整测试方案";
+}
+```
+
+### 并行Subagent分析
+
+在收集完测试参数后，并发派发4个Subagent：
+
+**Subagent 1: 统计方案设计**
+- 负责：选择检验方法、计算效应量、设计分层分析
+
+**Subagent 2: 样本量计算**
+- 负责：基于参数精确计算样本量、预估测试周期
+
+**Subagent 3: 埋点方案设计**
+- 负责：设计数据埋点、定义指标口径、规划数据校验规则
+
+**Subagent 4: 风险分析**
+- 负责：识别新奇效应、评估护栏指标、制定提前停止规则
+
+### V1 vs V2 对比
+
+| 指标 | V1（顺序分析） | V2（并行分析） | 提升 |
+|------|--------------|--------------|------|
+| **分析时间** | ~6分钟 | ~2分钟 | 3x |
+| **主Agent上下文** | ~15,000 tokens | ~4,000 tokens | 节省73% |
+| **分析维度** | 串行3-5步 | 并行4个 | - |
+| **方案完整性** | 基础 | 多维度综合 | 更全面 |
 
 ---
 

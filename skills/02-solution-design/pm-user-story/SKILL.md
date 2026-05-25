@@ -1,6 +1,6 @@
 ---
 name: pm-user-story
-version: 1.1.0
+version: 2.0.0
 description: |
   Use when: 需要将需求转化为用户故事、准备敏捷开发任务、进行需求拆分、编写验收标准
   Do NOT use when: 需求已可直接进入开发、团队不使用用户故事格式
@@ -38,6 +38,45 @@ fi
 ---
 
 ## 执行流程
+
+```dot
+digraph pm_user_story {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    
+    "选择故事范围" [shape=box, fillcolor="#bbdefb"];
+    "读取前置数据" [shape=box, fillcolor="#bbdefb"];
+    "确认编写原则" [shape=box, fillcolor="#bbdefb"];
+    "识别Epic故事" [shape=box, fillcolor="#c8e6c9"];
+    "编写Story故事" [shape=box, fillcolor="#ffe0b2"];
+    "Story拆分优化" [shape=box, fillcolor="#ffe0b2"];
+    "优先级排序" [shape=box, fillcolor="#fff9c4"];
+    "输出故事清单" [shape=box, fillcolor="#fff9c4"];
+    
+    subgraph cluster_subagent {
+        label="Subagent 并行编写";
+        style=filled;
+        fillcolor="#f3e5f5";
+        "Epic1 Story编写" [shape=box, fillcolor="#e1bee7"];
+        "Epic2 Story编写" [shape=box, fillcolor="#e1bee7"];
+        "Epic3 Story编写" [shape=box, fillcolor="#e1bee7"];
+        "验收标准生成" [shape=box, fillcolor="#e1bee7"];
+        "Epic1 Story编写" -> "合并汇总" [style=dashed];
+        "Epic2 Story编写" -> "合并汇总" [style=dashed];
+        "Epic3 Story编写" -> "合并汇总" [style=dashed];
+        "验收标准生成" -> "合并汇总" [style=dashed];
+        "合并汇总" [shape=box, fillcolor="#d1c4e9"];
+    }
+    
+    "选择故事范围" -> "读取前置数据";
+    "读取前置数据" -> "确认编写原则";
+    "确认编写原则" -> "识别Epic故事";
+    "识别Epic故事" -> "编写Story故事";
+    "编写Story故事" -> "Story拆分优化";
+    "Story拆分优化" -> "优先级排序";
+    "优先级排序" -> "输出故事清单";
+}
+```
 
 ### 步骤 1: 选择用户故事范围
 
@@ -203,15 +242,40 @@ fi
 
 逐个Story编写，直到功能列表完成。
 
-#### 5.2 Subagent 并行编写（可选）
+#### 5.2 Subagent 并行编写（v2.0 增强）
 
-如果有大量Story（>10个），可使用 Agent 工具并行生成：
+如果有大量Story（>10个），使用 Agent 工具并行生成：
 
 ```markdown
+使用 Agent 工具并行派发：
+
 Agent 1: 编写Epic1的所有Story
+  - 输入：Epic1 描述 + 功能列表
+  - 输出：完整用户故事（含验收标准）
+
 Agent 2: 编写Epic2的所有Story
+  - 输入：Epic2 描述 + 功能列表
+  - 输出：完整用户故事（含验收标准）
+
 Agent 3: 编写Epic3的所有Story
+  - 输入：Epic3 描述 + 功能列表
+  - 输出：完整用户故事（含验收标准）
+
+Agent 4: 验收标准生成
+  - 输入：所有 Story 列表
+  - 输出：每个 Story 的 BDD 验收标准
+
+主 agent 等待所有 subagent 完成，合并汇总输出最终文档。
 ```
+
+### 版本对比（v1 vs v2）
+
+| 维度 | v1（串行） | v2（Subagent 并行） |
+|------|-----------|-------------------|
+| Story 编写 | 逐个编写 | Subagent 按 Epic 并行编写 |
+| 验收标准 | 手动逐条编写 | Subagent 批量生成 |
+| Token 占用 | 全部 Story 占用主上下文 | Subagent 独立上下文 |
+| 执行效率 | 线性顺序 | 并行 3-4x 加速 |
 
 ---
 

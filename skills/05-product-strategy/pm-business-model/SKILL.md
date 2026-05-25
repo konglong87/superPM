@@ -1,10 +1,11 @@
 ---
 name: pm-business-model
-version: 1.1.0
+version: 2.0.0
 description: |
   Use when: 需要设计商业模式画布、规划盈利模式、制定定价策略、设计收入模型
   Do NOT use when: 商业模式已确定且已验证、仅需简单定价调整而非全面设计
 allowed-tools:
+  - Agent
   - Read
   - Write
   - AskUserQuestion
@@ -29,6 +30,50 @@ fi
 ---
 
 ## 执行流程
+
+```dot
+digraph pm_business_model {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    
+    subgraph cluster_canvas {
+        label="商业模式画布（9要素）";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "客户细分" [shape=box];
+        "价值主张" [shape=box];
+        "渠道通路" [shape=box];
+        "客户关系" [shape=box];
+        "收入来源" [shape=box, fillcolor="#c8e6c9"];
+        "核心资源" [shape=box];
+        "关键业务" [shape=box];
+        "重要合作" [shape=box];
+        "成本结构" [shape=box, fillcolor="#f8bbd0"];
+    }
+    
+    subgraph cluster_subagent {
+        label="Subagent 并行分析（v2.0）";
+        style=filled;
+        fillcolor="#f3e5f5";
+        "竞品商业模式调研" [shape=box, fillcolor="#e1bee7"];
+        "行业盈利基准查询" [shape=box, fillcolor="#e1bee7"];
+    }
+
+    "客户细分" -> "价值主张";
+    "价值主张" -> "渠道通路";
+    "渠道通路" -> "客户关系";
+    "客户关系" -> "收入来源";
+    "收入来源" -> "核心资源";
+    "核心资源" -> "关键业务";
+    "关键业务" -> "重要合作";
+    "重要合作" -> "成本结构";
+    "成本结构" -> "竞品商业模式调研" [label="并行"];
+    "成本结构" -> "行业盈利基准查询" [label="并行"];
+    "竞品商业模式调研" -> "生成商业模式方案";
+    "行业盈利基准查询" -> "生成商业模式方案";
+    "生成商业模式方案" [shape=box, fillcolor="#ffccbc"];
+}
+```
 
 ### 步骤 1: 商业模式画布（9要素）
 
@@ -544,6 +589,33 @@ status: draft
 **生成时间**: [当前时间]
 **生成工具**: super-pm v2.0.0
 ```
+
+---
+
+## Subagent 并行分析（v2.0 新增）
+
+在商业模式画布要素收集完成后，可派发 subagent 并行进行外部调研：
+
+**Agent 1: 竞品商业模式调研**
+```
+type: "general-purpose"
+prompt: "调研同行业竞品的商业模式、盈利方式、定价策略，提供结构化对比..."
+```
+
+**Agent 2: 行业盈利基准查询**
+```
+type: "general-purpose"
+prompt: "查询目标行业的平均利润率、付费转化率、客单价等基准数据..."
+```
+
+## V1 vs V2 对比
+
+| 维度 | v1（串行） | v2（Subagent 并行） |
+|------|-----------|-------------------|
+| 竞品调研 | 手动搜索或跳过 | Subagent 并行搜索分析 |
+| 行业基准 | 无系统数据支撑 | Subagent 自动获取基准 |
+| Token 占用 | 搜索结果占主上下文 | Subagent 独立处理 |
+| 执行效率 | 线性顺序 | 并行 2x 加速 |
 
 ---
 

@@ -1,10 +1,11 @@
 ---
 name: pm-retro
-version: 1.1.0
+version: 2.0.0
 description: |
   Use when: 迭代结束后需要复盘总结经验教训、改进团队流程、记录改进行动项
   Do NOT use when: 迭代尚未结束、团队不需要正式复盘
 allowed-tools:
+  - Agent
   - Read
   - Write
   - AskUserQuestion
@@ -37,6 +38,18 @@ fi
 ---
 
 ## 执行流程
+
+```dot
+digraph pm_retro {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    "复盘准备" -> "目标达成评估";
+    "目标达成评估" -> "收集团队反馈KPT";
+    "收集团队反馈KPT" -> "根因分析";
+    "根因分析" -> "制定改进措施";
+    "制定改进措施" -> "输出迭代复盘报告";
+}
+```
 
 ### 步骤 1: 复盘准备
 

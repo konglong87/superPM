@@ -1,10 +1,11 @@
 ---
 name: pm-decision
-version: 1.1.0
+version: 2.0.0
 description: |
   Use when: 需要做重大战略决策（自研vs外包vs收购）、投资评估、多方案比较选择
   Do NOT use when: 决策已由高层确定、决策影响极小无需系统分析
 allowed-tools:
+  - Agent
   - Read
   - Write
   - AskUserQuestion
@@ -33,6 +34,60 @@ fi
 ---
 
 ## 执行流程
+
+```dot
+digraph pm_decision {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    
+    subgraph cluster_input {
+        label="决策定义";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "明确决策类型" [shape=diamond];
+        "自研vs外包" [shape=box, fillcolor="#c8e6c9"];
+        "自研vs收购" [shape=box, fillcolor="#bbdefb"];
+        "投资评估" [shape=box, fillcolor="#fff9c4"];
+        "多方案比较" [shape=box, fillcolor="#ffe0b2"];
+    }
+    
+    subgraph cluster_eval {
+        label="评估维度";
+        style=filled;
+        fillcolor="#e8f5e9";
+        "成本分析" [shape=box];
+        "时间评估" [shape=box];
+        "质量评估" [shape=box];
+        "风险分析" [shape=box, fillcolor="#f8bbd0"];
+    }
+    
+    subgraph cluster_subagent {
+        label="Subagent 并行分析（v2.0）";
+        style=filled;
+        fillcolor="#f3e5f5";
+        "方案研究" [shape=box, fillcolor="#e1bee7"];
+        "市场验证" [shape=box, fillcolor="#e1bee7"];
+    }
+
+    "生成决策分析报告" [shape=box, fillcolor="#ffccbc"];
+
+    "明确决策类型" -> "自研vs外包";
+    "明确决策类型" -> "自研vs收购";
+    "明确决策类型" -> "投资评估";
+    "明确决策类型" -> "多方案比较";
+    "自研vs外包" -> "成本分析";
+    "自研vs收购" -> "成本分析";
+    "投资评估" -> "成本分析";
+    "多方案比较" -> "成本分析";
+    "成本分析" -> "时间评估";
+    "时间评估" -> "质量评估";
+    "质量评估" -> "风险分析";
+    "风险分析" -> "方案研究" [label="并行"];
+    "风险分析" -> "市场验证" [label="并行"];
+    "方案研究" -> "生成决策分析报告";
+    "市场验证" -> "生成决策分析报告";
+}
+```
 
 ### 步骤 1: 明确决策问题
 
@@ -563,6 +618,33 @@ status: draft
 **生成时间**: [当前时间]
 **生成工具**: super-pm v2.0.0
 ```
+
+---
+
+## Subagent 并行分析（v2.0 新增）
+
+在决策矩阵评估完成后，可派发 subagent 并行进行深度分析：
+
+**Agent 1: 方案可行性调研**
+```
+type: "general-purpose"
+prompt: "基于决策选项，搜索各方案的实际案例、成功率和关键因素..."
+```
+
+**Agent 2: 市场数据验证**
+```
+type: "general-purpose"
+prompt: "搜索行业数据验证决策假设，包括市场规模、竞争格局、增长率..."
+```
+
+## V1 vs V2 对比
+
+| 维度 | v1（串行） | v2（Subagent 并行） |
+|------|-----------|-------------------|
+| 方案调研 | 主 agent 手动搜索 | Subagent 独立研究 |
+| 市场验证 | 无系统验证 | Subagent 并行验证 |
+| Token 占用 | 搜索结果占主上下文 | Subagent 独立处理 |
+| 决策依据 | 用户主观判断 | 数据支撑的客观建议 |
 
 ---
 

@@ -39,6 +39,44 @@ fi
 
 ## 执行流程
 
+```dot
+digraph pm_data {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    
+    "确定指标范围" [shape=box, fillcolor="#bbdefb"];
+    "读取前置数据" [shape=box, fillcolor="#bbdefb"];
+    "定义北极星指标" [shape=box, fillcolor="#c8e6c9"];
+    "设计关键指标" [shape=box, fillcolor="#c8e6c9"];
+    "设计过程指标" [shape=box, fillcolor="#ffe0b2"];
+    "设计转化漏斗" [shape=box, fillcolor="#ffe0b2"];
+    "设计数据监控方案" [shape=box, fillcolor="#fff9c4"];
+    "深度数据分析" [shape=box, fillcolor="#fff9c4"];
+    "输出指标体系" [shape=box, fillcolor="#e1bee7"];
+    
+    subgraph cluster_subagent {
+        label="Subagent 并行分析";
+        style=filled;
+        fillcolor="#f3e5f5";
+        "竞品指标调研" [shape=box, fillcolor="#e1bee7"];
+        "行业基准查询" [shape=box, fillcolor="#e1bee7"];
+        "趋势预测建模" [shape=box, fillcolor="#e1bee7"];
+        "竞品指标调研" -> "设计关键指标" [style=dashed];
+        "行业基准查询" -> "设计过程指标" [style=dashed];
+        "趋势预测建模" -> "深度数据分析" [style=dashed];
+    }
+    
+    "确定指标范围" -> "读取前置数据";
+    "读取前置数据" -> "定义北极星指标";
+    "定义北极星指标" -> "设计关键指标";
+    "设计关键指标" -> "设计过程指标";
+    "设计过程指标" -> "设计转化漏斗";
+    "设计转化漏斗" -> "设计数据监控方案";
+    "设计数据监控方案" -> "深度数据分析";
+    "深度数据分析" -> "输出指标体系";
+}
+```
+
 ### 步骤 1: 确定数据指标范围
 
 使用 AskUserQuestion 询问：

@@ -35,6 +35,72 @@ fi
 
 ## 执行流程
 
+```dot
+digraph pm_priority {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+
+    subgraph cluster_input {
+        label="前置数据";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "读取确认需求清单" [shape=box];
+        "读取需求调研报告" [shape=box];
+        "快速模式手动输入" [shape=box, fillcolor="#fff9c4"];
+    }
+
+    subgraph cluster_model {
+        label="排序模型选择";
+        style=filled;
+        fillcolor="#fff3e0";
+        "选择排序模型" [shape=diamond];
+        "RICE评分" [shape=box, fillcolor="#c8e6c9"];
+        "KANO模型" [shape=box, fillcolor="#bbdefb"];
+        "MoSCoW法则" [shape=box, fillcolor="#fff9c4"];
+        "自定义权重" [shape=box, fillcolor="#f8bbd0"];
+    }
+
+    subgraph cluster_eval {
+        label="逐需求评估";
+        style=filled;
+        fillcolor="#e8f5e9";
+        "Reach覆盖人数" [shape=box];
+        "Impact影响程度" [shape=box];
+        "Confidence信心度" [shape=box];
+        "Effort投入成本" [shape=box];
+    }
+
+    subgraph cluster_output {
+        label="输出生成";
+        style=filled;
+        fillcolor="#fce4ec";
+        "计算RICE得分" [shape=box, fillcolor="#ffccbc"];
+        "P0/P1/P2/P3分组" [shape=box];
+        "生成优先级排序报告" [shape=box];
+    }
+
+    "读取确认需求清单" -> "选择排序模型";
+    "读取需求调研报告" -> "选择排序模型";
+    "快速模式手动输入" -> "选择排序模型";
+    
+    "选择排序模型" -> "RICE评分" [label="推荐"];
+    "选择排序模型" -> "KANO模型" [label="用户满意度"];
+    "选择排序模型" -> "MoSCoW法则" [label="必须/应该/可以/不做"];
+    "选择排序模型" -> "自定义权重" [label="自定义维度"];
+
+    "RICE评分" -> "Reach覆盖人数";
+    "Reach覆盖人数" -> "Impact影响程度";
+    "Impact影响程度" -> "Confidence信心度";
+    "Confidence信心度" -> "Effort投入成本";
+    "Effort投入成本" -> "计算RICE得分" [label="逐个需求循环"];
+    "计算RICE得分" -> "P0/P1/P2/P3分组";
+    "KANO模型" -> "P0/P1/P2/P3分组" [label="按分类排序"];
+    "MoSCoW法则" -> "P0/P1/P2/P3分组" [label="按分类排序"];
+    "自定义权重" -> "P0/P1/P2/P3分组" [label="按得分排序"];
+    "P0/P1/P2/P3分组" -> "生成优先级排序报告";
+}
+```
+
 ### 步骤 1: 读取前置数据
 
 **如果有确认需求清单**：

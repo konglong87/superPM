@@ -36,6 +36,79 @@ fi
 
 ## 执行流程
 
+```dot
+digraph pm_brainstorm {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+
+    subgraph cluster_input {
+        label="前置数据";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "读取需求调研报告" [shape=box];
+        "快速模式输入" [shape=box];
+    }
+
+    subgraph cluster_direction {
+        label="方向选择";
+        style=filled;
+        fillcolor="#fff3e0";
+        "确定发散方向" [shape=diamond];
+        "灵感火花激发" [shape=box, fillcolor="#c8e6c9"];
+        "产品功能创新" [shape=box];
+        "用户增长方案" [shape=box];
+        "商业模式设计" [shape=box];
+        "用户体验优化" [shape=box];
+    }
+
+    subgraph cluster_subagent {
+        label="灵感火花并行搜索（Subagent）";
+        style=filled;
+        fillcolor="#e8f5e9";
+        "行业痛点搜索" [shape=box, fillcolor="#a5d6a7"];
+        "技术趋势搜索" [shape=box, fillcolor="#a5d6a7"];
+        "生活场景搜索" [shape=box, fillcolor="#a5d6a7"];
+        "跨界灵感搜索" [shape=box, fillcolor="#a5d6a7"];
+    }
+
+    subgraph cluster_mode {
+        label="头脑风暴模式";
+        style=filled;
+        fillcolor="#fce4ec";
+        "常规发散思维" [shape=box];
+        "第一性原理拆解" [shape=box, fillcolor="#f8bbd0"];
+        "SCAMPER创新法" [shape=box];
+    }
+
+    "生成创意方案库" [shape=box, fillcolor="#ffccbc"];
+
+    "读取需求调研报告" -> "确定发散方向";
+    "快速模式输入" -> "确定发散方向";
+    "确定发散方向" -> "灵感火花激发" [label="选择灵感火花"];
+    "确定发散方向" -> "产品功能创新" [label="其他方向"];
+    "确定发散方向" -> "用户增长方案" [label="其他方向"];
+    "确定发散方向" -> "商业模式设计" [label="其他方向"];
+    "确定发散方向" -> "用户体验优化" [label="其他方向"];
+    "灵感火花激发" -> "行业痛点搜索" [label="并行派发"];
+    "灵感火花激发" -> "技术趋势搜索" [label="并行派发"];
+    "灵感火花激发" -> "生活场景搜索" [label="并行派发"];
+    "灵感火花激发" -> "跨界灵感搜索" [label="并行派发"];
+    "行业痛点搜索" -> "生成创意方案库";
+    "技术趋势搜索" -> "生成创意方案库";
+    "生活场景搜索" -> "生成创意方案库";
+    "跨界灵感搜索" -> "生成创意方案库";
+    "产品功能创新" -> "常规发散思维" [label="继续深入"];
+    "用户增长方案" -> "常规发散思维";
+    "商业模式设计" -> "常规发散思维";
+    "用户体验优化" -> "常规发散思维";
+    "确定发散方向" -> "第一性原理拆解" [label="子模式选择"];
+    "确定发散方向" -> "SCAMPER创新法" [label="子模式选择"];
+    "常规发散思维" -> "生成创意方案库";
+    "第一性原理拆解" -> "生成创意方案库";
+    "SCAMPER创新法" -> "生成创意方案库";
+}
+```
+
 ### 步骤 1: 读取前置数据（可选）
 
 **如果存在需求调研报告**：

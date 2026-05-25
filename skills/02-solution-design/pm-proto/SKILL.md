@@ -1,10 +1,11 @@
 ---
 name: pm-proto
-version: 1.1.0
+version: 2.0.0
 description: |
   Use when: 需要设计产品原型、规划交互流程、确定界面布局、从PRD到视觉的过渡
   Do NOT use when: 原型已由设计师完成、仅需文字描述无需视觉产出
 allowed-tools:
+  - Agent
   - Read
   - Write
   - AskUserQuestion
@@ -37,6 +38,38 @@ fi
 ---
 
 ## 执行流程
+
+```dot
+digraph pm_proto {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    
+    "确定原型范围" [shape=box, fillcolor="#bbdefb"];
+    "读取前置数据" [shape=box, fillcolor="#bbdefb"];
+    "提取关键信息" [shape=box, fillcolor="#bbdefb"];
+    "设计原型框架" [shape=box, fillcolor="#c8e6c9"];
+    "设计页面流程" [shape=box, fillcolor="#ffe0b2"];
+    "输出方案" [shape=box, fillcolor="#fff9c4"];
+    
+    subgraph cluster_subagent {
+        label="Subagent 并行分析";
+        style=filled;
+        fillcolor="#f3e5f5";
+        "竞品设计模式分析" [shape=box, fillcolor="#e1bee7"];
+        "行业设计规范查询" [shape=box, fillcolor="#e1bee7"];
+        "用户旅程推导" [shape=box, fillcolor="#e1bee7"];
+        "竞品设计模式分析" -> "设计原型框架" [style=dashed];
+        "行业设计规范查询" -> "设计原型框架" [style=dashed];
+        "用户旅程推导" -> "设计原型框架" [style=dashed];
+    }
+    
+    "确定原型范围" -> "读取前置数据";
+    "读取前置数据" -> "提取关键信息";
+    "提取关键信息" -> "设计原型框架";
+    "设计原型框架" -> "设计页面流程";
+    "设计页面流程" -> "输出方案";
+}
+```
 
 ### 步骤 1: 确定原型设计范围
 
@@ -510,6 +543,38 @@ AI 分析并列举核心页面：
 ```
 
 ---
+
+### Subagent 并行分析（v2.0 新增）
+
+在步骤 4（设计原型框架）之前，主 agent 可派发 subagent 并行执行独立分析任务：
+
+```markdown
+使用 Agent 工具并行派发：
+
+Agent 1: 竞品设计模式分析
+  - 收集竞品的页面结构和交互模式
+  - 输出：竞品设计模式报告（JSON）
+
+Agent 2: 行业设计规范查询
+  - 分析行业通用的设计规范和最佳实践
+  - 输出：设计规范摘要（JSON）
+
+Agent 3: 用户旅程推导
+  - 基于 PRD 和 MVP 方案推导用户操作路径
+  - 输出：用户旅程关键触点（JSON）
+
+主 agent 等待所有 subagent 完成，整合结果用于原型框架设计。
+```
+
+### 版本对比（v1 vs v2）
+
+| 维度 | v1（串行） | v2（Subagent 并行） |
+|------|-----------|-------------------|
+| 竞品分析 | 人工逐个分析 | Subagent 并行分析 |
+| 设计规范 | 手动查询 | Subagent 自动搜索 |
+| 用户旅程推导 | 主 agent 处理 | Subagent 独立处理 |
+| Token 占用 | 设计细节占用主上下文 | Subagent 独立上下文 |
+| 执行效率 | 线性顺序 | 并行 3x 加速 |
 
 ### 步骤 7: 输出完成提示
 

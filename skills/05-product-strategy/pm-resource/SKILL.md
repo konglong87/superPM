@@ -1,10 +1,11 @@
 ---
 name: pm-resource
-version: 1.1.0
+version: 2.0.0
 description: |
   Use when: 需要在多个产品间分配研发资源、进行ROI评估、解决资源冲突、团队规划
   Do NOT use when: 资源充足无需分配优先级、单产品无需多项目协调
 allowed-tools:
+  - Agent
   - Read
   - Write
   - AskUserQuestion
@@ -30,6 +31,51 @@ fi
 ---
 
 ## 执行流程
+
+```dot
+digraph pm_resource {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    
+    subgraph cluster_input {
+        label="前置数据";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "读取产品组合战略" [shape=box];
+        "快速模式输入" [shape=box, fillcolor="#fff9c4"];
+    }
+    
+    subgraph cluster_resource {
+        label="资源盘点与分配";
+        style=filled;
+        fillcolor="#e8f5e9";
+        "盘点可用资源" [shape=box];
+        "按产品线分配" [shape=box, fillcolor="#c8e6c9"];
+        "ROI评估" [shape=box, fillcolor="#bbdefb"];
+        "资源冲突识别" [shape=box, fillcolor="#f8bbd0"];
+    }
+    
+    subgraph cluster_subagent {
+        label="Subagent 并行分析（v2.0）";
+        style=filled;
+        fillcolor="#f3e5f5";
+        "团队产能调研" [shape=box, fillcolor="#e1bee7"];
+        "市场基准对比" [shape=box, fillcolor="#e1bee7"];
+    }
+
+    "生成资源分配方案" [shape=box, fillcolor="#ffccbc"];
+    
+    "读取产品组合战略" -> "盘点可用资源";
+    "快速模式输入" -> "盘点可用资源";
+    "盘点可用资源" -> "按产品线分配";
+    "按产品线分配" -> "ROI评估";
+    "ROI评估" -> "资源冲突识别";
+    "资源冲突识别" -> "团队产能调研" [label="并行"];
+    "资源冲突识别" -> "市场基准对比" [label="并行"];
+    "团队产能调研" -> "生成资源分配方案";
+    "市场基准对比" -> "生成资源分配方案";
+}
+```
 
 ### 步骤 1: 读取前置数据
 
@@ -378,6 +424,29 @@ status: draft
 **生成时间**: [当前时间]
 **生成工具**: super-pm v2.0.0
 ```
+
+---
+
+## V2 并行架构升级
+
+### Subagent 并行分析
+
+在资源盘点完成后，可派发 subagent 并行执行：
+
+**Agent 1: 团队产能调研**
+- 负责：基于历史数据估算团队产能、各产品线所需人力
+
+**Agent 2: 行业 ROI 基准查询**
+- 负责：搜索同行业资源投入产出比基准数据
+
+### V1 vs V2 对比
+
+| 维度 | v1（串行） | v2（Subagent 并行） |
+|------|-----------|-------------------|
+| 产能评估 | 主 agent 大致估算 | Subagent 基于数据评估 |
+| 行业基准 | 无对比数据 | Subagent 自动获取基准 |
+| Token 占用 | 分析占主上下文 | Subagent 独立处理 |
+| 执行效率 | 线性顺序 | 并行 2x 加速 |
 
 ---
 

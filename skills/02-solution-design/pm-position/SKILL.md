@@ -35,6 +35,59 @@ fi
 
 ## 执行流程
 
+```dot
+digraph pm_position {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    
+    subgraph cluster_input {
+        label="前置分析";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "读取需求调研报告" [shape=box];
+        "读取市场调研报告" [shape=box];
+    }
+    
+    subgraph cluster_core {
+        label="产品定位核心流程";
+        style=filled;
+        fillcolor="#e8f5e9";
+        "明确产品定位目标" [shape=diamond];
+        "市场定位分析" [shape=box, fillcolor="#c8e6c9"];
+        "价值定位设计" [shape=box, fillcolor="#bbdefb"];
+        "用户定位细化" [shape=box, fillcolor="#fff9c4"];
+        "竞争定位分析" [shape=box, fillcolor="#ffe0b2"];
+    }
+    
+    subgraph cluster_business {
+        label="商业模式设计";
+        style=filled;
+        fillcolor="#f3e5f5";
+        "盈利模式设计" [shape=box, fillcolor="#e1bee7"];
+        "定价策略制定" [shape=box, fillcolor="#d1c4e9"];
+        "盈利预测分析" [shape=box, fillcolor="#b39ddb"];
+    }
+
+    subgraph cluster_output {
+        label="输出";
+        style=filled;
+        fillcolor="#fce4ec";
+        "生成产品定位方案" [shape=box, fillcolor="#ffccbc"];
+    }
+    
+    "读取需求调研报告" -> "明确产品定位目标";
+    "读取市场调研报告" -> "明确产品定位目标";
+    "明确产品定位目标" -> "市场定位分析";
+    "市场定位分析" -> "价值定位设计";
+    "价值定位设计" -> "用户定位细化";
+    "用户定位细化" -> "竞争定位分析";
+    "竞争定位分析" -> "盈利模式设计";
+    "盈利模式设计" -> "定价策略制定";
+    "定价策略制定" -> "盈利预测分析";
+    "盈利预测分析" -> "生成产品定位方案";
+}
+```
+
 ### 步骤 1: 明确产品定位
 
 > 您希望通过产品定位解决什么问题？

@@ -1,10 +1,11 @@
 ---
 name: pm-tech
-version: 1.1.0
+version: 2.0.0
 description: |
   Use when: 需要与技术团队对接技术方案、评估技术可行性、制定技术架构、评估第三方服务
   Do NOT use when: 技术方案已由技术团队确定、仅需功能描述无需技术评估
 allowed-tools:
+  - Agent
   - Read
   - Write
   - AskUserQuestion
@@ -33,6 +34,42 @@ fi
 ---
 
 ## 执行流程
+
+```dot
+digraph pm_tech {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    
+    "确定技术范围" [shape=box, fillcolor="#bbdefb"];
+    "读取前置数据" [shape=box, fillcolor="#bbdefb"];
+    "提取关键需求" [shape=box, fillcolor="#bbdefb"];
+    "技术方案设计" [shape=box, fillcolor="#c8e6c9"];
+    "功能可行性评估" [shape=box, fillcolor="#ffe0b2"];
+    "接口设计" [shape=box, fillcolor="#ffe0b2"];
+    "第三方服务评估" [shape=box, fillcolor="#fff9c4"];
+    "输出技术方案" [shape=box, fillcolor="#fff9c4"];
+    
+    subgraph cluster_subagent {
+        label="Subagent 并行评估";
+        style=filled;
+        fillcolor="#f3e5f5";
+        "技术栈调研" [shape=box, fillcolor="#e1bee7"];
+        "成本预估" [shape=box, fillcolor="#e1bee7"];
+        "风险分析" [shape=box, fillcolor="#e1bee7"];
+        "技术栈调研" -> "功能可行性评估" [style=dashed];
+        "成本预估" -> "第三方服务评估" [style=dashed];
+        "风险分析" -> "功能可行性评估" [style=dashed];
+    }
+    
+    "确定技术范围" -> "读取前置数据";
+    "读取前置数据" -> "提取关键需求";
+    "提取关键需求" -> "技术方案设计";
+    "技术方案设计" -> "功能可行性评估";
+    "功能可行性评估" -> "接口设计";
+    "接口设计" -> "第三方服务评估";
+    "第三方服务评估" -> "输出技术方案";
+}
+```
 
 ### 步骤 1: 确定技术对接范围
 
@@ -160,6 +197,38 @@ fi
 > 💰 成本参考：支付手续费0.6-1%，短信0.03-0.05元/条，存储{单价}/GB/月
 
 ---
+
+### Subagent 并行分析（v2.0 新增）
+
+在步骤 4（技术方案设计）前，主 agent 可派发 subagent 并行执行独立分析任务：
+
+```markdown
+使用 Agent 工具并行派发：
+
+Agent 1: 技术栈调研
+  - 调研各技术栈的社区活跃度、生态成熟度、人才市场
+  - 输出：技术栈对比报告（JSON）
+
+Agent 2: 成本预估
+  - 估算开发成本、第三方服务费用、运维成本
+  - 输出：成本预估明细（JSON）
+
+Agent 3: 风险分析
+  - 识别技术风险、替代方案、降级策略
+  - 输出：风险评估矩阵（JSON）
+
+主 agent 等待所有 subagent 完成，整合结果用于技术方案设计。
+```
+
+### 版本对比（v1 vs v2）
+
+| 维度 | v1（串行） | v2（Subagent 并行） |
+|------|-----------|-------------------|
+| 技术栈调研 | 主 agent 手动分析 | Subagent 并行调研 |
+| 成本预估 | 手动计算 | Subagent 自动计算 |
+| 风险分析 | 逐个评估 | Subagent 并行评估 |
+| Token 占用 | 分析细节占用主上下文 | Subagent 独立上下文 |
+| 执行效率 | 线性顺序 | 并行 3x 加速 |
 
 ### 步骤 8: 输出技术对接方案
 

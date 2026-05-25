@@ -1,10 +1,11 @@
 ---
 name: pm-portfolio
-version: 1.1.0
+version: 2.0.0
 description: |
   Use when: 管理多个产品线需要组合决策、BCG矩阵分析、产品生命周期评估、资源分配
   Do NOT use when: 单一产品无需组合管理、产品线已固定无需调整
 allowed-tools:
+  - Agent
   - Read
   - Write
   - AskUserQuestion
@@ -33,6 +34,47 @@ fi
 ---
 
 ## 执行流程
+
+```dot
+digraph pm_portfolio {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#e3f2fd"];
+    
+    subgraph cluster_input {
+        label="产品组合识别";
+        style=filled;
+        fillcolor="#f5f5f5";
+        "识别产品数量" [shape=diamond];
+        "单产品分析" [shape=box, fillcolor="#c8e6c9"];
+        "小型组合（2-3）" [shape=box, fillcolor="#bbdefb"];
+        "中型组合（4-6）" [shape=box, fillcolor="#fff9c4"];
+        "大型组合（7+）" [shape=box, fillcolor="#ffe0b2"];
+    }
+    
+    subgraph cluster_analysis {
+        label="分析工具";
+        style=filled;
+        fillcolor="#e8f5e9";
+        "BCG矩阵分析" [shape=box];
+        "产品生命周期评估" [shape=box];
+        "资源分配规划" [shape=box];
+    }
+    
+    "生成产品组合战略" [shape=box, fillcolor="#ffccbc"];
+    
+    "识别产品数量" -> "单产品分析";
+    "识别产品数量" -> "小型组合（2-3）";
+    "识别产品数量" -> "中型组合（4-6）";
+    "识别产品数量" -> "大型组合（7+）";
+    "单产品分析" -> "产品生命周期评估";
+    "小型组合（2-3）" -> "BCG矩阵分析";
+    "中型组合（4-6）" -> "BCG矩阵分析";
+    "大型组合（7+）" -> "BCG矩阵分析";
+    "BCG矩阵分析" -> "产品生命周期评估";
+    "产品生命周期评估" -> "资源分配规划";
+    "资源分配规划" -> "生成产品组合战略";
+}
+```
 
 ### 步骤 1: 识别当前产品组合
 
@@ -347,6 +389,30 @@ status: draft
 **生成时间**: [当前时间]
 **生成工具**: super-pm v2.0.0
 ```
+
+---
+
+## V2 并行架构升级
+
+### Subagent 并行分析
+
+在 BCG 矩阵和生命周期分析完成后，可派发 subagent 并行执行：
+
+**Agent 1: 市场数据采集**
+- 负责：搜索各产品所在行业的市场增长率、市场份额数据
+- 工具：WebSearch 搜索行业报告
+
+**Agent 2: 竞品组合对标**
+- 负责：搜索对标公司的产品组合策略和布局
+
+### V1 vs V2 对比
+
+| 维度 | v1（串行） | v2（Subagent 并行） |
+|------|-----------|-------------------|
+| 市场数据 | 主 agent 搜索或跳过 | Subagent 独立采集 |
+| 竞品对标 | 用户主观判断 | Subagent 结构化比对 |
+| Token 占用 | 结果占主上下文 | Subagent 独立处理 |
+| 执行效率 | 线性顺序 | 并行 2x 加速 |
 
 ---
 
