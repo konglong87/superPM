@@ -32,7 +32,9 @@
 在 Claude Code 中直接通过 Marketplace 安装：
 
 ```bash
-# 在 Claude Code 会话中执行
+#1-直接在会话中说：
+安装这个skill：https://github.com/konglong87/super-pm
+#2-在 Claude Code 会话中执行
 /skill install konglong87/super-pm
 ```
 
