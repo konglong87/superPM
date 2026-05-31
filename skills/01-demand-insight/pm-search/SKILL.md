@@ -406,9 +406,9 @@ AI: 🎯 执行综合并发搜索
 
 完成市场调研后，推荐执行：
 
-1. **pm-priority** - 需求优先级排序
-2. **pm-mvp** - MVP 方案规划
-3. **pm-docs** - 生成 PRD 文档
+1. **/pm-priority** - 需求优先级排序
+2. **/pm-mvp** - MVP 方案规划
+3. **/pm-docs** - 生成 PRD 文档
 
 ---
 
