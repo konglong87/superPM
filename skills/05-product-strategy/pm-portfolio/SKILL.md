@@ -34,46 +34,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_portfolio {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    subgraph cluster_input {
-        label="产品组合识别";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "识别产品数量" [shape=diamond];
-        "单产品分析" [shape=box, fillcolor="#c8e6c9"];
-        "小型组合（2-3）" [shape=box, fillcolor="#bbdefb"];
-        "中型组合（4-6）" [shape=box, fillcolor="#fff9c4"];
-        "大型组合（7+）" [shape=box, fillcolor="#ffe0b2"];
-    }
-    
-    subgraph cluster_analysis {
-        label="分析工具";
-        style=filled;
-        fillcolor="#e8f5e9";
-        "BCG矩阵分析" [shape=box];
-        "产品生命周期评估" [shape=box];
-        "资源分配规划" [shape=box];
-    }
-    
-    "生成产品组合战略" [shape=box, fillcolor="#ffccbc"];
-    
-    "识别产品数量" -> "单产品分析";
-    "识别产品数量" -> "小型组合（2-3）";
-    "识别产品数量" -> "中型组合（4-6）";
-    "识别产品数量" -> "大型组合（7+）";
-    "单产品分析" -> "产品生命周期评估";
-    "小型组合（2-3）" -> "BCG矩阵分析";
-    "中型组合（4-6）" -> "BCG矩阵分析";
-    "大型组合（7+）" -> "BCG矩阵分析";
-    "BCG矩阵分析" -> "产品生命周期评估";
-    "产品生命周期评估" -> "资源分配规划";
-    "资源分配规划" -> "生成产品组合战略";
-}
-```
 
 ### 步骤 1: 识别当前产品组合
 

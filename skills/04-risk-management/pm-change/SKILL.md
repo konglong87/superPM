@@ -25,29 +25,6 @@ echo "📝 需求变更管理工具已启动"
 
 ## 执行流程
 
-```dot
-digraph pm_change {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    subgraph cluster_process {
-        label="变更管理流程";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "记录变更申请" [shape=box];
-        "影响评估" [shape=box];
-        "变更决策" [shape=diamond];
-        "制定变更计划" [shape=box];
-        "记录变更" [shape=box];
-    }
-    
-    "记录变更申请" -> "影响评估";
-    "影响评估" -> "变更决策";
-    "变更决策" -> "制定变更计划" [label="批准"];
-    "变更决策" -> "记录变更" [label="拒绝/延期"];
-    "制定变更计划" -> "记录变更";
-}
-```
 
 ### 步骤 1: 记录变更申请
 

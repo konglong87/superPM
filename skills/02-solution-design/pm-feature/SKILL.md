@@ -35,29 +35,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_feature {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    "选择拆解功能" [shape=diamond];
-    "读取PRD文档" [shape=box];
-    "功能拆解分析" [shape=box, fillcolor="#c8e6c9"];
-    "场景描述编写" [shape=box, fillcolor="#bbdefb"];
-    "业务流程设计" [shape=box, fillcolor="#fff9c4"];
-    "界面交互说明" [shape=box, fillcolor="#ffe0b2"];
-    "数据逻辑定义" [shape=box, fillcolor="#f8bbd0"];
-    "输出功能拆解文档" [shape=box, fillcolor="#ffccbc"];
-    
-    "选择拆解功能" -> "读取PRD文档";
-    "读取PRD文档" -> "功能拆解分析";
-    "功能拆解分析" -> "场景描述编写";
-    "场景描述编写" -> "业务流程设计";
-    "业务流程设计" -> "界面交互说明";
-    "界面交互说明" -> "数据逻辑定义";
-    "数据逻辑定义" -> "输出功能拆解文档";
-}
-```
 
 ### 步骤 1: 选择需要拆解的功能
 

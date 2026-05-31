@@ -53,49 +53,6 @@ echo ""
 
 ### 架构图
 
-```dot
-digraph pm_search_subagent {
-    rankdir=TB;
-
-    "主 Agent 确定搜索类型" [shape=box];
-    "用户选择搜索类型" [shape=diamond];
-
-    subgraph cluster_parallel_search {
-        label="并发搜索 Subagents";
-        style=filled;
-        fillcolor="#f8f9fa";
-
-        "Market Research Subagent" [shape=box, style=filled, fillcolor="#c8e6c9"];
-        "Competitor Analysis Subagent" [shape=box, style=filled, fillcolor="#bbdefb"];
-        "Industry Data Subagent" [shape=box, style=filled, fillcolor="#fff9c4"];
-        "Public Opinion Subagent" [shape=box, style=filled, fillcolor="#f8bbd0"];
-        "Compliance Check Subagent" [shape=box, style=filled, fillcolor="#e1bee7"];
-    }
-
-    "主 Agent 整合结果" [shape=box, style=filled, fillcolor="#ffccbc"];
-    "生成综合报告" [shape=box];
-
-    "主 Agent 确定搜索类型" -> "用户选择搜索类型";
-    "用户选择搜索类型" -> "Market Research Subagent" [label="市场调研"];
-    "用户选择搜索类型" -> "Competitor Analysis Subagent" [label="竞品分析"];
-    "用户选择搜索类型" -> "Industry Data Subagent" [label="行业数据"];
-    "用户选择搜索类型" -> "Public Opinion Subagent" [label="舆情监控"];
-    "用户选择搜索类型" -> "Compliance Check Subagent" [label="合规检查"];
-    "用户选择搜索类型" -> "Market Research Subagent" [label="综合搜索" style=dashed];
-    "用户选择搜索类型" -> "Competitor Analysis Subagent" [label="综合搜索" style=dashed];
-    "用户选择搜索类型" -> "Industry Data Subagent" [label="综合搜索" style=dashed];
-    "用户选择搜索类型" -> "Public Opinion Subagent" [label="综合搜索" style=dashed];
-    "用户选择搜索类型" -> "Compliance Check Subagent" [label="综合搜索" style=dashed];
-
-    "Market Research Subagent" -> "主 Agent 整合结果";
-    "Competitor Analysis Subagent" -> "主 Agent 整合结果";
-    "Industry Data Subagent" -> "主 Agent 整合结果";
-    "Public Opinion Subagent" -> "主 Agent 整合结果";
-    "Compliance Check Subagent" -> "主 Agent 整合结果";
-
-    "主 Agent 整合结果" -> "生成综合报告";
-}
-```
 
 ---
 

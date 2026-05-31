@@ -25,28 +25,6 @@ echo "⚠️ 风险管控工具已启动"
 
 ## 执行流程
 
-```dot
-digraph pm_risk {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    subgraph cluster_process {
-        label="风险管控流程";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "风险识别" [shape=box];
-        "风险评估" [shape=box];
-        "制定应对策略" [shape=box];
-        "建立监控机制" [shape=box];
-        "生成管控方案" [shape=diamond];
-    }
-    
-    "风险识别" -> "风险评估";
-    "风险评估" -> "制定应对策略";
-    "制定应对策略" -> "建立监控机制";
-    "建立监控机制" -> "生成管控方案";
-}
-```
 
 ### 步骤 1: 风险识别
 

@@ -29,58 +29,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_funnel {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    subgraph cluster_define {
-        label="漏斗定义";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "选择业务场景" [shape=diamond];
-        "注册转化漏斗" [shape=box, fillcolor="#c8e6c9"];
-        "购买转化漏斗" [shape=box, fillcolor="#bbdefb"];
-        "激活转化漏斗" [shape=box, fillcolor="#fff9c4"];
-        "留存转化漏斗" [shape=box, fillcolor="#ffe0b2"];
-    }
-    
-    subgraph cluster_analysis {
-        label="数据收集与分析";
-        style=filled;
-        fillcolor="#e8f5e9";
-        "定义漏斗各阶段" [shape=box];
-        "收集各环节数据" [shape=box];
-        "计算转化率与流失率" [shape=box];
-    }
-    
-    subgraph cluster_diagnosis {
-        label="诊断与优化";
-        style=filled;
-        fillcolor="#f3e5f5";
-        "识别流失关键环节" [shape=box, fillcolor="#f8bbd0"];
-        "根因分析" [shape=box];
-        "生成优化建议" [shape=box, fillcolor="#c8e6c9"];
-    }
-    
-    "输出漏斗分析报告" [shape=box, fillcolor="#ffccbc"];
-    
-    "选择业务场景" -> "注册转化漏斗";
-    "选择业务场景" -> "购买转化漏斗";
-    "选择业务场景" -> "激活转化漏斗";
-    "选择业务场景" -> "留存转化漏斗";
-    "注册转化漏斗" -> "定义漏斗各阶段";
-    "购买转化漏斗" -> "定义漏斗各阶段";
-    "激活转化漏斗" -> "定义漏斗各阶段";
-    "留存转化漏斗" -> "定义漏斗各阶段";
-    "定义漏斗各阶段" -> "收集各环节数据";
-    "收集各环节数据" -> "计算转化率与流失率";
-    "计算转化率与流失率" -> "识别流失关键环节";
-    "识别流失关键环节" -> "根因分析";
-    "根因分析" -> "生成优化建议";
-    "生成优化建议" -> "输出漏斗分析报告";
-}
-```
 
 ### 步骤 1: 定义转化漏斗
 

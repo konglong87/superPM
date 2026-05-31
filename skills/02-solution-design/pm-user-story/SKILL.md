@@ -39,44 +39,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_user_story {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    "选择故事范围" [shape=box, fillcolor="#bbdefb"];
-    "读取前置数据" [shape=box, fillcolor="#bbdefb"];
-    "确认编写原则" [shape=box, fillcolor="#bbdefb"];
-    "识别Epic故事" [shape=box, fillcolor="#c8e6c9"];
-    "编写Story故事" [shape=box, fillcolor="#ffe0b2"];
-    "Story拆分优化" [shape=box, fillcolor="#ffe0b2"];
-    "优先级排序" [shape=box, fillcolor="#fff9c4"];
-    "输出故事清单" [shape=box, fillcolor="#fff9c4"];
-    
-    subgraph cluster_subagent {
-        label="Subagent 并行编写";
-        style=filled;
-        fillcolor="#f3e5f5";
-        "Epic1 Story编写" [shape=box, fillcolor="#e1bee7"];
-        "Epic2 Story编写" [shape=box, fillcolor="#e1bee7"];
-        "Epic3 Story编写" [shape=box, fillcolor="#e1bee7"];
-        "验收标准生成" [shape=box, fillcolor="#e1bee7"];
-        "Epic1 Story编写" -> "合并汇总" [style=dashed];
-        "Epic2 Story编写" -> "合并汇总" [style=dashed];
-        "Epic3 Story编写" -> "合并汇总" [style=dashed];
-        "验收标准生成" -> "合并汇总" [style=dashed];
-        "合并汇总" [shape=box, fillcolor="#d1c4e9"];
-    }
-    
-    "选择故事范围" -> "读取前置数据";
-    "读取前置数据" -> "确认编写原则";
-    "确认编写原则" -> "识别Epic故事";
-    "识别Epic故事" -> "编写Story故事";
-    "编写Story故事" -> "Story拆分优化";
-    "Story拆分优化" -> "优先级排序";
-    "优先级排序" -> "输出故事清单";
-}
-```
 
 ### 步骤 1: 选择用户故事范围
 

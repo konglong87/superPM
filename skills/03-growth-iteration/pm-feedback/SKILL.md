@@ -28,22 +28,6 @@ echo ""
 
 ## 执行流程
 
-```dot
-digraph pm_feedback {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    "收集反馈数据" -> "并发分析";
-    "并发分析" -> "反馈分类";
-    "并发分析" -> "情感分析";
-    "并发分析" -> "优先级评估";
-    "并发分析" -> "问题聚类";
-    "反馈分类" -> "整合分析报告";
-    "情感分析" -> "整合分析报告";
-    "优先级评估" -> "整合分析报告";
-    "问题聚类" -> "整合分析报告";
-    "整合分析报告" -> "输出改进建议";
-}
-```
 
 ### 步骤 1: 收集反馈数据（主 agent - 用户交互）
 
@@ -67,43 +51,6 @@ digraph pm_feedback {
 
 ### 架构图
 
-```dot
-digraph pm_feedback_subagent {
-    rankdir=TB;
-
-    "主 Agent 收集反馈数据" [shape=box];
-    "反馈数据预处理" [shape=box];
-
-    subgraph cluster_parallel_analysis {
-        label="并发分析 Subagents";
-        style=filled;
-        fillcolor="#f8f9fa";
-
-        "Feedback Categorization Subagent" [shape=box, style=filled, fillcolor="#c8e6c9"];
-        "Sentiment Analysis Subagent" [shape=box, style=filled, fillcolor="#bbdefb"];
-        "Priority Assessment Subagent" [shape=box, style=filled, fillcolor="#fff9c4"];
-        "Problem Clustering Subagent" [shape=box, style=filled, fillcolor="#f8bbd0"];
-    }
-
-    "主 Agent 整合分析" [shape=box, style=filled, fillcolor="#ffccbc"];
-    "生成综合报告" [shape=box];
-    "输出改进建议" [shape=box];
-
-    "主 Agent 收集反馈数据" -> "反馈数据预处理";
-    "反馈数据预处理" -> "Feedback Categorization Subagent";
-    "反馈数据预处理" -> "Sentiment Analysis Subagent";
-    "反馈数据预处理" -> "Priority Assessment Subagent";
-    "反馈数据预处理" -> "Problem Clustering Subagent";
-
-    "Feedback Categorization Subagent" -> "主 Agent 整合分析";
-    "Sentiment Analysis Subagent" -> "主 Agent 整合分析";
-    "Priority Assessment Subagent" -> "主 Agent 整合分析";
-    "Problem Clustering Subagent" -> "主 Agent 整合分析";
-
-    "主 Agent 整合分析" -> "生成综合报告";
-    "生成综合报告" -> "输出改进建议";
-}
-```
 
 ---
 

@@ -34,17 +34,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_iteration {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    "确定迭代范围" -> "设定迭代目标";
-    "设定迭代目标" -> "收集迭代需求";
-    "收集迭代需求" -> "需求优先级排序";
-    "需求优先级排序" -> "资源分配与排期";
-    "资源分配与排期" -> "输出迭代计划";
-}
-```
 
 ### 步骤 1: 确定迭代范围
 
@@ -243,36 +232,6 @@ digraph pm_iteration {
 
 ### 架构概览
 
-```dot
-digraph pm_iteration_subagent {
-    rankdir=LR;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    subgraph cluster_main {
-        label="主Agent";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "主Agent交互";
-    }
-    subgraph cluster_parallel {
-        label="并行分析Subagent (V2)";
-        style=filled;
-        fillcolor="#f8f9fa";
-        "需求分析Subagent" [fillcolor="#c8e6c9"];
-        "工时估算Subagent" [fillcolor="#bbdefb"];
-        "依赖分析Subagent" [fillcolor="#fff9c4"];
-        "风险分析Subagent" [fillcolor="#f8bbd0"];
-    }
-    "主Agent交互" -> "需求分析Subagent";
-    "主Agent交互" -> "工时估算Subagent";
-    "主Agent交互" -> "依赖分析Subagent";
-    "主Agent交互" -> "风险分析Subagent";
-    "需求分析Subagent" -> "主Agent整合";
-    "工时估算Subagent" -> "主Agent整合";
-    "依赖分析Subagent" -> "主Agent整合";
-    "风险分析Subagent" -> "主Agent整合";
-    "主Agent整合" -> "输出完整迭代计划";
-}
-```
 
 ### 并行Subagent分析
 

@@ -35,62 +35,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_journey {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-
-    subgraph cluster_input {
-        label="前置数据";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "读取需求调研报告" [shape=box];
-        "读取MVP方案" [shape=box];
-        "快速模式" [shape=box, fillcolor="#fff9c4"];
-    }
-
-    subgraph cluster_setup {
-        label="用户旅程设定";
-        style=filled;
-        fillcolor="#e8f5e9";
-        "确定用户类型" [shape=diamond];
-        "确定旅程场景" [shape=diamond];
-    }
-
-    subgraph cluster_stage {
-        label="逐阶段分析";
-        style=filled;
-        fillcolor="#fff3e0";
-        "定义旅程阶段" [shape=box];
-        "用户行为分析" [shape=box];
-        "触点识别" [shape=box];
-        "情绪评估" [shape=box];
-        "痛点识别" [shape=box];
-        "机会点发掘" [shape=box];
-    }
-
-    subgraph cluster_output {
-        label="输出生成";
-        style=filled;
-        fillcolor="#fce4ec";
-        "绘制情绪曲线" [shape=box];
-        "生成用户旅程地图" [shape=box, fillcolor="#ffccbc"];
-    }
-
-    "读取需求调研报告" -> "确定用户类型";
-    "读取MVP方案" -> "确定用户类型";
-    "快速模式" -> "确定用户类型";
-    "确定用户类型" -> "确定旅程场景";
-    "确定旅程场景" -> "定义旅程阶段";
-    "定义旅程阶段" -> "用户行为分析" [label="逐阶段\n循环分析"];
-    "用户行为分析" -> "触点识别";
-    "触点识别" -> "情绪评估";
-    "情绪评估" -> "痛点识别";
-    "痛点识别" -> "机会点发掘";
-    "机会点发掘" -> "绘制情绪曲线" [label="所有阶段\n分析完成"];
-    "绘制情绪曲线" -> "生成用户旅程地图";
-}
-```
 
 ### 步骤 1: 读取前置数据
 

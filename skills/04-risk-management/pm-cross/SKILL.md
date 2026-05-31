@@ -25,30 +25,6 @@ echo "🤝 跨部门协作方案制定工具已启动"
 
 ## 执行流程
 
-```dot
-digraph pm_cross {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    subgraph cluster_process {
-        label="跨部门协作流程";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "识别参与部门" [shape=box];
-        "明确协作场景" [shape=box];
-        "设计协作流程" [shape=box];
-        "设计沟通机制" [shape=box];
-        "明确职责分工" [shape=box];
-        "生成协作方案" [shape=diamond];
-    }
-    
-    "识别参与部门" -> "明确协作场景";
-    "明确协作场景" -> "设计协作流程";
-    "设计协作流程" -> "设计沟通机制";
-    "设计沟通机制" -> "明确职责分工";
-    "明确职责分工" -> "生成协作方案";
-}
-```
 
 ### 步骤 1: 识别参与部门
 

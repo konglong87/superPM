@@ -31,50 +31,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_resource {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    subgraph cluster_input {
-        label="前置数据";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "读取产品组合战略" [shape=box];
-        "快速模式输入" [shape=box, fillcolor="#fff9c4"];
-    }
-    
-    subgraph cluster_resource {
-        label="资源盘点与分配";
-        style=filled;
-        fillcolor="#e8f5e9";
-        "盘点可用资源" [shape=box];
-        "按产品线分配" [shape=box, fillcolor="#c8e6c9"];
-        "ROI评估" [shape=box, fillcolor="#bbdefb"];
-        "资源冲突识别" [shape=box, fillcolor="#f8bbd0"];
-    }
-    
-    subgraph cluster_subagent {
-        label="Subagent 并行分析（v2.0）";
-        style=filled;
-        fillcolor="#f3e5f5";
-        "团队产能调研" [shape=box, fillcolor="#e1bee7"];
-        "市场基准对比" [shape=box, fillcolor="#e1bee7"];
-    }
-
-    "生成资源分配方案" [shape=box, fillcolor="#ffccbc"];
-    
-    "读取产品组合战略" -> "盘点可用资源";
-    "快速模式输入" -> "盘点可用资源";
-    "盘点可用资源" -> "按产品线分配";
-    "按产品线分配" -> "ROI评估";
-    "ROI评估" -> "资源冲突识别";
-    "资源冲突识别" -> "团队产能调研" [label="并行"];
-    "资源冲突识别" -> "市场基准对比" [label="并行"];
-    "团队产能调研" -> "生成资源分配方案";
-    "市场基准对比" -> "生成资源分配方案";
-}
-```
 
 ### 步骤 1: 读取前置数据
 

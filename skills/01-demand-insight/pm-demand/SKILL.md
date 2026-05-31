@@ -34,66 +34,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_demand {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-
-    subgraph cluster_input {
-        label="信息收集（主 Agent 交互）";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "产品名称" [shape=box];
-        "目标用户" [shape=diamond];
-        "核心业务目标" [shape=diamond];
-        "核心痛点验证" [shape=diamond, fillcolor="#ffcdd2"];
-        "行业赛道" [shape=diamond];
-    }
-
-    subgraph cluster_validate {
-        label="痛点强度判断";
-        style=filled;
-        fillcolor="#fff3e0";
-        "强痛点（继续调研）" [shape=box, fillcolor="#c8e6c9"];
-        "弱痛点（提示伪需求风险）" [shape=box, fillcolor="#ffcdd2"];
-    }
-
-    subgraph cluster_requirements {
-        label="需求收集与验证";
-        style=filled;
-        fillcolor="#e8f5e9";
-        "收集初步需求清单" [shape=box];
-        "逐个验证需求真伪" [shape=box, fillcolor="#a5d6a7"];
-    }
-
-    subgraph cluster_subagent {
-        label="Subagent 并行市场验证（v2.0新增）";
-        style=filled;
-        fillcolor="#f3e5f5";
-        "竞品分析 Subagent" [shape=box, fillcolor="#ce93d8"];
-        "用户验证 Subagent" [shape=box, fillcolor="#ce93d8"];
-        "市场调研 Subagent" [shape=box, fillcolor="#ce93d8"];
-    }
-
-    "生成需求调研报告" [shape=box, fillcolor="#ffccbc"];
-
-    "产品名称" -> "目标用户";
-    "目标用户" -> "核心业务目标";
-    "核心业务目标" -> "核心痛点验证";
-    "核心痛点验证" -> "强痛点（继续调研）" [label="痛点清晰"];
-    "核心痛点验证" -> "弱痛点（提示伪需求风险）" [label="痛点模糊"];
-    "弱痛点（提示伪需求风险）" -> "强痛点（继续调研）" [label="用户选择继续"];
-    "强痛点（继续调研）" -> "行业赛道";
-    "行业赛道" -> "收集初步需求清单";
-    "收集初步需求清单" -> "逐个验证需求真伪";
-    "逐个验证需求真伪" -> "竞品分析 Subagent" [label="并行验证\n（v2.0）"];
-    "逐个验证需求真伪" -> "用户验证 Subagent" [label="并行验证\n（v2.0）"];
-    "逐个验证需求真伪" -> "市场调研 Subagent" [label="并行验证\n（v2.0）"];
-    "竞品分析 Subagent" -> "生成需求调研报告";
-    "用户验证 Subagent" -> "生成需求调研报告";
-    "市场调研 Subagent" -> "生成需求调研报告";
-}
-```
 
 ### 步骤 1: 收集产品基础信息
 

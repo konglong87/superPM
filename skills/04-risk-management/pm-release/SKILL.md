@@ -25,30 +25,6 @@ echo "🚀 上线执行方案制定工具已启动"
 
 ## 执行流程
 
-```dot
-digraph pm_release {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    subgraph cluster_process {
-        label="上线执行流程";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "确定上线策略" [shape=box];
-        "制定检查清单" [shape=box];
-        "规划发布时间" [shape=box];
-        "设计回滚方案" [shape=box];
-        "规划通知机制" [shape=box];
-        "生成上线方案" [shape=diamond];
-    }
-    
-    "确定上线策略" -> "制定检查清单";
-    "制定检查清单" -> "规划发布时间";
-    "规划发布时间" -> "设计回滚方案";
-    "设计回滚方案" -> "规划通知机制";
-    "规划通知机制" -> "生成上线方案";
-}
-```
 
 ### 步骤 1: 确定上线策略
 

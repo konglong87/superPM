@@ -35,54 +35,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_clarify {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-
-    subgraph cluster_input {
-        label="前置数据读取";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "读取需求调研报告" [shape=box];
-        "读取创意方案库" [shape=box, fillcolor="#fff9c4"];
-        "快速模式手动输入" [shape=box, fillcolor="#ffccbc"];
-    }
-
-    subgraph cluster_refine {
-        label="逐个需求细化（循环）";
-        style=filled;
-        fillcolor="#e8f5e9";
-        "确定使用场景" [shape=box];
-        "描述具体行为" [shape=box, fillcolor="#c8e6c9"];
-        "明确边界条件" [shape=diamond, fillcolor="#bbdefb"];
-        "设计异常处理" [shape=diamond, fillcolor="#fff9c4"];
-        "定义验收标准" [shape=box, fillcolor="#ffe0b2"];
-    }
-
-    subgraph cluster_subagent {
-        label="Subagent 并行分析（v2.0）";
-        style=filled;
-        fillcolor="#f3e5f5";
-        "市场对标分析" [shape=box, fillcolor="#e1bee7"];
-        "技术可行性评估" [shape=box, fillcolor="#e1bee7"];
-    }
-
-    "汇总生成确认需求清单" [shape=box, fillcolor="#ffccbc"];
-
-    "读取需求调研报告" -> "确定使用场景";
-    "读取创意方案库" -> "确定使用场景";
-    "快速模式手动输入" -> "确定使用场景";
-    "确定使用场景" -> "描述具体行为";
-    "描述具体行为" -> "明确边界条件";
-    "明确边界条件" -> "设计异常处理";
-    "设计异常处理" -> "定义验收标准";
-    "定义验收标准" -> "市场对标分析" [label="并行"];
-    "定义验收标准" -> "技术可行性评估" [label="并行"];
-    "市场对标分析" -> "汇总生成确认需求清单";
-    "技术可行性评估" -> "汇总生成确认需求清单";
-}
-```
 
 ### 步骤 1: 读取前置数据
 

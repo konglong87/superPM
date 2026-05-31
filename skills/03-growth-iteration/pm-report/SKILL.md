@@ -33,16 +33,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_report {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    "选择报告类型" -> "收集数据";
-    "收集数据" -> "数据分析";
-    "数据分析" -> "用户反馈整理";
-    "用户反馈整理" -> "输出报告";
-}
-```
 
 ### 步骤 1: 选择报告类型
 
@@ -219,36 +209,6 @@ digraph pm_report {
 
 ### 架构概览
 
-```dot
-digraph pm_report_subagent {
-    rankdir=LR;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    subgraph cluster_main {
-        label="主Agent";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "主Agent交互";
-    }
-    subgraph cluster_parallel {
-        label="并行分析Subagent (V2)";
-        style=filled;
-        fillcolor="#f8f9fa";
-        "指标分析Subagent" [fillcolor="#c8e6c9"];
-        "趋势分析Subagent" [fillcolor="#bbdefb"];
-        "用户反馈Subagent" [fillcolor="#fff9c4"];
-        "异常检测Subagent" [fillcolor="#f8bbd0"];
-    }
-    "主Agent交互" -> "指标分析Subagent";
-    "主Agent交互" -> "趋势分析Subagent";
-    "主Agent交互" -> "用户反馈Subagent";
-    "主Agent交互" -> "异常检测Subagent";
-    "指标分析Subagent" -> "主Agent整合";
-    "趋势分析Subagent" -> "主Agent整合";
-    "用户反馈Subagent" -> "主Agent整合";
-    "异常检测Subagent" -> "主Agent整合";
-    "主Agent整合" -> "输出完整数据报告";
-}
-```
 
 ### 并行Subagent分析
 

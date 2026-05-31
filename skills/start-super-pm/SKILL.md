@@ -52,55 +52,7 @@ allowed-tools:
 
 ---
 
-## PM Skill 自动触发决策流程
-
-```dot
-digraph pm_skill_flow {
-    "用户消息到达" [shape=doublecircle];
-    "识别任务类型" [shape=diamond];
-    "需求调研类？" [shape=diamond];
-    "市场分析类？" [shape=diamond];
-    "方案设计类？" [shape=diamond];
-    "增长迭代类？" [shape=diamond];
-    "风控管理类？" [shape=diamond];
-    "产品战略类？" [shape=diamond];
-    "调用 pm-demand" [shape=box];
-    "调用 pm-search" [shape=box];
-    "调用 pm-docs/pm-proto" [shape=box];
-    "调用 pm-growth/pm-aarrr" [shape=box];
-    "调用 pm-risk/pm-agile" [shape=box];
-    "调用 pm-business-model/pm-portfolio" [shape=box];
-    "直接响应用户" [shape=doublecircle];
-
-    "用户消息到达" -> "识别任务类型";
-    "识别任务类型" -> "需求调研类？";
-    "需求调研类？" -> "调用 pm-demand" [label="是"];
-    "需求调研类？" -> "市场分析类？" [label="否"];
-    "调用 pm-demand" -> "直接响应用户";
-
-    "市场分析类？" -> "调用 pm-search" [label="是"];
-    "市场分析类？" -> "方案设计类？" [label="否"];
-    "调用 pm-search" -> "直接响应用户";
-
-    "方案设计类？" -> "调用 pm-docs/pm-proto" [label="是"];
-    "方案设计类？" -> "增长迭代类？" [label="否"];
-    "调用 pm-docs/pm-proto" -> "直接响应用户";
-
-    "增长迭代类？" -> "调用 pm-growth/pm-aarrr" [label="是"];
-    "增长迭代类？" -> "风控管理类？" [label="否"];
-    "调用 pm-growth/pm-aarrr" -> "直接响应用户";
-
-    "风控管理类？" -> "调用 pm-risk/pm-agile" [label="是"];
-    "风控管理类？" -> "产品战略类？" [label="否"];
-    "调用 pm-risk/pm-agile" -> "直接响应用户";
-
-    "产品战略类？" -> "调用 pm-business-model/pm-portfolio" [label="是"];
-    "产品战略类？" -> "直接响应用户" [label="否"];
-    "调用 pm-business-model/pm-portfolio" -> "直接响应用户";
-}
-```
-
----
+## PM Skill 自动触发决策流程（详见下方各模块触发信号）
 
 ## 任务类型识别指南
 

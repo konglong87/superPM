@@ -32,17 +32,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_abtest {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    "定义测试假设" -> "设计实验方案";
-    "设计实验方案" -> "样本量计算";
-    "样本量计算" -> "设定测试周期";
-    "设定测试周期" -> "数据收集框架";
-    "数据收集框架" -> "输出A/B测试方案";
-}
-```
 
 ### 步骤 1: 定义测试假设
 
@@ -249,36 +238,6 @@ digraph pm_abtest {
 
 ### 架构概览
 
-```dot
-digraph pm_abtest_subagent {
-    rankdir=LR;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    subgraph cluster_main {
-        label="主Agent";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "主Agent交互";
-    }
-    subgraph cluster_parallel {
-        label="并行分析Subagent (V2)";
-        style=filled;
-        fillcolor="#f8f9fa";
-        "统计方案设计Subagent" [fillcolor="#c8e6c9"];
-        "样本量计算Subagent" [fillcolor="#bbdefb"];
-        "埋点方案设计Subagent" [fillcolor="#fff9c4"];
-        "风险分析Subagent" [fillcolor="#f8bbd0"];
-    }
-    "主Agent交互" -> "统计方案设计Subagent";
-    "主Agent交互" -> "样本量计算Subagent";
-    "主Agent交互" -> "埋点方案设计Subagent";
-    "主Agent交互" -> "风险分析Subagent";
-    "统计方案设计Subagent" -> "主Agent整合";
-    "样本量计算Subagent" -> "主Agent整合";
-    "埋点方案设计Subagent" -> "主Agent整合";
-    "风险分析Subagent" -> "主Agent整合";
-    "主Agent整合" -> "输出完整测试方案";
-}
-```
 
 ### 并行Subagent分析
 

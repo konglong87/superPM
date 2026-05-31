@@ -34,59 +34,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_decision {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    subgraph cluster_input {
-        label="决策定义";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "明确决策类型" [shape=diamond];
-        "自研vs外包" [shape=box, fillcolor="#c8e6c9"];
-        "自研vs收购" [shape=box, fillcolor="#bbdefb"];
-        "投资评估" [shape=box, fillcolor="#fff9c4"];
-        "多方案比较" [shape=box, fillcolor="#ffe0b2"];
-    }
-    
-    subgraph cluster_eval {
-        label="评估维度";
-        style=filled;
-        fillcolor="#e8f5e9";
-        "成本分析" [shape=box];
-        "时间评估" [shape=box];
-        "质量评估" [shape=box];
-        "风险分析" [shape=box, fillcolor="#f8bbd0"];
-    }
-    
-    subgraph cluster_subagent {
-        label="Subagent 并行分析（v2.0）";
-        style=filled;
-        fillcolor="#f3e5f5";
-        "方案研究" [shape=box, fillcolor="#e1bee7"];
-        "市场验证" [shape=box, fillcolor="#e1bee7"];
-    }
-
-    "生成决策分析报告" [shape=box, fillcolor="#ffccbc"];
-
-    "明确决策类型" -> "自研vs外包";
-    "明确决策类型" -> "自研vs收购";
-    "明确决策类型" -> "投资评估";
-    "明确决策类型" -> "多方案比较";
-    "自研vs外包" -> "成本分析";
-    "自研vs收购" -> "成本分析";
-    "投资评估" -> "成本分析";
-    "多方案比较" -> "成本分析";
-    "成本分析" -> "时间评估";
-    "时间评估" -> "质量评估";
-    "质量评估" -> "风险分析";
-    "风险分析" -> "方案研究" [label="并行"];
-    "风险分析" -> "市场验证" [label="并行"];
-    "方案研究" -> "生成决策分析报告";
-    "市场验证" -> "生成决策分析报告";
-}
-```
 
 ### 步骤 1: 明确决策问题
 

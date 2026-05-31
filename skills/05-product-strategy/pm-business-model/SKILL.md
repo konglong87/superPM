@@ -30,49 +30,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_business_model {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    subgraph cluster_canvas {
-        label="商业模式画布（9要素）";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "客户细分" [shape=box];
-        "价值主张" [shape=box];
-        "渠道通路" [shape=box];
-        "客户关系" [shape=box];
-        "收入来源" [shape=box, fillcolor="#c8e6c9"];
-        "核心资源" [shape=box];
-        "关键业务" [shape=box];
-        "重要合作" [shape=box];
-        "成本结构" [shape=box, fillcolor="#f8bbd0"];
-    }
-    
-    subgraph cluster_subagent {
-        label="Subagent 并行分析（v2.0）";
-        style=filled;
-        fillcolor="#f3e5f5";
-        "竞品商业模式调研" [shape=box, fillcolor="#e1bee7"];
-        "行业盈利基准查询" [shape=box, fillcolor="#e1bee7"];
-    }
-
-    "客户细分" -> "价值主张";
-    "价值主张" -> "渠道通路";
-    "渠道通路" -> "客户关系";
-    "客户关系" -> "收入来源";
-    "收入来源" -> "核心资源";
-    "核心资源" -> "关键业务";
-    "关键业务" -> "重要合作";
-    "重要合作" -> "成本结构";
-    "成本结构" -> "竞品商业模式调研" [label="并行"];
-    "成本结构" -> "行业盈利基准查询" [label="并行"];
-    "竞品商业模式调研" -> "生成商业模式方案";
-    "行业盈利基准查询" -> "生成商业模式方案";
-    "生成商业模式方案" [shape=box, fillcolor="#ffccbc"];
-}
-```
 
 ### 步骤 1: 商业模式画布（9要素）
 

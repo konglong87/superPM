@@ -25,28 +25,6 @@ echo "🚀 敏捷管理方案制定工具已启动"
 
 ## 执行流程
 
-```dot
-digraph pm_agile {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    subgraph cluster_process {
-        label="敏捷管理流程";
-        style=filled;
-        fillcolor="#f5f5f5";
-        "了解团队现状" [shape=box];
-        "设计迭代节奏" [shape=box];
-        "规划任务看板" [shape=box];
-        "设计进度跟踪" [shape=box];
-        "生成敏捷方案" [shape=diamond];
-    }
-    
-    "了解团队现状" -> "设计迭代节奏";
-    "设计迭代节奏" -> "规划任务看板";
-    "规划任务看板" -> "设计进度跟踪";
-    "设计进度跟踪" -> "生成敏捷方案";
-}
-```
 
 ### 步骤 1: 了解团队现状
 

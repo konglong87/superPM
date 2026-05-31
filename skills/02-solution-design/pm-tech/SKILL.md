@@ -35,41 +35,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_tech {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    "确定技术范围" [shape=box, fillcolor="#bbdefb"];
-    "读取前置数据" [shape=box, fillcolor="#bbdefb"];
-    "提取关键需求" [shape=box, fillcolor="#bbdefb"];
-    "技术方案设计" [shape=box, fillcolor="#c8e6c9"];
-    "功能可行性评估" [shape=box, fillcolor="#ffe0b2"];
-    "接口设计" [shape=box, fillcolor="#ffe0b2"];
-    "第三方服务评估" [shape=box, fillcolor="#fff9c4"];
-    "输出技术方案" [shape=box, fillcolor="#fff9c4"];
-    
-    subgraph cluster_subagent {
-        label="Subagent 并行评估";
-        style=filled;
-        fillcolor="#f3e5f5";
-        "技术栈调研" [shape=box, fillcolor="#e1bee7"];
-        "成本预估" [shape=box, fillcolor="#e1bee7"];
-        "风险分析" [shape=box, fillcolor="#e1bee7"];
-        "技术栈调研" -> "功能可行性评估" [style=dashed];
-        "成本预估" -> "第三方服务评估" [style=dashed];
-        "风险分析" -> "功能可行性评估" [style=dashed];
-    }
-    
-    "确定技术范围" -> "读取前置数据";
-    "读取前置数据" -> "提取关键需求";
-    "提取关键需求" -> "技术方案设计";
-    "技术方案设计" -> "功能可行性评估";
-    "功能可行性评估" -> "接口设计";
-    "接口设计" -> "第三方服务评估";
-    "第三方服务评估" -> "输出技术方案";
-}
-```
 
 ### 步骤 1: 确定技术对接范围
 

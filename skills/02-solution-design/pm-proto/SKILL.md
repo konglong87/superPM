@@ -39,37 +39,6 @@ fi
 
 ## 执行流程
 
-```dot
-digraph pm_proto {
-    rankdir=TB;
-    node [shape=box, style=filled, fillcolor="#e3f2fd"];
-    
-    "确定原型范围" [shape=box, fillcolor="#bbdefb"];
-    "读取前置数据" [shape=box, fillcolor="#bbdefb"];
-    "提取关键信息" [shape=box, fillcolor="#bbdefb"];
-    "设计原型框架" [shape=box, fillcolor="#c8e6c9"];
-    "设计页面流程" [shape=box, fillcolor="#ffe0b2"];
-    "输出方案" [shape=box, fillcolor="#fff9c4"];
-    
-    subgraph cluster_subagent {
-        label="Subagent 并行分析";
-        style=filled;
-        fillcolor="#f3e5f5";
-        "竞品设计模式分析" [shape=box, fillcolor="#e1bee7"];
-        "行业设计规范查询" [shape=box, fillcolor="#e1bee7"];
-        "用户旅程推导" [shape=box, fillcolor="#e1bee7"];
-        "竞品设计模式分析" -> "设计原型框架" [style=dashed];
-        "行业设计规范查询" -> "设计原型框架" [style=dashed];
-        "用户旅程推导" -> "设计原型框架" [style=dashed];
-    }
-    
-    "确定原型范围" -> "读取前置数据";
-    "读取前置数据" -> "提取关键信息";
-    "提取关键信息" -> "设计原型框架";
-    "设计原型框架" -> "设计页面流程";
-    "设计页面流程" -> "输出方案";
-}
-```
 
 ### 步骤 1: 确定原型设计范围
 
