@@ -1,4 +1,5 @@
 {
+  "_comment": "DEPRECATED: hooks 配置已迁移至 .claude-plugin/plugin.json。此文件保留仅作兼容参考，plugin.json 为权威来源。",
   "hooks": {
     "SessionStart": [
       {

@@ -15,7 +15,6 @@ All notable changes to this project will be documented in this file.
 ## [2.2.0] - 2026-05-31
 
 ### Added
-- 新增产品策略模块（5 skills）：商业模式、战略决策、漏斗分析、产品组合、资源分配
 - pm-brainstorm v2.2.1 灵感火花 4 维搜索，subagent 并行架构
 - check-update 自动更新检测，所有 skill 会话首执行静默检查
 
@@ -24,12 +23,16 @@ All notable changes to this project will be documented in this file.
 - Token 使用量平均节省 80%+
 - 执行速度提升 2-4x
 - 版本体系统一：VERSION、package.json、plugin.json、skills/VERSION 全部对齐
+- 产品策略模块 5 个技能升级至 v2.0.0+
 
 ## [2.1.0] - 2026-05-20
 
 ### Added
-- 产品策略模块（5 skills）
+- 产品策略模块新增：pm-portfolio、pm-resource、pm-decision
 - 技能总数扩展至 37
+
+### Changed
+- pm-funnel、pm-business-model、pm-position 升级至 v2 架构
 
 ## [2.0.0] - 2026-04
 

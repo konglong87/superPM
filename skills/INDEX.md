@@ -65,10 +65,11 @@
 
 ## 辅助工具
 
-| Skill | 说明 |
-|-------|------|
-| `start-super-pm` | 启动引导入口 - 自动检测任务类型并路由 |
-| `super-pm-upgrade` | 版本升级工具 |
+| Skill | 版本 | 说明 |
+|-------|------|------|
+| `start-super-pm` | v1.1.0 | 启动引导入口 - 自动检测任务类型并路由 |
+| `super-pm-upgrade` | v1.1.0 | 版本升级工具 |
+| `/super-pm` | v2.3.0 | 根技能入口 - 关键词语义路由 + 流程推荐引擎 |
 
 ---
 
@@ -89,4 +90,4 @@ pm-business-model / pm-decision / pm-funnel / pm-portfolio / pm-resource(独立)
 
 ---
 
-**更新日期**: 2026-05-20
+**更新日期**: 2026-05-31

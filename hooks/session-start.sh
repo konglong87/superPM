@@ -11,7 +11,7 @@ PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 project_config_message=""
 if [ -f "PM-CLAUDE.md" ]; then
     # Read project configuration
-    project_config=$(cat "PM-CLAUDE.md" 2>&1 || echo "")
+    project_config=$(cat "PM-CLAUDE.md" 2>/dev/null || true)
     if [ -n "$project_config" ]; then
         project_config_message="\n\n<project-pm-context>\n**Project-specific PM Configuration:**\n\`\`\`markdown\n${project_config}\n\`\`\`\n</project-pm-context>"
     fi
@@ -33,7 +33,7 @@ if [ -d "docs" ]; then
 fi
 
 # Read start-super-pm content
-start_super_pm_content=$(cat "${PLUGIN_ROOT}/skills/start-super-pm/SKILL.md" 2>&1 || echo "Error reading start-super-pm skill")
+start_super_pm_content=$(cat "${PLUGIN_ROOT}/skills/start-super-pm/SKILL.md" 2>/dev/null || true)
 
 # Escape string for JSON embedding using bash parameter substitution
 escape_for_json() {
@@ -43,6 +43,8 @@ escape_for_json() {
     s="${s//$'\n'/\\n}"
     s="${s//$'\r'/\\r}"
     s="${s//$'\t'/\\t}"
+    s="${s//\$/\\\$}"
+    s="${s//\`/\\\`}"
     printf '%s' "$s"
 }
 

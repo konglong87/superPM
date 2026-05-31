@@ -63,11 +63,13 @@ digraph pm_skill_flow {
     "方案设计类？" [shape=diamond];
     "增长迭代类？" [shape=diamond];
     "风控管理类？" [shape=diamond];
+    "产品战略类？" [shape=diamond];
     "调用 pm-demand" [shape=box];
     "调用 pm-search" [shape=box];
     "调用 pm-docs/pm-proto" [shape=box];
     "调用 pm-growth/pm-aarrr" [shape=box];
     "调用 pm-risk/pm-agile" [shape=box];
+    "调用 pm-business-model/pm-portfolio" [shape=box];
     "直接响应用户" [shape=doublecircle];
 
     "用户消息到达" -> "识别任务类型";
@@ -89,8 +91,12 @@ digraph pm_skill_flow {
     "调用 pm-growth/pm-aarrr" -> "直接响应用户";
 
     "风控管理类？" -> "调用 pm-risk/pm-agile" [label="是"];
-    "风控管理类？" -> "直接响应用户" [label="否"];
+    "风控管理类？" -> "产品战略类？" [label="否"];
     "调用 pm-risk/pm-agile" -> "直接响应用户";
+
+    "产品战略类？" -> "调用 pm-business-model/pm-portfolio" [label="是"];
+    "产品战略类？" -> "直接响应用户" [label="否"];
+    "调用 pm-business-model/pm-portfolio" -> "直接响应用户";
 }
 ```
 
@@ -142,7 +148,7 @@ digraph pm_skill_flow {
 | "功能拆解"、"详细设计" | `pm-feature` | 功能细节拆解 |
 | "数据指标体系"、"埋点设计" | `pm-data` | 数据指标体系 |
 | "产品定位"、"差异化竞争" | `pm-position` | 产品定位 |
-| "商业化方案"、"赚钱模式" | `pm-commercial` | 商业化方案 |
+| "商业方案"、"赚钱模式"、"商业模式" | `pm-business-model` | 商业模式设计 |
 
 ---
 

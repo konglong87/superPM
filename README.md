@@ -108,7 +108,7 @@ New-Item -ItemType Junction -Path "$env:USERPROFILE\.config\opencode\skills\supe
 # 3. 重启 OpenCode
 ```
 
-### 方式五：Codex 安装
+### 方式六：Codex 安装
 
 **适用于 OpenAI Codex CLI 用户**
 
@@ -136,7 +136,7 @@ cmd /c mklink /J "$env:USERPROFILE\.agents\skills\super-pm" "$env:USERPROFILE\.c
 # 3. 重启 Codex
 ```
 
-### 方式六：Cursor 安装
+### 方式七：Cursor 安装
 
 **适用于 Cursor 编辑器用户**
 
@@ -274,7 +274,7 @@ web_search: true
 
 ## 💡 灵感火花激发模式 ⭐ NEW
 
-**v2.1.0全新功能** - 当你不知道做什么产品时，让AI主动为你激发灵感！
+**v2.1.0 起支持** - 当你不知道做什么产品时，让AI主动为你激发灵感！
 
 ### 使用场景
 
@@ -568,6 +568,6 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\.cursor\super-pm"
 
 ---
 
-**PM-Skills Team** © 2027
+**PM-Skills Team** © 2026
 
 **让每个产品经理都能高效工作** 🚀

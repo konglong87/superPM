@@ -406,7 +406,7 @@ Agent 5: Referral 分析
 2. **发现连锁问题**（如 Activation 差导致 Retention 低）
 3. **制定优先级策略**（先解决哪个瓶颈）
 
-使用 Write 工具生成综合报告：
+使用 Write 工具生成综合报告到 `docs/03-增长迭代/AARRR增长分析报告.md`：
 
 ```markdown
 # AARRR增长分析报告

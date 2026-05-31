@@ -664,7 +664,7 @@ kubectl rollout restart deployment/app
 
 **项目状态**: 上线执行方案已制定
 **生成时间**: [时间戳]
-**生成工具**: super-pm v1.0.0
+**生成工具**: super-pm v2.0.0
 ```
 
 ---

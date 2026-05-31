@@ -22,19 +22,25 @@ cd "$SKILL_DIR" 2>/dev/null || exit 0
 GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
 
 # 静默拉取 tags（5秒超时，防止网络卡顿阻塞会话启动）
+FETCH_DONE=0
 FETCH_PID=""
 ( git fetch --tags --quiet 2>/dev/null ) & FETCH_PID=$!
-for _ in 1 2 3 4 5; do
-  if ! kill -0 $FETCH_PID 2>/dev/null; then
-    break
+if [ -n "$FETCH_PID" ]; then
+  for _ in 1 2 3 4 5; do
+    if ! kill -0 "$FETCH_PID" 2>/dev/null; then
+      FETCH_DONE=1
+      break
+    fi
+    sleep 1
+  done
+  if [ "$FETCH_DONE" -eq 0 ]; then
+    kill "$FETCH_PID" 2>/dev/null
   fi
-  sleep 1
-done
-kill $FETCH_PID 2>/dev/null
-wait $FETCH_PID 2>/dev/null
+  wait "$FETCH_PID" 2>/dev/null
+fi
 
 # 获取最新版本 tag
-LATEST_TAG=$(git tag --sort=-v:refname 2>/dev/null | head -n 1)
+LATEST_TAG=$(git tag -l 'v*' --sort=-v:refname 2>/dev/null | head -n 1)
 
 if [ -n "$LATEST_TAG" ] && [ "$CURRENT_VERSION" != "$LATEST_TAG" ]; then
   echo ""
