@@ -16,12 +16,11 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
-# 创建必要的目录（支持中英文）
+# 创建目录
 mkdir -p docs/05-产品战略
-mkdir -p docs/05-product-strategy
 
 # 检查是否已有产品组合战略文档
-if [ -f "docs/05-产品战略/产品组合战略.md" ] || [ -f "docs/05-product-strategy/portfolio-strategy.md" ]; then
+if [ -f "docs/05-产品战略/产品组合战略.md" ]; then
   echo "⚠️  检测到已有产品组合战略文档"
   echo ""
   echo "您可以选择："

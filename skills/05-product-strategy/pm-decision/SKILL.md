@@ -17,16 +17,15 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
-# 创建必要的目录（支持中英文）
+# 创建目录
 mkdir -p docs/05-产品战略
-mkdir -p docs/05-product-strategy
 
 # 检查是否有相关前置文档
-if [ -f "docs/05-产品战略/产品组合战略.md" ] || [ -f "docs/05-product-strategy/portfolio-strategy.md" ]; then
+if [ -f "docs/05-产品战略/产品组合战略.md" ]; then
   echo "✅ 检测到产品组合战略文档"
 fi
 
-if [ -f "docs/05-产品战略/资源分配方案.md" ] || [ -f "docs/05-product-strategy/resource-allocation.md" ]; then
+if [ -f "docs/05-产品战略/资源分配方案.md" ]; then
   echo "✅ 检测到资源分配方案文档"
 fi
 ```

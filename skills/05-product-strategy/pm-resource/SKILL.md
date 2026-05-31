@@ -16,12 +16,11 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
-# 创建必要的目录（支持中英文）
+# 创建目录
 mkdir -p docs/05-产品战略
-mkdir -p docs/05-product-strategy
 
 # 检查是否有产品组合战略作为输入
-if [ -f "docs/05-产品战略/产品组合战略.md" ] || [ -f "docs/05-product-strategy/portfolio-strategy.md" ]; then
+if [ -f "docs/05-产品战略/产品组合战略.md" ]; then
   echo "✅ 检测到产品组合战略文档，将基于此进行资源分配"
 else
   echo "⚠️  未检测到产品组合战略文档，建议先执行 /pm-portfolio"
@@ -81,7 +80,6 @@ digraph pm_resource {
 
 **优先读取**：
 - `docs/05-产品战略/产品组合战略.md`
-- 备选：`docs/05-product-strategy/portfolio-strategy.md`
 
 如果文件不存在，提示用户：
 > ⚠️ 未找到产品组合战略文档

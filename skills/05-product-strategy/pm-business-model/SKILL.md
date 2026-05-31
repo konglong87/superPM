@@ -17,12 +17,11 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
-# 创建必要的目录（支持中英文）
+# 创建目录
 mkdir -p docs/05-产品战略
-mkdir -p docs/05-product-strategy
 
 # 检查是否有PRD作为输入
-if [ -f "docs/02-方案设计/PRD产品需求文档.md" ] || [ -f "docs/02-solution-design/prd.md" ]; then
+if [ -f "docs/02-方案设计/PRD产品需求文档.md" ]; then
   echo "✅ 检测到PRD文档，将基于此设计商业模式"
 fi
 ```

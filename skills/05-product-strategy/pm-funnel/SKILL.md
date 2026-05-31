@@ -16,12 +16,11 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
-# 创建必要的目录（支持中英文）
+# 创建目录
 mkdir -p docs/05-产品战略
-mkdir -p docs/05-product-strategy
 
 # 检查是否有用户旅程地图作为输入
-if [ -f "docs/01-需求洞察/用户旅程地图.md" ] || [ -f "docs/01-demand-insight/user-journey.md" ]; then
+if [ -f "docs/01-需求洞察/用户旅程地图.md" ]; then
   echo "✅ 检测到用户旅程地图，将基于此进行漏斗分析"
 fi
 ```
