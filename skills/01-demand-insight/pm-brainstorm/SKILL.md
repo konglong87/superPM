@@ -1,6 +1,6 @@
 ---
 name: pm-brainstorm
-version: 2.2.1
+version: 2.3.0
 description: |
   Use when: 需要创意方案、探索产品方向、发散思维、本质问题分析、产品遇到瓶颈需要突破
   Do NOT use when: 需求已明确需要直接执行、已有成熟方案无需创新
@@ -10,6 +10,9 @@ allowed-tools:
   - AskUserQuestion
   - Agent
   - Bash
+  - WebSearch
+  - mcp__exa__web_search_exa
+  - mcp__exa__web_fetch_exa
 ---
 
 ## Preamble (run first)
@@ -109,9 +112,10 @@ Subagent 1 - 行业痛点:
     搜索行业痛点和用户未被满足的需求。
 
     搜索要求：
-    1. 使用 WebSearch 搜索：site:36kr.com OR site:huxiu.com 用户痛点 2026；site:zhihu.com 用户抱怨 不满
-    2. 搜索：ProductHunt 用户差评 痛点
-    3. 提取 5-8 个具体痛点，每个包含：痛点描述、受影响用户、严重程度
+    1. 搜索工具优先级：首选 AnySearch（先定位 anysearch_cli.py：检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py，找到后 Bash 调用 python3 <路径> search "查询词" --max_results 5），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch。使用 WebSearch 时标注降级模式
+    2. 搜索：site:36kr.com OR site:huxiu.com 用户痛点 2026；site:zhihu.com 用户抱怨 不满
+    3. 搜索：ProductHunt 用户差评 痛点
+    4. 提取 5-8 个具体痛点，每个包含：痛点描述、受影响用户、严重程度
 
     输出 JSON 格式：
     {"dimension":"行业痛点","findings":[{"pain_point":"描述","users":"受影响用户","severity":"高/中/低"}]}
@@ -122,9 +126,10 @@ Subagent 2 - 技术趋势:
     搜索2026年最新技术趋势和AI应用场景。
 
     搜索要求：
-    1. 使用 WebSearch 搜索：AI新技术 应用场景 2026 site:mittrchina.com OR site:ifanr.com
-    2. 搜索：2026 技术趋势 创业机会
-    3. 提取 5-8 个技术驱动的产品机会，每个包含：技术名称、应用场景、可行性
+    1. 搜索工具优先级：首选 AnySearch（先定位 anysearch_cli.py：检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py，找到后 Bash 调用 python3 <路径> search "查询词" --max_results 5），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch。使用 WebSearch 时标注降级模式
+    2. 搜索：AI新技术 应用场景 2026 site:mittrchina.com OR site:ifanr.com
+    3. 搜索：2026 技术趋势 创业机会
+    4. 提取 5-8 个技术驱动的产品机会，每个包含：技术名称、应用场景、可行性
 
     输出 JSON 格式：
     {"dimension":"技术趋势","findings":[{"tech":"技术","scenario":"场景","feasibility":"高/中/低"}]}
@@ -135,9 +140,10 @@ Subagent 3 - 生活场景:
     搜索2026年效率工具和生活方式变化带来的产品机会。
 
     搜索要求：
-    1. 使用 WebSearch 搜索：ProductHunt 2026 最佳产品 效率工具
-    2. 搜索：2026 生活方式变化 新需求
-    3. 提取 5-8 个生活场景相关的产品灵感，每个包含：场景描述、用户需求、已有方案
+    1. 搜索工具优先级：首选 AnySearch（先定位 anysearch_cli.py：检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py，找到后 Bash 调用 python3 <路径> search "查询词" --max_results 5），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch。使用 WebSearch 时标注降级模式
+    2. 搜索：ProductHunt 2026 最佳产品 效率工具
+    3. 搜索：2026 生活方式变化 新需求
+    4. 提取 5-8 个生活场景相关的产品灵感，每个包含：场景描述、用户需求、已有方案
 
     输出 JSON 格式：
     {"dimension":"生活场景","findings":[{"scenario":"描述","need":"用户需求","existing":"已有方案"}]}
@@ -148,9 +154,10 @@ Subagent 4 - 跨界灵感:
     搜索其他行业的创新商业模式和成功案例。
 
     搜索要求：
-    1. 使用 WebSearch 搜索：创新商业模式 成功案例 2026
-    2. 搜索：跨界创新 行业颠覆 案例
-    3. 提取 5-8 个可借鉴的跨界灵感，每个包含：来源行业、创新点、可迁移性
+    1. 搜索工具优先级：首选 AnySearch（先定位 anysearch_cli.py：检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py，找到后 Bash 调用 python3 <路径> search "查询词" --max_results 5），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch。使用 WebSearch 时标注降级模式
+    2. 搜索：创新商业模式 成功案例 2026
+    3. 搜索：跨界创新 行业颠覆 案例
+    4. 提取 5-8 个可借鉴的跨界灵感，每个包含：来源行业、创新点、可迁移性
 
     输出 JSON 格式：
     {"dimension":"跨界灵感","findings":[{"industry":"来源行业","innovation":"创新点","transferable":"可迁移性"}]}

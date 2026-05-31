@@ -10,6 +10,9 @@ allowed-tools:
   - AskUserQuestion
   - Agent
   - Bash
+  - WebSearch
+  - mcp__exa__web_search_exa
+  - mcp__exa__web_fetch_exa
 ---
 
 ## Preamble (run first)

@@ -10,6 +10,9 @@ allowed-tools:
   - Write
   - AskUserQuestion
   - Bash
+  - WebSearch
+  - mcp__exa__web_search_exa
+  - mcp__exa__web_fetch_exa
 ---
 
 ## Preamble (run first)
@@ -392,6 +395,7 @@ status: draft
 
 **Agent 2: 行业 ROI 基准查询**
 - 负责：搜索同行业资源投入产出比基准数据
+- 搜索工具优先级：首选 AnySearch（Bash 调用 anysearch_cli.py（先定位：检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py，找到后 python3 <路径>）search），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch。使用 WebSearch 时标注降级模式
 
 ### V1 vs V2 对比
 

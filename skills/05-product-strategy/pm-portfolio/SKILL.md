@@ -10,6 +10,9 @@ allowed-tools:
   - Write
   - AskUserQuestion
   - Bash
+  - WebSearch
+  - mcp__exa__web_search_exa
+  - mcp__exa__web_fetch_exa
 ---
 
 ## Preamble (run first)
@@ -359,10 +362,11 @@ status: draft
 
 **Agent 1: 市场数据采集**
 - 负责：搜索各产品所在行业的市场增长率、市场份额数据
-- 工具：WebSearch 搜索行业报告
+- 搜索工具优先级：首选 AnySearch（Bash 调用 anysearch_cli.py（先定位：检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py，找到后 python3 <路径>）search），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch。使用 WebSearch 时标注降级模式
 
 **Agent 2: 竞品组合对标**
 - 负责：搜索对标公司的产品组合策略和布局
+- 搜索工具优先级：首选 AnySearch（Bash 调用），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch
 
 ### V1 vs V2 对比
 

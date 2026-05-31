@@ -12,6 +12,8 @@ allowed-tools:
   - AskUserQuestion
   - Bash
   - WebSearch
+  - mcp__exa__web_search_exa
+  - mcp__exa__web_fetch_exa
 ---
 
 ## Preamble (run first)
@@ -145,7 +147,7 @@ AI: 📊 检测到您的进度：
 ## 注意事项
 
 1. **风险前置**：需求调研阶段立即验证痛点
-2. **MCP优先**：联网搜索优先使用MCP，WebSearch降级
+2. **搜索优先级**：AnySearch（Bash 调用）→ Exa MCP（mcp__exa__web_search_exa）→ WebSearch 降级，不得跳级
 3. **兜底机制**：文件缺失时提供替代方案
 4. **Markdown存储**：所有文档人类可读可编辑
 5. **流程推荐**：每个skill完成后推荐2-3个下一步

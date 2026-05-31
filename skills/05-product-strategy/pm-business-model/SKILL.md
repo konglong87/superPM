@@ -11,6 +11,8 @@ allowed-tools:
   - AskUserQuestion
   - Bash
   - WebSearch
+  - mcp__exa__web_search_exa
+  - mcp__exa__web_fetch_exa
 ---
 
 ## Preamble (run first)
@@ -555,13 +557,13 @@ status: draft
 **Agent 1: 竞品商业模式调研**
 ```
 type: "general-purpose"
-prompt: "调研同行业竞品的商业模式、盈利方式、定价策略，提供结构化对比..."
+prompt: "调研同行业竞品的商业模式、盈利方式、定价策略，提供结构化对比。搜索工具优先级：首选 AnySearch（Bash 调用 anysearch_cli.py（先定位：检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py，找到后 python3 <路径>）search），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch。使用 WebSearch 时标注降级模式。"
 ```
 
 **Agent 2: 行业盈利基准查询**
 ```
 type: "general-purpose"
-prompt: "查询目标行业的平均利润率、付费转化率、客单价等基准数据..."
+prompt: "查询目标行业的平均利润率、付费转化率、客单价等基准数据。搜索工具优先级：首选 AnySearch（Bash 调用 anysearch_cli.py（先定位：检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py，找到后 python3 <路径>）search），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch。使用 WebSearch 时标注降级模式。"
 ```
 
 ## V1 vs V2 对比

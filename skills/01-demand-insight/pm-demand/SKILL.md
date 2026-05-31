@@ -10,6 +10,9 @@ allowed-tools:
   - AskUserQuestion
   - Agent
   - Bash
+  - WebSearch
+  - mcp__exa__web_search_exa
+  - mcp__exa__web_fetch_exa
 ---
 
 ## Preamble (run first)
@@ -191,7 +194,7 @@ AI 对每个需求提问：
 ```json
 {
   "type": "general-purpose",
-  "prompt": "你是一个市场调研专家。请验证以下产品需求的竞品情况。\n\n产品名称: {PRODUCT_NAME}\n行业赛道: {INDUSTRY}\n核心痛点: {USER_PAIN_POINT}\n需求清单: {VERIFIED_REQUIREMENTS}\n\n搜索要求：\n1. 使用 WebSearch 搜索该产品领域的竞品信息\n2. 搜索哪些竞品已经解决了类似痛点\n3. 提取竞品关键功能、用户规模、市场表现\n\n输出 JSON 格式：\n{\"dimension\":\"竞品验证\",\"findings\":[{\"competitor\":\"竞品名\",\"features\":\"功能描述\",\"market_position\":\"市场表现\"}]}"
+  "prompt": "你是一个市场调研专家。请验证以下产品需求的竞品情况。\n\n产品名称: {PRODUCT_NAME}\n行业赛道: {INDUSTRY}\n核心痛点: {USER_PAIN_POINT}\n需求清单: {VERIFIED_REQUIREMENTS}\n\n搜索工具优先级（必须遵守）：\n1. 首选 AnySearch：先定位 anysearch_cli.py（检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py），找到后 Bash 调用 python3 <路径> search \"查询词\" --max_results 5\n2. AnySearch 不可用 → 降级到 mcp__exa__web_search_exa\n3. Exa 不可用 → 降级到 WebSearch，并在输出中标注「⚠️ 降级模式」\n4. 使用 WebSearch 时在报告中标注「⚠️ 降级模式」\n\n搜索要求：\n1. 搜索该产品领域的竞品信息\n2. 搜索哪些竞品已经解决了类似痛点\n3. 提取竞品关键功能、用户规模、市场表现\n\n输出 JSON 格式：\n{\"dimension\":\"竞品验证\",\"findings\":[{\"competitor\":\"竞品名\",\"features\":\"功能描述\",\"market_position\":\"市场表现\"}]}"
 }
 ```
 
@@ -199,7 +202,7 @@ AI 对每个需求提问：
 ```json
 {
   "type": "general-purpose",
-  "prompt": "你是一个用户研究员。请验证以下产品需求在用户侧的真实性。\n\n产品名称: {PRODUCT_NAME}\n目标用户: {TARGET_USER}\n核心痛点: {USER_PAIN_POINT}\n\n搜索要求：\n1. 使用 WebSearch 搜索目标用户群体对相关痛点的讨论\n2. 搜索：site:zhihu.com OR site:xiaohongshu.com {核心痛点}\n3. 分析用户真实反馈，验证痛点真实性\n\n输出 JSON 格式：\n{\"dimension\":\"用户声音\",\"findings\":[{\"source\":\"来源\",\"quote\":\"用户原话\",\"pain_point\":\"对应痛点\"}]}"
+  "prompt": "你是一个用户研究员。请验证以下产品需求在用户侧的真实性。\n\n产品名称: {PRODUCT_NAME}\n目标用户: {TARGET_USER}\n核心痛点: {USER_PAIN_POINT}\n\n搜索工具优先级（必须遵守）：\n1. 首选 AnySearch：先定位 anysearch_cli.py（检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py），找到后 Bash 调用 python3 <路径> search \"查询词\" --max_results 5\n2. AnySearch 不可用 → 降级到 mcp__exa__web_search_exa\n3. Exa 不可用 → 降级到 WebSearch，并在输出中标注「⚠️ 降级模式」\n4. 使用 WebSearch 时在报告中标注「⚠️ 降级模式」\n\n搜索要求：\n1. 搜索目标用户群体对相关痛点的讨论\n2. 搜索：site:zhihu.com OR site:xiaohongshu.com {核心痛点}\n3. 分析用户真实反馈，验证痛点真实性\n\n输出 JSON 格式：\n{\"dimension\":\"用户声音\",\"findings\":[{\"source\":\"来源\",\"quote\":\"用户原话\",\"pain_point\":\"对应痛点\"}]}"
 }
 ```
 
@@ -207,7 +210,7 @@ AI 对每个需求提问：
 ```json
 {
   "type": "general-purpose",
-  "prompt": "你是一个行业分析师。请评估以下产品的市场机会。\n\n产品名称: {PRODUCT_NAME}\n行业赛道: {INDUSTRY}\n\n搜索要求：\n1. 使用 WebSearch 搜索该行业市场规模数据\n2. 搜索：{INDUSTRY} 市场规模 2026\n3. 分析市场增长潜力\n\n输出 JSON 格式：\n{\"dimension\":\"市场规模\",\"findings\":[{\"metric\":\"指标\",\"value\":\"数据值\",\"source\":\"来源\"}]}"
+  "prompt": "你是一个行业分析师。请评估以下产品的市场机会。\n\n产品名称: {PRODUCT_NAME}\n行业赛道: {INDUSTRY}\n\n搜索工具优先级（必须遵守）：\n1. 首选 AnySearch：先定位 anysearch_cli.py（检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py），找到后 Bash 调用 python3 <路径> search \"查询词\" --max_results 5 --domain finance --sub_domain finance.cn_stock\n2. AnySearch 不可用 → 降级到 mcp__exa__web_search_exa\n3. Exa 不可用 → 降级到 WebSearch，并在输出中标注「⚠️ 降级模式」\n4. 使用 WebSearch 时在报告中标注「⚠️ 降级模式」\n\n搜索要求：\n1. 搜索该行业市场规模数据\n2. 搜索：{INDUSTRY} 市场规模 2026\n3. 分析市场增长潜力\n\n输出 JSON 格式：\n{\"dimension\":\"市场规模\",\"findings\":[{\"metric\":\"指标\",\"value\":\"数据值\",\"source\":\"来源\"}]}"
 }
 ```
 

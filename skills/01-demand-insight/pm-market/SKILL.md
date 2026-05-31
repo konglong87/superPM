@@ -1,6 +1,6 @@
 ---
 name: pm-market
-version: 2.0.1
+version: 2.1.0
 description: |
   Use when: 需要了解市场格局与竞争态势、收集行业数据、分析竞品优劣势、评估市场机会
   Do NOT use when: 市场已有充分内部调研数据、仅需简单规模估算无需深度分析
@@ -10,6 +10,9 @@ allowed-tools:
   - AskUserQuestion
   - Agent
   - Bash
+  - WebSearch
+  - mcp__exa__web_search_exa
+  - mcp__exa__web_fetch_exa
 ---
 
 ## Preamble (run first)
@@ -145,10 +148,11 @@ Parameters:
     **目标数据源**: {domains}
 
     **要求**：
-    1. 使用 WebSearch 搜索每个关键词
-    2. 优先搜索目标数据源
-    3. 提取关键数据（市场规模、增长率、主要玩家等）
-    4. 返回结构化的 JSON 结果
+    1. 搜索工具优先级：首选 AnySearch（Bash 调用 `anysearch_cli.py（先定位：检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py，找到后 python3 <路径>）`search "查询词" --max_results 5 --domain finance --sub_domain finance.cn_stock），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch。使用 WebSearch 时标注「⚠️ 降级模式」
+    2. 搜索每个关键词
+    3. 优先搜索目标数据源
+    4. 提取关键数据（市场规模、增长率、主要玩家等）
+    5. 返回结构化的 JSON 结果
 
     **输出格式**：
     ```json

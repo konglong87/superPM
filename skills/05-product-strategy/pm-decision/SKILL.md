@@ -11,6 +11,8 @@ allowed-tools:
   - AskUserQuestion
   - Bash
   - WebSearch
+  - mcp__exa__web_search_exa
+  - mcp__exa__web_fetch_exa
 ---
 
 ## Preamble (run first)
@@ -574,13 +576,13 @@ status: draft
 **Agent 1: 方案可行性调研**
 ```
 type: "general-purpose"
-prompt: "基于决策选项，搜索各方案的实际案例、成功率和关键因素..."
+prompt: "基于决策选项，搜索各方案的实际案例、成功率和关键因素。搜索工具优先级：首选 AnySearch（Bash 调用 anysearch_cli.py（先定位：检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py，找到后 python3 <路径>）search），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch。使用 WebSearch 时标注降级模式。"
 ```
 
 **Agent 2: 市场数据验证**
 ```
 type: "general-purpose"
-prompt: "搜索行业数据验证决策假设，包括市场规模、竞争格局、增长率..."
+prompt: "搜索行业数据验证决策假设，包括市场规模、竞争格局、增长率。搜索工具优先级：首选 AnySearch（Bash 调用 anysearch_cli.py（先定位：检查 ~/.claude/skills/anysearch/scripts/ ~/.opencode/skills/anysearch/scripts/ ~/.openclaw/skills/anysearch/scripts/ ~/.cursor/skills/anysearch/scripts/ ~/.anysearch/scripts/ 或 which anysearch_cli.py，找到后 python3 <路径>）search），失败降级到 Exa MCP（mcp__exa__web_search_exa），最后才用 WebSearch。使用 WebSearch 时标注降级模式。"
 ```
 
 ## V1 vs V2 对比
