@@ -224,26 +224,29 @@ OpenCode discovers skills from these locations:
 
 ## Core Skills
 
-Super-PM provides 25+ skills for product management:
+Super-PM provides 37 skills across 5 modules:
 
-### 需求洞察模块
+### 需求洞察模块 (9 skills)
 - **pm-demand** - 需求调研入口
+- **pm-brainstorm** - 头脑风暴
+- **pm-clarify** - 需求细化与验证
+- **pm-market** - 市场分析
 - **pm-search** - 联网调研整合
 - **pm-priority** - 优先级排序
-- **pm-mvp** - MVP最小可行产品拆解
+- **pm-mvp** - MVP规划
 - **pm-pool** - 需求池管理
 - **pm-journey** - 用户旅程地图
 
-### 方案落地模块
+### 方案设计模块 (7 skills)
 - **pm-docs** - 文档生成（BRD/MRD/PRD）
 - **pm-proto** - 原型设计
 - **pm-tech** - 技术对接方案
 - **pm-feature** - 功能细节拆解
 - **pm-data** - 数据指标体系
 - **pm-position** - 产品定位
-- **pm-commercial** - 商业化方案
+- **pm-user-story** - 用户故事
 
-### 增长迭代模块
+### 增长迭代模块 (8 skills)
 - **pm-aarrr** - 增长分析
 - **pm-growth** - 增长方案
 - **pm-report** - 数据报告
@@ -251,13 +254,21 @@ Super-PM provides 25+ skills for product management:
 - **pm-abtest** - A/B测试方案
 - **pm-iteration** - 迭代计划
 - **pm-retro** - 迭代复盘
+- **pm-roadmap** - 产品路线图
 
-### 风控管理模块
+### 风控管理模块 (5 skills)
 - **pm-agile** - 敏捷管理
 - **pm-cross** - 跨部门协作
 - **pm-risk** - 风险管控
 - **pm-release** - 上线方案
 - **pm-change** - 需求变更管理
+
+### 产品策略模块 (5 skills)
+- **pm-business-model** - 商业模式画布
+- **pm-decision** - 战略决策支持
+- **pm-funnel** - 漏斗分析优化
+- **pm-portfolio** - 产品组合管理
+- **pm-resource** - 资源分配与ROI
 
 ## Features
 

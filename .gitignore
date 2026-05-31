@@ -44,35 +44,12 @@ coverage/
 .env.local
 .env.*.local
 
-# 文档目录
+# 文档目录（运行时输出）
 docs/
-# AI Assistant Files (symlinked to claude_agent_md)
+
+# AI Assistant 文件（仅本地使用）
 CLAUDE.md
 claude.md
 .claude/
 AGENT.md
 .cursorrules
-
-# Documentation Files (symlinked to claude_agent_md)
-CHANGELOG.md
-CONTINUATION_SUMMARY.md
-BIONIC_MEMORY_SUMMARY.md
-CONTRIBUTING.md
-INTRODUCTION.md
-QUICK_REFERENCE.md
-USER_GUIDE.md
-NOTES.md
-PROJECT_PLAN.md
-README.md
-
-# Project Structure (symlinked to claude_agent_md)
-plans/
-plan/
-memory/
-docs/plans/
-
-# IDE and Config Files
-.idea/
-*.env
-.env.*
-

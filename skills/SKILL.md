@@ -1,6 +1,6 @@
 ---
 name: super-pm
-version: 2.1.1
+version: 2.3.0
 description: |
   Product Manager Skills Pack - Full lifecycle support from demand to delivery
   让一个产品经理拥有一个产品团队的能力
@@ -19,7 +19,7 @@ allowed-tools:
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
 # 创建文档目录（中英文双语支持）
-mkdir -p docs/01-需求洞察 docs/01-demand-insight
+mkdir -p docs/01-需求调研 docs/01-demand-insight
 mkdir -p docs/02-方案设计 docs/02-solution-design
 mkdir -p docs/03-增长迭代 docs/03-growth-iteration
 mkdir -p docs/04-风控管理 docs/04-risk-management
@@ -29,7 +29,7 @@ mkdir -p docs/05-产品战略 docs/05-product-strategy
 echo "📊 当前项目进度："
 echo ""
 
-for prefix in "01-需求洞察" "02-方案设计" "03-增长迭代" "04-风控管理" "05-产品战略"; do
+for prefix in "01-需求调研" "02-方案设计" "03-增长迭代" "04-风控管理" "05-产品战略"; do
   count=$(ls docs/$prefix/*.md 2>/dev/null | wc -l | tr -d ' ')
   echo "  $prefix: $count 个文档"
 done
@@ -77,6 +77,16 @@ echo "🎯 开始新项目: 告诉我 '我要做一个XX产品'"
 ---
 
 ## 流程推荐引擎
+
+### 黄金路径（80% 用户走这条线）
+
+**新产品从零到一**: `/pm-demand` → `/pm-market` → `/pm-priority` → `/pm-mvp` → `/pm-docs` → `/pm-tech` → `/pm-release`
+
+**已有产品优化增长**: `/pm-aarrr` → `/pm-growth` → `/pm-report` → `/pm-iteration`
+
+**战略决策（独立使用）**: `/pm-business-model` → `/pm-decision` → `/pm-portfolio` → `/pm-resource`
+
+> 不知道做什么产品？先跑 `/pm-brainstorm` 选灵感火花激发。
 
 ### 基于当前状态推荐
 

@@ -1,6 +1,6 @@
 # super-pm 产品经理技能包
 
-**版本**: v1.0.0
+**版本**: v2.3.0
 **对标**: superpowers/gstack 工业级标准
 
 ## 简介
@@ -9,11 +9,12 @@ super-pm 是专为产品经理设计的 Claude Code Skill Pack，覆盖需求洞
 
 ## 核心特性
 
-- ✅ 27个核心skill，简洁高效
+- ✅ 37个核心skill，简洁高效
 - ✅ Markdown文件存储，人机可读
 - ✅ 强制入口引导 + 流程推荐
 - ✅ 风险前置，早期验证需求真伪
 - ✅ 完善的兜底机制
+- ✅ Subagent 并行架构（v2技能）
 
 ## 快速开始
 
@@ -26,11 +27,12 @@ super-pm 是专为产品经理设计的 Claude Code Skill Pack，覆盖需求洞
 
 ## Skill清单
 
-### 需求洞察模块（8个）
+### 需求洞察模块（9个）
 - `/pm-demand` - 需求调研入口
 - `/pm-brainstorm` - 头脑风暴
 - `/pm-clarify` - 需求细化与验证
 - `/pm-market` - 市场分析
+- `/pm-search` - 联网搜索整合
 - `/pm-priority` - 优先级排序
 - `/pm-mvp` - MVP规划
 - `/pm-pool` - 需求池管理
@@ -42,13 +44,14 @@ super-pm 是专为产品经理设计的 Claude Code Skill Pack，覆盖需求洞
 - `/pm-tech` - 技术对接
 - `/pm-feature` - 功能细节
 - `/pm-data` - 数据指标
-- `/pm-position` - 产品定位与商业化
+- `/pm-position` - 产品定位
 - `/pm-user-story` - 用户故事
 
-### 增长迭代模块（7个）
+### 增长迭代模块（8个）
 - `/pm-aarrr` - AARRR增长分析
 - `/pm-growth` - 增长方案
 - `/pm-report` - 数据报告与用户反馈
+- `/pm-feedback` - 用户反馈分析
 - `/pm-abtest` - A/B测试
 - `/pm-iteration` - 迭代计划
 - `/pm-retro` - 迭代复盘
@@ -61,17 +64,27 @@ super-pm 是专为产品经理设计的 Claude Code Skill Pack，覆盖需求洞
 - `/pm-release` - 上线方案
 - `/pm-change` - 需求变更
 
+### 产品策略模块（5个）
+- `/pm-business-model` - 商业模式画布
+- `/pm-decision` - 战略决策支持
+- `/pm-funnel` - 漏斗分析
+- `/pm-portfolio` - 产品组合管理
+- `/pm-resource` - 资源分配与ROI
+
 ## 安装
 
 ```bash
-git clone https://github.com/konglong87/superPM.git ~/.claude/skills/super-pm
-cd ~/.claude/skills/super-pm
-git checkout v1.0.0
+# Claude Code Marketplace
+/plugin install konglong87/super-pm
+
+# 或手动安装
+git clone https://github.com/konglong87/super-pm.git ~/.claude/skills/super-pm
 ```
 
 ## 文档
 
-完整设计方案：`docs/plans/2026-03-25-super-pm-design.md`
+- [技能索引](./INDEX.md) - 全部技能及依赖关系
+- [Subagent 模板](./templates/subagent-skill-template.md) - v2 技能架构模板
 
 ## 许可证
 

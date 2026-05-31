@@ -21,8 +21,17 @@ CURRENT_VERSION=$(cat "$VERSION_FILE" 2>/dev/null) || exit 0
 cd "$SKILL_DIR" 2>/dev/null || exit 0
 GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
 
-# 静默拉取 tags
-git fetch --tags --quiet 2>/dev/null
+# 静默拉取 tags（5秒超时，防止网络卡顿阻塞会话启动）
+FETCH_PID=""
+( git fetch --tags --quiet 2>/dev/null ) & FETCH_PID=$!
+for _ in 1 2 3 4 5; do
+  if ! kill -0 $FETCH_PID 2>/dev/null; then
+    break
+  fi
+  sleep 1
+done
+kill $FETCH_PID 2>/dev/null
+wait $FETCH_PID 2>/dev/null
 
 # 获取最新版本 tag
 LATEST_TAG=$(git tag --sort=-v:refname 2>/dev/null | head -n 1)

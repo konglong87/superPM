@@ -1,9 +1,9 @@
 # super-pm 产品经理技能包
 
-**版本**: v2.1.0
+**版本**: v2.3.0
 **状态**: 生产就绪 ✅
 
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/konglong87/super-pm)
+[![Version](https://img.shields.io/badge/version-2.3.0-blue.svg)](https://github.com/konglong87/super-pm)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥0.15.0-orange.svg)](https://claude.ai/code)
 
@@ -15,7 +15,7 @@
 
 ### 核心特性
 
-- ✅ **27个核心技能** - 覆盖需求、方案、增长、风控全流程
+- ✅ **37个技能** - 覆盖需求、方案、增长、风控、战略全流程
 - ✅ **灵感火花激发** - AI主动生成创意灵感，解决"不知道做什么"困境 ⭐ NEW
 - ✅ **轻量级设计** - 纯 Markdown 指令，无代码依赖
 - ✅ **智能交互** - 一次一问，逐步引导
@@ -70,17 +70,17 @@ ln -s $(pwd)/skills ~/.claude/skills/super-pm
 ls -la ~/.claude/skills/super-pm/SKILL.md
 ```
 
-### 方式三：从发布版本安装
+### 方式四：从发布版本安装
 
 ```bash
 # 下载最新发布版本
 cd /tmp
-curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.1.0.tar.gz -o super-pm.tar.gz
+curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.3.0.tar.gz -o super-pm.tar.gz
 tar -xzf super-pm.tar.gz
-mv super-pm-2.1.0 ~/.claude/skills/super-pm
+mv super-pm-2.3.0 ~/.claude/skills/super-pm
 ```
 
-### 方式四：OpenCode 安装
+### 方式五：OpenCode 安装
 
 **适用于 OpenCode.ai 用户**
 
@@ -220,6 +220,58 @@ web_search: true
 
 ---
 
+## 🛤️ 黄金路径 — 从零到一的主线流程
+
+37 个技能看起来很多，但大多数项目只需要走一条主线。以下是三条最常用的路径：
+
+### 路径 A：新产品从零到一（最常用 ⭐）
+
+```
+/pm-demand → /pm-market → /pm-priority → /pm-mvp → /pm-docs → /pm-tech → /pm-release
+```
+
+| 步骤 | 技能 | 产出 | 你要回答的问题 |
+|------|------|------|---------------|
+| 1 | `/pm-demand` | 需求调研报告 | 我要做什么产品？用户痛点是什么？ |
+| 2 | `/pm-market` | 市场调研报告 | 市场有多大？竞品是谁？ |
+| 3 | `/pm-priority` | 优先级排序报告 | 哪些需求先做？ |
+| 4 | `/pm-mvp` | MVP方案 | 最小可行产品包含什么？ |
+| 5 | `/pm-docs` | PRD文档 | 产品需求怎么写？ |
+| 6 | `/pm-tech` | 技术对接方案 | 技术上怎么做？ |
+| 7 | `/pm-release` | 上线执行方案 | 怎么安全上线？ |
+
+> 💡 **不知道做什么产品？** 先跑 `/pm-brainstorm`，选"灵感火花激发"模式。
+
+### 路径 B：已有产品，优化增长
+
+```
+/pm-aarrr → /pm-growth → /pm-report → /pm-iteration
+```
+
+| 步骤 | 技能 | 产出 | 你要回答的问题 |
+|------|------|------|---------------|
+| 1 | `/pm-aarrr` | AARRR增长分析 | 增长漏斗哪里断了？ |
+| 2 | `/pm-growth` | 增长执行方案 | 怎么修复？ |
+| 3 | `/pm-report` | 数据报告 | 效果如何？ |
+| 4 | `/pm-iteration` | 迭代计划 | 下一步做什么？ |
+
+### 路径 C：战略决策（独立使用）
+
+```
+/pm-business-model → /pm-decision → /pm-portfolio → /pm-resource
+```
+
+| 步骤 | 技能 | 产出 | 你要回答的问题 |
+|------|------|------|---------------|
+| 1 | `/pm-business-model` | 商业模式画布 | 怎么赚钱？ |
+| 2 | `/pm-decision` | 战略决策建议 | 选哪条路？ |
+| 3 | `/pm-portfolio` | 产品组合战略 | 多产品线怎么管？ |
+| 4 | `/pm-resource` | 资源分配方案 | 人和钱怎么分？ |
+
+> 🎯 **记住：** 路径 A 覆盖 80% 的使用场景。其他 30 个技能是"按需调用"——遇到具体问题时再查 INDEX.md。
+
+---
+
 ## 💡 灵感火花激发模式 ⭐ NEW
 
 **v2.1.0全新功能** - 当你不知道做什么产品时，让AI主动为你激发灵感！
@@ -275,27 +327,29 @@ web_search: true
 
 ---
 
-## 📊 核心技能（25个）
+## 📊 核心技能（37个）
 
-### 需求洞察模块 (6个)
+### 需求洞察模块 (9个)
 - **pm-demand** - 需求调研入口
-- **pm-brainstorm** - 头脑风暴 ⭐ 支持灵感火花激发模式（解决"不知道做什么"困境）
+- **pm-brainstorm** - 头脑风暴 ⭐ 支持灵感火花激发模式
+- **pm-clarify** - 需求细化与验证
+- **pm-market** - 市场分析与竞品研究
 - **pm-search** - 联网调研整合（市场/竞品/数据/舆情/合规）
 - **pm-priority** - 优先级排序（RICE/KANO/MoSCoW）
 - **pm-mvp** - MVP最小可行产品拆解
 - **pm-pool** - 需求池管理
 - **pm-journey** - 用户旅程地图
 
-### 方案落地模块 (7个)
-- **pm-docs** - 文档生成（BRD/MRD/PRD/用户故事）
+### 方案设计模块 (7个)
+- **pm-docs** - 文档生成（BRD/MRD/PRD）
 - **pm-proto** - 原型设计
 - **pm-tech** - 技术对接方案
 - **pm-feature** - 功能细节拆解
 - **pm-data** - 数据指标体系
-- **pm-position** - 产品定位
-- **pm-commercial** - 商业化方案
+- **pm-position** - 产品定位与商业模式
+- **pm-user-story** - 用户故事
 
-### 增长迭代模块 (7个)
+### 增长迭代模块 (8个)
 - **pm-aarrr** - 增长分析
 - **pm-growth** - 增长方案
 - **pm-report** - 数据报告（周报/月报/季报）
@@ -303,6 +357,7 @@ web_search: true
 - **pm-abtest** - A/B测试方案
 - **pm-iteration** - 迭代计划
 - **pm-retro** - 迭代复盘
+- **pm-roadmap** - 产品路线图
 
 ### 风控管理模块 (5个)
 - **pm-agile** - 敏捷管理
@@ -311,11 +366,16 @@ web_search: true
 - **pm-release** - 上线方案
 - **pm-change** - 需求变更管理
 
+### 产品策略模块 (5个)
+- **pm-business-model** - 商业模式画布
+- **pm-decision** - 战略决策支持
+- **pm-funnel** - 漏斗分析优化
+- **pm-portfolio** - 产品组合管理
+- **pm-resource** - 资源分配与ROI
+
 ---
 
-## 💡 核心优化
-
-### 平台特定说明
+## 💡 平台说明
 
 #### Claude Code
 - ✅ **推荐方式**：使用 Marketplace 安装（方式一）
@@ -434,36 +494,44 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\.cursor\super-pm"
 
 ---
 
-## 📈 版本计划
+## 📈 版本历史
 
-### v2.0.0 (当前版本 - 已发布 ✅)
-- ✅ 27个核心技能全部完成
-- ✅ 5大模块：需求洞察、方案设计、增长迭代、风控管理、产品战略
+### v2.3.0 (当前版本 ✅)
+- ✅ 黄金路径主线引导（路径A/B/C），降低37技能认知负担
+- ✅ check-update.sh 5秒超时机制，防止网络卡顿阻塞会话
+- ✅ README 版本历史去重、核心技能数修正
+
+### v2.2.0
+- ✅ 37 个技能，覆盖 5 大模块
+- ✅ Subagent 并行架构优化（v2 技能）
+- ✅ 新增产品策略模块
 - ✅ 中英文双语支持
-- ✅ 完整文档和示例
 
-### v2.1.0 (计划中)
-- ⏳ 性能优化和体验改进
-- ⏳ 更多行业模板
-- ⏳ 用户反馈收集和优化
+### v2.0.1
+- 版本修正与文档更新
 
-### v2.2.0 (计划中)
+### v2.0.0
+- Subagent 并行架构全面升级
+- 技能 Token 节省 80%+
+
+### v1.1.0
+- 技能数量扩展至 27+
+- 灵感火花激发模式
+
+### v1.0.0
+- 初始发布，27 个核心技能
+
+### 未来规划
 - ⏳ 自定义模板支持
 - ⏳ 团队协作功能
-- ⏳ 数据导出功能
-
-### v3.0.0 (未来规划)
 - ⏳ 多模型支持
-- ⏳ 自定义 skill 开发框架
-- ⏳ 插件生态系统
 
 ---
 
 ## 📚 文档
 
-- [实施方案](./plan/final_implementation_plan_v2.md) - 详细的技术设计和实施计划
-- [安装教程](./plan/installation_guide_v2.md) - 完整的安装使用指南
-- [开发任务清单](./plan/phase1_development_checklist.md) - Phase 1开发任务详解
+- [技能索引](./skills/INDEX.md) - 全部 37 个技能及依赖关系
+- [Skill 模板](./skills/templates/subagent-skill-template.md) - Subagent 架构模板与最佳实践
 
 ---
 
