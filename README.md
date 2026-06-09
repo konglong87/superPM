@@ -1,9 +1,6 @@
 # super-pm 产品经理技能包
 
-**版本**: v2.3.0
-**状态**: 生产就绪 ✅
-
-[![Version](https://img.shields.io/badge/version-2.3.0-blue.svg)](https://github.com/konglong87/super-pm)
+**版本**: v2.3.2 | **状态**: 生产就绪 ✅
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥0.15.0-orange.svg)](https://claude.ai/code)
 
@@ -75,9 +72,9 @@ ls -la ~/.claude/skills/super-pm/SKILL.md
 ```bash
 # 下载最新发布版本
 cd /tmp
-curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.3.0.tar.gz -o super-pm.tar.gz
+curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.3.2.tar.gz -o super-pm.tar.gz
 tar -xzf super-pm.tar.gz
-mv super-pm-2.3.0 ~/.claude/skills/super-pm
+mv super-pm-2.3.2 ~/.claude/skills/super-pm
 ```
 
 ### 方式五：OpenCode 安装
@@ -494,39 +491,7 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\.cursor\super-pm"
 
 ---
 
-## 📈 版本历史
-
-### v2.3.0 (当前版本 ✅)
-- ✅ 黄金路径主线引导（路径A/B/C），降低37技能认知负担
-- ✅ check-update.sh 5秒超时机制，防止网络卡顿阻塞会话
-- ✅ README 版本历史去重、核心技能数修正
-
-### v2.2.0
-- ✅ 37 个技能，覆盖 5 大模块
-- ✅ Subagent 并行架构优化（v2 技能）
-- ✅ 新增产品策略模块
-- ✅ 中英文双语支持
-
-### v2.0.1
-- 版本修正与文档更新
-
-### v2.0.0
-- Subagent 并行架构全面升级
-- 技能 Token 节省 80%+
-
-### v1.1.0
-- 技能数量扩展至 27+
-- 灵感火花激发模式
-
-### v1.0.0
-- 初始发布，27 个核心技能
-
-### 未来规划
-- ⏳ 自定义模板支持
-- ⏳ 团队协作功能
-- ⏳ 多模型支持
-
----
+版本历史详见 [CHANGELOG.md](skills/CHANGELOG.md)。
 
 ## 📚 文档
 
