@@ -8,8 +8,8 @@
 
 | Skill | 版本 | 说明 | 输出文档 |
 |-------|------|------|---------|
+| `/pm-brainstorm` | v2.2.1 | 头脑风暴 ⭐ 先发散再收敛 - Subagent 并行搜索灵感火花，4维度同时爆发 | 创意方案库 |
 | `/pm-demand` | v2.0.0 | 需求调研入口 - 系统化收集产品信息并验证痛点 | 需求调研报告 |
-| `/pm-brainstorm` | v2.2.1 | 头脑风暴 - Subagent 并行搜索灵感火花，4维度同时爆发 | 创意方案库 |
 | `/pm-clarify` | v2.0.0 | 需求细化 - 明确每个需求的细节和边界条件 | 确认需求清单 |
 | `/pm-market` | v2.0.1 | 市场分析 - 竞品与行业研究 | 市场调研报告 |
 | `/pm-priority` | v2.0.0 | 优先级排序 - Subagent 并行预分析 + RICE/KANO/MoSCoW 模型 | 优先级排序报告 |
@@ -76,9 +76,13 @@
 ## 依赖关系
 
 ```
-pm-demand → pm-brainstorm(可选) → pm-clarify → pm-market(可选)
+pm-brainstorm → pm-demand → pm-clarify → pm-market(可选)
 → pm-priority → pm-mvp
+```
 
+> 已有明确方向可跳过 brainstorm，直接从 pm-demand 开始
+
+```
 pm-docs(依赖MVP) → pm-proto → pm-tech → pm-feature → pm-data → pm-user-story
 
 pm-aarrr(上线后) → pm-growth → pm-report → pm-iteration → pm-retro → pm-roadmap
