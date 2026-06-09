@@ -52,12 +52,28 @@ start_super_pm_escaped=$(escape_for_json "$start_super_pm_content")
 project_config_escaped=$(escape_for_json "$project_config_message")
 docs_status_escaped=$(escape_for_json "$docs_status_message")
 
+# Build quick reference card
+snapshot_card_raw=$(cat <<'CARD_EOF'
+## 🃏 super-pm 速查卡片（每次必看）
+
+| 用户说了什么 | 你的路由 |
+|---|---|
+| **"我想做一个XX"** / "帮我规划" / "从零开始" + 产品形态词(社区/app/小程序等) | → /pm-brainstorm （先发散，再收敛） |
+| **"写需求文档"** / "写PRD" / "写产品文档" | → 先检查前置文档！无则 → /pm-brainstorm → /pm-demand → /pm-docs |
+| **"验证这个需求"** / "调研XX痛点" | → /pm-demand （方向明确，直接验证） |
+| **"分析竞品"** / "市场多大" | → /pm-market 或 /pm-search |
+
+**核心原则**: 文档是产出不是起点 | 想法模糊先 brainstorm | 方向明确再 demand
+CARD_EOF
+)
+snapshot_card_escaped=$(escape_for_json "$snapshot_card_raw")
+
 # Output context injection as JSON
 cat <<EOF
 {
   "hookSpecificOutput": {
     "hookEventName": "SessionStart",
-    "additionalContext": "<EXTREMELY_IMPORTANT>\nYou have super-pm - a Product Manager Skills Pack.\n\n**Below is the full content of your 'start-super-pm' skill - your introduction to using PM skills. For all other skills, use the 'Skill' tool:**\n\n${start_super_pm_escaped}\n${project_config_escaped}\n${docs_status_escaped}\n</EXTREMELY_IMPORTANT>"
+    "additionalContext": "<EXTREMELY_IMPORTANT>\nYou have super-pm - a Product Manager Skills Pack.\n\n**Below is the full content of your 'start-super-pm' skill - your introduction to using PM skills. For all other skills, use the 'Skill' tool:**\n\n${start_super_pm_escaped}\n${project_config_escaped}\n${docs_status_escaped}\n${snapshot_card_escaped}\n</EXTREMELY_IMPORTANT>"
   }
 }
 EOF
