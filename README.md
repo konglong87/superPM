@@ -26,18 +26,24 @@
 
 ### 方式一：Claude Code Marketplace 安装（最推荐 ⭐）
 
-在 Claude Code 中直接通过 Marketplace 安装：
+#### 方法 A：GitHub 一键安装
 
-```bash
-#1-直接在会话中说：
-安装这个skill：https://github.com/konglong87/super-pm
-#2-在 Claude Code 会话中执行
-/skill install konglong87/super-pm
+在 Claude Code 会话中直接告诉 AI：
+
+```
+安装这个 skill：https://github.com/konglong87/super-pm
 ```
 
-或者通过 Marketplace URL：
+#### 方法 B：注册 Marketplace 后安装
+
+1. 注册 super-pm 的 Marketplace：
 ```bash
-https://github.com/konglong87/super-pm
+/plugin marketplace add konglong87/super-pm
+```
+
+2. 从 Marketplace 安装：
+```bash
+/plugin install super-pm@super-pm-marketplace
 ```
 
 安装后重启 Claude Code 自动生效。
