@@ -68,14 +68,19 @@ CARD_EOF
 )
 snapshot_card_escaped=$(escape_for_json "$snapshot_card_raw")
 
-# Output context injection as JSON
-cat <<EOF
-{
-  "hookSpecificOutput": {
-    "hookEventName": "SessionStart",
-    "additionalContext": "<EXTREMELY_IMPORTANT>\nYou have super-pm - a Product Manager Skills Pack.\n\n**Below is the full content of your 'start-super-pm' skill - your introduction to using PM skills. For all other skills, use the 'Skill' tool:**\n\n${start_super_pm_escaped}\n${project_config_escaped}\n${docs_status_escaped}\n${snapshot_card_escaped}\n</EXTREMELY_IMPORTANT>"
-  }
-}
-EOF
+# Build the full context string
+session_context="<EXTREMELY_IMPORTANT>\nYou have super-pm - a Product Manager Skills Pack.\n\n**Below is the full content of your 'start-super-pm' skill - your introduction to using PM skills. For all other skills, use the 'Skill' tool:**\n\n${start_super_pm_escaped}\n${project_config_escaped}\n${docs_status_escaped}\n${snapshot_card_escaped}\n</EXTREMELY_IMPORTANT>"
+
+# Output context injection as JSON.
+# Claude Code: hookSpecificOutput.additionalContext (nested object)
+# Cursor: additional_context (snake_case, top-level)
+# Other platforms (Copilot CLI etc.): additionalContext (camelCase, top-level, SDK standard)
+if [ -n "${CURSOR_PLUGIN_ROOT:-}" ]; then
+  printf '{\n  "additional_context": "%s"\n}\n' "$session_context"
+elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ] && [ -z "${COPILOT_CLI:-}" ]; then
+  printf '{\n  "hookSpecificOutput": {\n    "hookEventName": "SessionStart",\n    "additionalContext": "%s"\n  }\n}\n' "$session_context"
+else
+  printf '{\n  "additionalContext": "%s"\n}\n' "$session_context"
+fi
 
 exit 0

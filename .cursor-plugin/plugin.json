@@ -1,0 +1,24 @@
+{
+  "name": "super-pm",
+  "displayName": "Super PM",
+  "description": "Product Manager Skills Pack - 37 skills across 5 modules: demand insight, solution design, growth iteration, risk management, and product strategy",
+  "version": "2.3.3",
+  "author": {
+    "name": "Kong Long",
+    "email": "2235998553@qq.com"
+  },
+  "homepage": "https://github.com/konglong87/super-pm",
+  "repository": "https://github.com/konglong87/super-pm",
+  "license": "MIT",
+  "keywords": [
+    "product-manager",
+    "skills",
+    "demand-insight",
+    "solution-design",
+    "growth-iteration",
+    "risk-management",
+    "product-management"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks-cursor.json"
+}
