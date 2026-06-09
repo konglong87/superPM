@@ -143,21 +143,27 @@ cmd /c mklink /J "$env:USERPROFILE\.agents\skills\super-pm" "$env:USERPROFILE\.c
 
 **适用于 Cursor 编辑器用户**
 
+Cursor 兼容 `.claude/skills/` 和 `.cursor/skills/` 两种路径。
+
 ```bash
 # macOS / Linux
-# 1. 克隆仓库
+# 1. 克隆完整仓库（包含 .cursor-plugin/ 和 hooks/）
 git clone https://github.com/konglong87/super-pm.git ~/.cursor/super-pm
 
-# 2. 创建 skills 链接
+# 2. 创建 skills 链接（二选一）
+# 方案 A：链接到 Cursor 专属目录
 mkdir -p ~/.cursor/skills
 ln -s ~/.cursor/super-pm/skills ~/.cursor/skills/super-pm
+# 方案 B：链接到 Claude Code 共享目录（Cursor 也会读取）
+mkdir -p ~/.claude/skills
+ln -s ~/.cursor/super-pm/skills ~/.claude/skills/super-pm
 
 # 3. 重启 Cursor
 ```
 
 **Windows (PowerShell):**
 ```powershell
-# 1. 克隆仓库
+# 1. 克隆完整仓库
 git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.cursor\super-pm"
 
 # 2. 创建 skills 链接
@@ -166,6 +172,8 @@ New-Item -ItemType Junction -Path "$env:USERPROFILE\.cursor\skills\super-pm" -Ta
 
 # 3. 重启 Cursor
 ```
+
+> 💡 **Hook 支持**：克隆完整仓库后，`.cursor-plugin/plugin.json` + `hooks/hooks-cursor.json` 可被 Cursor 插件系统发现，实现会话启动时自动注入 PM 技能上下文和速查卡片。
 
 ### 验证安装
 
