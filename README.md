@@ -1,6 +1,6 @@
 # super-pm 产品经理技能包
 
-**版本**: v2.3.2 | **状态**: 生产就绪 ✅
+**版本**: v2.3.3 | **状态**: 生产就绪 ✅
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥0.15.0-orange.svg)](https://claude.ai/code)
 
@@ -78,9 +78,9 @@ ls -la ~/.claude/skills/super-pm/SKILL.md
 ```bash
 # 下载最新发布版本
 cd /tmp
-curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.3.2.tar.gz -o super-pm.tar.gz
+curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.3.3.tar.gz -o super-pm.tar.gz
 tar -xzf super-pm.tar.gz
-mv super-pm-2.3.2 ~/.claude/skills/super-pm
+mv super-pm-2.3.3 ~/.claude/skills/super-pm
 ```
 
 ### 方式五：OpenCode 安装
@@ -215,11 +215,15 @@ web_search: true
 
 ### 第一个需求调研
 
+头脑风暴明确方向后：
+
 ```bash
 /pm-demand
 ```
 
 输出: `docs/01-需求调研/需求调研报告.md`
+
+> 💡 新项目建议从 `/pm-brainstorm` 开始，先发散再收敛。
 
 ---
 
@@ -230,20 +234,21 @@ web_search: true
 ### 路径 A：新产品从零到一（最常用 ⭐）
 
 ```
-/pm-demand → /pm-market → /pm-priority → /pm-mvp → /pm-docs → /pm-tech → /pm-release
+/pm-brainstorm → /pm-demand → /pm-market → /pm-priority → /pm-mvp → /pm-docs → /pm-tech → /pm-release
 ```
 
 | 步骤 | 技能 | 产出 | 你要回答的问题 |
 |------|------|------|---------------|
-| 1 | `/pm-demand` | 需求调研报告 | 我要做什么产品？用户痛点是什么？ |
-| 2 | `/pm-market` | 市场调研报告 | 市场有多大？竞品是谁？ |
-| 3 | `/pm-priority` | 优先级排序报告 | 哪些需求先做？ |
-| 4 | `/pm-mvp` | MVP方案 | 最小可行产品包含什么？ |
-| 5 | `/pm-docs` | PRD文档 | 产品需求怎么写？ |
-| 6 | `/pm-tech` | 技术对接方案 | 技术上怎么做？ |
-| 7 | `/pm-release` | 上线执行方案 | 怎么安全上线？ |
+| 1 | `/pm-brainstorm` | 头脑风暴方案 | 产品方向有哪些可能性？目标用户是谁？ |
+| 2 | `/pm-demand` | 需求调研报告 | 这个方向真值得做吗？用户痛点真实吗？ |
+| 3 | `/pm-market` | 市场调研报告 | 市场有多大？竞品是谁？ |
+| 4 | `/pm-priority` | 优先级排序报告 | 哪些需求先做？ |
+| 5 | `/pm-mvp` | MVP方案 | 最小可行产品包含什么？ |
+| 6 | `/pm-docs` | PRD文档 | 产品需求怎么写？ |
+| 7 | `/pm-tech` | 技术对接方案 | 技术上怎么做？ |
+| 8 | `/pm-release` | 上线执行方案 | 怎么安全上线？ |
 
-> 💡 **不知道做什么产品？** 先跑 `/pm-brainstorm`，选"灵感火花激发"模式。
+> 💡 **方向已明确？** 可直接从 `/pm-demand` 开始，跳过头脑风暴。
 
 ### 路径 B：已有产品，优化增长
 
@@ -271,7 +276,7 @@ web_search: true
 | 3 | `/pm-portfolio` | 产品组合战略 | 多产品线怎么管？ |
 | 4 | `/pm-resource` | 资源分配方案 | 人和钱怎么分？ |
 
-> 🎯 **记住：** 路径 A 覆盖 80% 的使用场景。其他 30 个技能是"按需调用"——遇到具体问题时再查 INDEX.md。
+> 🎯 **记住：** 路径 A 覆盖 80% 的使用场景。其他 29 个技能是"按需调用"——遇到具体问题时再查 INDEX.md。
 
 ---
 
