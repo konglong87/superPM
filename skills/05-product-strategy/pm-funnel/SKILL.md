@@ -20,7 +20,7 @@ bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
 mkdir -p docs/05-产品战略
 
 # 检查是否有用户旅程地图作为输入
-if [ -f "docs/01-需求洞察/用户旅程地图.md" ]; then
+if [ -f "docs/01-需求调研/用户旅程地图.md" ]; then
   echo "✅ 检测到用户旅程地图，将基于此进行漏斗分析"
 fi
 ```
@@ -585,3 +585,4 @@ status: draft
 > ⚠️ 任何一项未通过 → 补全后再标记完成。
 
 ---
+
