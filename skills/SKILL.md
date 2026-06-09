@@ -1,6 +1,6 @@
 ---
 name: super-pm
-version: 2.3.1
+version: 2.3.2
 description: |
   Product Manager Skills Pack - Full lifecycle support from demand to delivery
   让一个产品经理拥有一个产品团队的能力

@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.2] - 2026-06-09
+
+### Fixed
+- pm-funnel 前置文档路径修复：`01-需求洞察` → `01-需求调研`，修复前置检查永远失败的问题
+
 ## [2.3.0] - 2026-05-31
 
 ### Added

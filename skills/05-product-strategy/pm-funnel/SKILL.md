@@ -1,6 +1,6 @@
 ---
 name: pm-funnel
-version: 2.0.1
+version: 2.0.2
 description: |
   Use when: 需要分析用户转化漏斗、诊断流失原因、生成优化建议、提升用户转化率
   Do NOT use when: 用户转化路径已非常清晰、仅需单一指标监控无需全链路分析
