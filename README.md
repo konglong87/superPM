@@ -557,4 +557,4 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\.cursor\super-pm"
 
 **PM-Skills Team** © 2026
 
-**让每个产品经理都能高效工作** 🚀
+**让每个产品经理都能轻轻松松的高效工作** ☕️ 📺 🚀
