@@ -200,7 +200,14 @@ AI: 📊 检测到您的进度：
 ## 注意事项
 
 1. **风险前置**：需求调研阶段立即验证痛点
-2. **搜索优先级**：AnySearch（Bash 调用）→ Exa MCP（mcp__exa__web_search_exa）→ WebSearch 降级，不得跳级
+2. **搜索依赖说明**（技能包自身不内置搜索工具，依赖外部 skill/MCP 增强）：
+   - **AnySearch**（独立 skill，非内置工具）— 中文搜索质量最优，支持17个垂直域（金融、法律、学术等）。
+     安装：`git clone https://github.com/konglong87/anysearch.git ~/.claude/skills/anysearch`
+     未安装时自动降级，不影响流程执行。
+   - **Exa MCP**（MCP server）— 英文/语义搜索增强。
+     需在项目 `.claude/settings.json` 中配置 `mcpServers`。未配置时降级到 WebSearch。
+   - **WebSearch**（Claude Code 内置工具）— 始终可用，兜底搜索。
+   - **优先级**：AnySearch → Exa MCP → WebSearch，不得跳级。使用 WebSearch 时标注「⚠️ 降级模式」
 3. **兜底机制**：文件缺失时提供替代方案
 4. **Markdown存储**：所有文档人类可读可编辑
 5. **流程推荐**：每个skill完成后推荐2-3个下一步

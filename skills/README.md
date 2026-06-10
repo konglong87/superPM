@@ -81,6 +81,17 @@ super-pm 是专为产品经理设计的 Claude Code Skill Pack，覆盖需求洞
 git clone https://github.com/konglong87/super-pm.git ~/.claude/skills/super-pm
 ```
 
+## 推荐搭配
+
+super-pm 的搜索能力依赖外部工具增强，不安装也能用（自动降级到内置 WebSearch），但安装后搜索质量显著提升：
+
+| 搭配工具 | 类型 | 效果 | 安装方式 |
+|---------|------|------|---------|
+| **AnySearch** | skill | 中文搜索质量大幅提升，支持17个垂直域（金融、法律、学术、电商等） | `git clone https://github.com/konglong87/anysearch.git ~/.claude/skills/anysearch` |
+| **Exa MCP** | MCP server | 英文/语义搜索增强，公司信息、代码搜索 | 见 [exa-mcp 官方文档](https://github.com/exa-labs/exa-mcp-server) 配置 `mcpServers` |
+
+> 💡 搜索优先级：AnySearch → Exa MCP → WebSearch（内置兜底）。未安装 AnySearch/Exa 时自动降级，不影响技能包正常使用。
+
 ## 文档
 
 - [技能索引](./INDEX.md) - 全部技能及依赖关系
