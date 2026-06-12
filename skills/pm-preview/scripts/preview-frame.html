@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>superPM Document Preview</title>
+  <style>
+    /*
+     * superPM DOCUMENT PREVIEW FRAME
+     *
+     * Provides a consistent frame with:
+     * - OS-aware light/dark theming
+     * - Fixed sidebar with document tree navigation
+     * - Scrollable main content area for rendered Markdown
+     * - Live reload via WebSocket
+     */
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+
+    /* ===== THEME VARIABLES ===== */
+    :root {
+      --bg-primary: #f5f5f7;
+      --bg-secondary: #ffffff;
+      --bg-tertiary: #e5e5e7;
+      --border: #d1d1d6;
+      --text-primary: #1d1d1f;
+      --text-secondary: #86868b;
+      --text-tertiary: #aeaeb2;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --sidebar-bg: #f0f0f2;
+      --sidebar-hover: #e5e5e7;
+      --sidebar-active: #dbeafe;
+      --success: #34c759;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #1d1d1f;
+        --bg-secondary: #2d2d2f;
+        --bg-tertiary: #3d3d3f;
+        --border: #424245;
+        --text-primary: #f5f5f7;
+        --text-secondary: #86868b;
+        --text-tertiary: #636366;
+        --accent: #0a84ff;
+        --accent-hover: #409cff;
+        --sidebar-bg: #252527;
+        --sidebar-hover: #3d3d3f;
+        --sidebar-active: rgba(10, 132, 255, 0.2);
+        --success: #30d158;
+      }
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: var(--bg-secondary);
+      padding: 0.5rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .header h1 { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); }
+    .header .status { font-size: 0.7rem; color: var(--success); display: flex; align-items: center; gap: 0.4rem; }
+    .header .status::before { content: ''; width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
+
+    /* ===== LAYOUT ===== */
+    .layout { display: flex; flex: 1; overflow: hidden; }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      width: 260px;
+      flex-shrink: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-header {
+      padding: 0.75rem 1rem;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .sidebar-header .doc-count {
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      margin-left: 0.25rem;
+    }
+    .doc-tree { flex: 1; overflow-y: auto; padding: 0.25rem 0; }
+
+    /* Directory group */
+    .dir-group { margin: 0; }
+    .dir-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      user-select: none;
+    }
+    .dir-toggle:hover { background: var(--sidebar-hover); }
+    .dir-toggle .arrow {
+      font-size: 0.6rem;
+      transition: transform 0.15s;
+      color: var(--text-tertiary);
+      flex-shrink: 0;
+    }
+    .dir-toggle.collapsed .arrow { transform: rotate(-90deg); }
+    .dir-children { overflow: hidden; }
+    .dir-children.collapsed { display: none; }
+
+    /* Document item */
+    .doc-item {
+      display: block;
+      padding: 0.3rem 0.75rem 0.3rem 1.75rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border-left: 3px solid transparent;
+      transition: all 0.1s;
+    }
+    .doc-item:hover { background: var(--sidebar-hover); color: var(--text-primary); }
+    .doc-item.active {
+      background: var(--sidebar-active);
+      color: var(--accent);
+      border-left-color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Empty state */
+    .sidebar-empty {
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      text-align: center;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main { flex: 1; overflow-y: auto; }
+    .content-area { padding: 2rem; max-width: 900px; margin: 0 auto; min-height: 100%; }
+
+    /* ===== MARKDOWN RENDERED CONTENT ===== */
+    .rendered-markdown { }
+    .rendered-markdown h1 { font-size: 1.8rem; font-weight: 700; margin: 1.5rem 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .rendered-markdown h2 { font-size: 1.4rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .rendered-markdown h3 { font-size: 1.1rem; font-weight: 600; margin: 1.25rem 0 0.4rem; }
+    .rendered-markdown h4 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.3rem; }
+    .rendered-markdown p { margin: 0.5rem 0; line-height: 1.7; }
+    .rendered-markdown ul, .rendered-markdown ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+    .rendered-markdown li { margin: 0.25rem 0; line-height: 1.6; }
+    .rendered-markdown code {
+      background: var(--bg-tertiary);
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+    .rendered-markdown pre {
+      background: var(--bg-tertiary);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 0.75rem 0;
+    }
+    .rendered-markdown pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85em;
+    }
+    .rendered-markdown blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.25rem 1rem;
+      margin: 0.75rem 0;
+      color: var(--text-secondary);
+      background: var(--bg-secondary);
+      border-radius: 0 6px 6px 0;
+    }
+    .rendered-markdown table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0.75rem 0;
+      font-size: 0.9rem;
+    }
+    .rendered-markdown th, .rendered-markdown td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    .rendered-markdown th {
+      background: var(--bg-tertiary);
+      font-weight: 600;
+    }
+    .rendered-markdown tr:nth-child(even) { background: var(--bg-secondary); }
+    .rendered-markdown a { color: var(--accent); }
+    .rendered-markdown hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+    .rendered-markdown img { max-width: 100%; border-radius: 8px; }
+
+    /* Welcome / empty state */
+    .welcome {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-secondary);
+    }
+    .welcome h2 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+    .welcome p { margin-bottom: 0.5rem; }
+    .welcome .hint { font-size: 0.85rem; color: var(--text-tertiary); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .sidebar { width: 200px; }
+      .content-area { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>superPM Document Preview</h1>
+    <div class="status">Connected</div>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        Documents<span class="doc-count" id="doc-count"></span>
+      </div>
+      <div class="doc-tree" id="doc-tree">
+        <div class="sidebar-empty">Loading...</div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <div class="content-area" id="content-area">
+        <div class="welcome">
+          <h2>superPM Document Preview</h2>
+          <p>Select a document from the sidebar to view.</p>
+          <p class="hint">Documents auto-refresh when files change.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>var DOC_TREE = <!-- DOC_TREE -->;</script>
+</body>
+</html>
