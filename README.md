@@ -293,11 +293,12 @@ web_search: true
 | Codex | `cd ~/.codex/super-pm && git pull` |
 | Cursor | `cd ~/.cursor/super-pm && git pull` |
 
-版本历史详见 [CHANGELOG.md](skills/CHANGELOG.md)。
+---
 
 ## 📚 文档
 
 - [技能索引](./skills/INDEX.md) - 全部 38 个技能及依赖关系
+- [更新日志](./skills/CHANGELOG.md) - 版本历史
 - [Skill 模板](./skills/templates/subagent-skill-template.md) - Subagent 架构模板与最佳实践
 
 ---
