@@ -293,19 +293,6 @@ web_search: true
 | Codex | `cd ~/.codex/super-pm && git pull` |
 | Cursor | `cd ~/.cursor/super-pm && git pull` |
 
-### 卸载
-
-| 平台 | 命令 |
-|------|------|
-| Claude Code | `/plugin uninstall super-pm` |
-| OpenCode | `rm ~/.config/opencode/skills/super-pm && rm -rf ~/.config/opencode/super-pm` |
-| Codex | `rm ~/.agents/skills/super-pm && rm -rf ~/.codex/super-pm` |
-| Cursor | `rm ~/.cursor/skills/super-pm && rm -rf ~/.cursor/super-pm` |
-
-> 💡 Windows 卸载将 `rm` 替换为 `Remove-Item` 即可（参考安装章节的 PowerShell 路径）。
-
----
-
 版本历史详见 [CHANGELOG.md](skills/CHANGELOG.md)。
 
 ## 📚 文档
