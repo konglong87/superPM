@@ -1,4 +1,10 @@
+<div align="center">
+
 # super-pm 产品经理技能包
+
+**让每个产品经理都能轻轻松松的高效工作** ☕️ 📺 🚀
+
+</div>
 
 **版本**: v2.3.4 | **状态**: 生产就绪 ✅
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -337,5 +343,3 @@ web_search: true
 ---
 
 **PM-Skills Team** © 2026
-
-**让每个产品经理都能轻轻松松的高效工作** ☕️ 📺 🚀
