@@ -24,181 +24,68 @@
 
 ## 🚀 快速开始
 
-### 方式一：Claude Code Marketplace 安装（最推荐 ⭐）
+所有平台统一模式：**git clone → 创建链接 → 重启**
 
-#### 方法 A：GitHub 一键安装
+| 平台 | clone 目标路径 | skills 链接路径 | 验证命令 |
+|------|---------------|----------------|---------|
+| Claude Code ⭐ | `~/.claude/skills/super-pm` | — (直接到位) | `/super-pm` |
+| Marketplace | — | `/plugin install super-pm` | `/super-pm` |
+| OpenCode | `~/.config/opencode/super-pm` | `~/.config/opencode/skills/super-pm` | `use skill tool to list all skills` |
+| Codex | `~/.codex/super-pm` | `~/.agents/skills/super-pm` | `list available skills` |
+| Cursor | `~/.cursor/super-pm` | `~/.cursor/skills/super-pm` | `list skills` |
 
-在 Claude Code 会话中直接告诉 AI：
+> 💡 Claude Code 最简单：直接 clone 到 skills 目录，无需创建链接。
 
-```
-安装这个 skill：https://github.com/konglong87/super-pm
-```
-
-#### 方法 B：注册 Marketplace 后安装
-
-1. 注册 super-pm 的 Marketplace：
-```bash
-/plugin marketplace add konglong87/super-pm
-```
-
-2. 从 Marketplace 安装：
-```bash
-/plugin install super-pm@super-pm-marketplace
-```
-
-安装后重启 Claude Code 自动生效。
-
-### 方式二：Git Clone 一键安装
-
-在 Claude Code 会话中直接执行：
+### macOS / Linux
 
 ```bash
-# 安装最新版本
+# Claude Code（最推荐 ⭐）
 git clone https://github.com/konglong87/super-pm.git ~/.claude/skills/super-pm
-```
 
-重启 Claude Code 后自动生效。
+# Marketplace 一键安装
+/plugin marketplace add konglong87/super-pm
+/plugin install super-pm@super-pm-marketplace
 
-### 方式三：本地开发安装
-
-```bash
-# 克隆仓库
-git clone https://github.com/konglong87/super-pm.git
-cd super-pm
-
-# 创建软链接到 Claude Code skills 目录
-ln -s $(pwd)/skills ~/.claude/skills/super-pm
-
-# 验证安装
-ls -la ~/.claude/skills/super-pm/SKILL.md
-```
-
-### 方式四：从发布版本安装
-
-```bash
-# 下载最新发布版本
-cd /tmp
-curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.3.4.tar.gz -o super-pm.tar.gz
-tar -xzf super-pm.tar.gz
-mv super-pm-2.3.4 ~/.claude/skills/super-pm
-```
-
-### 方式五：OpenCode 安装
-
-**适用于 OpenCode.ai 用户**
-
-```bash
-# macOS / Linux
-# 1. 克隆仓库
+# OpenCode
 git clone https://github.com/konglong87/super-pm.git ~/.config/opencode/super-pm
+mkdir -p ~/.config/opencode/skills && ln -s ~/.config/opencode/super-pm/skills ~/.config/opencode/skills/super-pm
 
-# 2. 创建 skills 目录并链接
-mkdir -p ~/.config/opencode/skills
-ln -s ~/.config/opencode/super-pm/skills ~/.config/opencode/skills/super-pm
+# Codex
+git clone https://github.com/konglong87/super-pm.git ~/.codex/super-pm
+mkdir -p ~/.agents/skills && ln -s ~/.codex/super-pm/skills ~/.agents/skills/super-pm
 
-# 3. 重启 OpenCode
+# Cursor
+git clone https://github.com/konglong87/super-pm.git ~/.cursor/super-pm
+mkdir -p ~/.cursor/skills && ln -s ~/.cursor/super-pm/skills ~/.cursor/skills/super-pm
 ```
 
-**Windows (PowerShell):**
-```powershell
-# 1. 克隆仓库
-git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.config\opencode\super-pm"
+### Windows (PowerShell)
 
-# 2. 创建 skills 目录和链接
+```powershell
+# Claude Code（最推荐 ⭐）
+git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.claude\skills\super-pm"
+
+# OpenCode
+git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.config\opencode\super-pm"
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.config\opencode\skills"
 New-Item -ItemType Junction -Path "$env:USERPROFILE\.config\opencode\skills\super-pm" -Target "$env:USERPROFILE\.config\opencode\super-pm\skills"
 
-# 3. 重启 OpenCode
-```
-
-### 方式六：Codex 安装
-
-**适用于 OpenAI Codex CLI 用户**
-
-```bash
-# macOS / Linux
-# 1. 克隆仓库
-git clone https://github.com/konglong87/super-pm.git ~/.codex/super-pm
-
-# 2. 创建 skills 链接
-mkdir -p ~/.agents/skills
-ln -s ~/.codex/super-pm/skills ~/.agents/skills/super-pm
-
-# 3. 重启 Codex
-```
-
-**Windows (PowerShell):**
-```powershell
-# 1. 克隆仓库
+# Codex
 git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.codex\super-pm"
-
-# 2. 创建 skills 链接
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills"
 cmd /c mklink /J "$env:USERPROFILE\.agents\skills\super-pm" "$env:USERPROFILE\.codex\super-pm\skills"
 
-# 3. 重启 Codex
-```
-
-### 方式七：Cursor 安装
-
-**适用于 Cursor 编辑器用户**
-
-Cursor 兼容 `.claude/skills/` 和 `.cursor/skills/` 两种路径。
-
-```bash
-# macOS / Linux
-# 1. 克隆完整仓库（包含 .cursor-plugin/ 和 hooks/）
-git clone https://github.com/konglong87/super-pm.git ~/.cursor/super-pm
-
-# 2. 创建 skills 链接（二选一）
-# 方案 A：链接到 Cursor 专属目录
-mkdir -p ~/.cursor/skills
-ln -s ~/.cursor/super-pm/skills ~/.cursor/skills/super-pm
-# 方案 B：链接到 Claude Code 共享目录（Cursor 也会读取）
-mkdir -p ~/.claude/skills
-ln -s ~/.cursor/super-pm/skills ~/.claude/skills/super-pm
-
-# 3. 重启 Cursor
-```
-
-**Windows (PowerShell):**
-```powershell
-# 1. 克隆完整仓库
+# Cursor
 git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.cursor\super-pm"
-
-# 2. 创建 skills 链接
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.cursor\skills"
 New-Item -ItemType Junction -Path "$env:USERPROFILE\.cursor\skills\super-pm" -Target "$env:USERPROFILE\.cursor\super-pm\skills"
-
-# 3. 重启 Cursor
 ```
 
-> 💡 **Hook 支持**：克隆完整仓库后，`.cursor-plugin/plugin.json` + `hooks/hooks-cursor.json` 可被 Cursor 插件系统发现，实现会话启动时自动注入 PM 技能上下文和速查卡片。
+> 💡 **Cursor Hook 支持**：克隆完整仓库后，`.cursor-plugin/plugin.json` + `hooks/hooks-cursor.json` 可被 Cursor 插件系统发现，实现会话启动时自动注入 PM 技能上下文。
 
 ### 验证安装
 
-在 Claude Code 中执行：
-
-```
-/super-pm
-```
-
-如果看到 super-pm 的欢迎信息，说明安装成功！
-
-**OpenCode 用户验证：**
-```
-use skill tool to list all skills
-```
-
-**Codex 用户验证：**
-```
-list available skills
-```
-
-**Cursor 用户验证：**
-```
-list skills
-```
+重启后执行对应平台的验证命令（见上方表格）。看到 super-pm 欢迎信息即安装成功。
 
 ### 创建配置文件
 
@@ -223,26 +110,21 @@ web_search: true
 
 ### 第一个需求调研
 
-头脑风暴明确方向后：
-
 ```bash
-/pm-demand
+/pm-brainstorm    # 先发散再收敛
+/pm-demand        # 方向明确后直接调研
 ```
-
-输出: `docs/01-需求调研/需求调研报告.md`
-
-> 💡 新项目建议从 `/pm-brainstorm` 开始，先发散再收敛。
 
 ---
 
 ## 🛤️ 黄金路径 — 从零到一的主线流程
 
-37 个技能看起来很多，但大多数项目只需要走一条主线。以下是三条最常用的路径：
+38 个技能看起来很多，但大多数项目只需要走一条主线。以下是三条最常用的路径：
 
 ### 路径 A：新产品从零到一（最常用 ⭐）
 
 ```
-/pm-brainstorm → /pm-demand → /pm-market → /pm-priority → /pm-mvp → /pm-docs → /pm-tech → /pm-release
+/pm-brainstorm → /pm-demand → /pm-market → /pm-priority → /pm-mvp → /pm-docs → /pm-preview → /pm-tech → /pm-release
 ```
 
 | 步骤 | 技能 | 产出 | 你要回答的问题 |
@@ -253,8 +135,9 @@ web_search: true
 | 4 | `/pm-priority` | 优先级排序报告 | 哪些需求先做？ |
 | 5 | `/pm-mvp` | MVP方案 | 最小可行产品包含什么？ |
 | 6 | `/pm-docs` | PRD文档 | 产品需求怎么写？ |
-| 7 | `/pm-tech` | 技术对接方案 | 技术上怎么做？ |
-| 8 | `/pm-release` | 上线执行方案 | 怎么安全上线？ |
+| 7 | `/pm-preview` | 浏览器实时预览 | 文档渲染效果对吗？内容确认无误？ |
+| 8 | `/pm-tech` | 技术对接方案 | 技术上怎么做？ |
+| 9 | `/pm-release` | 上线执行方案 | 怎么安全上线？ |
 
 > 💡 **方向已明确？** 可直接从 `/pm-demand` 开始，跳过头脑风暴。
 
@@ -284,7 +167,7 @@ web_search: true
 | 3 | `/pm-portfolio` | 产品组合战略 | 多产品线怎么管？ |
 | 4 | `/pm-resource` | 资源分配方案 | 人和钱怎么分？ |
 
-> 🎯 **记住：** 路径 A 覆盖 80% 的使用场景。其他 29 个技能是"按需调用"——遇到具体问题时再查 INDEX.md。
+> 🎯 **记住：** 路径 A 覆盖 80% 的使用场景。其他 30 个技能是"按需调用"——遇到具体问题时再查 INDEX.md。
 
 ---
 
@@ -399,122 +282,27 @@ web_search: true
 
 ---
 
-## 💡 平台说明
+## 💡 平台运维
 
-#### Claude Code
-- ✅ **推荐方式**：使用 Marketplace 安装（方式一）
-- 自动发现所有 skills
-- 支持 `/skill-name` 快捷调用
+### 更新
 
-#### OpenCode
-- 使用 OpenCode 的原生 `skill` 工具
-- Skills 位置：`~/.config/opencode/skills/super-pm/`
-- 支持项目级 skills (`.opencode/skills/`)
+| 平台 | 命令 |
+|------|------|
+| Claude Code | `/plugin update super-pm` |
+| OpenCode | `cd ~/.config/opencode/super-pm && git pull` |
+| Codex | `cd ~/.codex/super-pm && git pull` |
+| Cursor | `cd ~/.cursor/super-pm && git pull` |
 
-#### Codex
-- Codex 原生扫描 `~/.agents/skills/` 目录
-- Skills 自动发现并加载
-- 通过 `using-super-pm` skill 强制使用
+### 卸载
 
-#### Cursor
-- Cursor 支持自定义 skills 目录
-- Skills 通过符号链接集成
-- 需要重启 Cursor 加载新 skills
+| 平台 | 命令 |
+|------|------|
+| Claude Code | `/plugin uninstall super-pm` |
+| OpenCode | `rm ~/.config/opencode/skills/super-pm && rm -rf ~/.config/opencode/super-pm` |
+| Codex | `rm ~/.agents/skills/super-pm && rm -rf ~/.codex/super-pm` |
+| Cursor | `rm ~/.cursor/skills/super-pm && rm -rf ~/.cursor/super-pm` |
 
-### 更新插件
-
-#### Claude Code
-```bash
-/plugin update super-pm
-```
-
-#### OpenCode
-```bash
-cd ~/.config/opencode/super-pm
-git pull
-# 重启 OpenCode
-```
-
-#### Codex
-```bash
-cd ~/.codex/super-pm
-git pull
-# 重启 Codex
-```
-
-#### Cursor
-```bash
-cd ~/.cursor/super-pm
-git pull
-# 重启 Cursor
-```
-
-### 卸载插件
-
-#### Claude Code
-```bash
-/plugin uninstall super-pm
-```
-
-#### OpenCode (macOS/Linux)
-```bash
-rm ~/.config/opencode/skills/super-pm
-rm -rf ~/.config/opencode/super-pm
-```
-
-#### OpenCode (Windows)
-```powershell
-Remove-Item "$env:USERPROFILE\.config\opencode\skills\super-pm"
-Remove-Item -Recurse -Force "$env:USERPROFILE\.config\opencode\super-pm"
-```
-
-#### Codex (macOS/Linux)
-```bash
-rm ~/.agents/skills/super-pm
-rm -rf ~/.codex/super-pm
-```
-
-#### Codex (Windows)
-```powershell
-Remove-Item "$env:USERPROFILE\.agents\skills\super-pm"
-Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\super-pm"
-```
-
-#### Cursor (macOS/Linux)
-```bash
-rm ~/.cursor/skills/super-pm
-rm -rf ~/.cursor/super-pm
-```
-
-#### Cursor (Windows)
-```powershell
-Remove-Item "$env:USERPROFILE\.cursor\skills\super-pm"
-Remove-Item -Recurse -Force "$env:USERPROFILE\.cursor\super-pm"
-```
-
----
-
-## 💡 核心优化
-
-### 参数化设计，一专多能
-
-```bash
-# 搜索技能支持多种模式
-/pm-search --type=market      # 市场调研
-/pm-search --type=competitor  # 竞品分析
-/pm-search --type=data        # 行业数据
-/pm-search --type=all         # 综合搜索
-
-# 文档生成支持多种类型
-/pm-docs --type=prd   # 产品需求文档
-/pm-docs --type=brd   # 商业需求文档
-/pm-docs --type=all   # 全套文档
-
-# 优先级排序支持多种模型
-/pm-priority --method=rice      # RICE评分
-/pm-priority --method=kano      # KANO模型
-/pm-priority --method=combined  # 多模型融合
-```
+> 💡 Windows 卸载将 `rm` 替换为 `Remove-Item` 即可（参考安装章节的 PowerShell 路径）。
 
 ---
 

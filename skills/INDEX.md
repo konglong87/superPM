@@ -84,7 +84,7 @@ pm-brainstorm → pm-demand → pm-clarify → pm-market(可选)
 > 已有明确方向可跳过 brainstorm，直接从 pm-demand 开始
 
 ```
-pm-docs(依赖MVP) → pm-proto → pm-tech → pm-feature → pm-data → pm-user-story
+pm-docs(依赖MVP) → pm-preview(验证文档) → pm-proto → pm-tech → pm-feature → pm-data → pm-user-story
 
 pm-aarrr(上线后) → pm-growth → pm-report → pm-iteration → pm-retro → pm-roadmap
 
