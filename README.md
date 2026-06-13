@@ -1,6 +1,6 @@
 # super-pm 产品经理技能包
 
-**版本**: v2.3.3 | **状态**: 生产就绪 ✅
+**版本**: v2.3.4 | **状态**: 生产就绪 ✅
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥0.15.0-orange.svg)](https://claude.ai/code)
 
@@ -12,7 +12,7 @@
 
 ### 核心特性
 
-- ✅ **37个技能** - 覆盖需求、方案、增长、风控、战略全流程
+- ✅ **38个技能** - 覆盖需求、方案、增长、风控、战略全流程
 - ✅ **灵感火花激发** - AI主动生成创意灵感，解决"不知道做什么"困境 ⭐ NEW
 - ✅ **轻量级设计** - 纯 Markdown 指令，无代码依赖
 - ✅ **智能交互** - 一次一问，逐步引导
@@ -78,9 +78,9 @@ ls -la ~/.claude/skills/super-pm/SKILL.md
 ```bash
 # 下载最新发布版本
 cd /tmp
-curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.3.3.tar.gz -o super-pm.tar.gz
+curl -L https://github.com/konglong87/super-pm/archive/refs/tags/v2.3.4.tar.gz -o super-pm.tar.gz
 tar -xzf super-pm.tar.gz
-mv super-pm-2.3.3 ~/.claude/skills/super-pm
+mv super-pm-2.3.4 ~/.claude/skills/super-pm
 ```
 
 ### 方式五：OpenCode 安装
@@ -346,7 +346,7 @@ web_search: true
 
 ---
 
-## 📊 核心技能（37个）
+## 📊 核心技能（38个）
 
 ### 需求洞察模块 (9个)
 - **pm-brainstorm** - 头脑风暴 ⭐ 先发散再收敛，支持灵感火花激发模式
@@ -391,6 +391,11 @@ web_search: true
 - **pm-funnel** - 漏斗分析优化
 - **pm-portfolio** - 产品组合管理
 - **pm-resource** - 资源分配与ROI
+
+### 辅助工具 (3个)
+- **pm-preview** - 文档实时预览 ⭐ NEW — WebSocket 服务器 + 浏览器 MD 渲染 + 自动刷新
+- **super-pm-upgrade** - 版本升级工具
+- **start-super-pm** - 启动引导入口
 
 ---
 
@@ -517,7 +522,7 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\.cursor\super-pm"
 
 ## 📚 文档
 
-- [技能索引](./skills/INDEX.md) - 全部 37 个技能及依赖关系
+- [技能索引](./skills/INDEX.md) - 全部 38 个技能及依赖关系
 - [Skill 模板](./skills/templates/subagent-skill-template.md) - Subagent 架构模板与最佳实践
 
 ---
