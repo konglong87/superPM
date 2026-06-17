@@ -1,6 +1,6 @@
 ---
 name: start-super-pm
-version: 1.1.0
+version: 2.4.0
 description: Use when starting any product management task - automatically detects task type and invokes appropriate PM skill using intelligent routing
 allowed-tools:
   - Skill
@@ -53,6 +53,27 @@ allowed-tools:
 ---
 
 ## PM Skill 自动触发决策流程（详见下方各模块触发信号）
+
+## ⚠️ 最高优先级路由
+
+当用户说：
+- "我想做一个XX"
+- "帮我规划XX产品"
+- "帮我设计一下需求"
+- "从0到1做XX"
+- "讨论产品方向"
+
+默认必须进入 /pm-brainstorm。
+
+只有用户明确说以下任一表达，才允许跳过：
+- "跳过 brainstorm"
+- "直接需求调研"
+- "直接验证需求"
+- "我已经完成头脑风暴"
+
+agent 不得自行判断"方向明确"并跳过 /pm-brainstorm。
+
+---
 
 ## 任务类型识别指南
 
@@ -160,12 +181,12 @@ allowed-tools:
 
 | 想法 | 现实 |
 |------|------|
-| "这只是简单的需求描述" | **需求描述也需要深度调研**，应该用 `pm-demand` |
+| "这只是简单的需求描述" | 新产品从0到1 → 应该用 `pm-brainstorm` 先发散；已有产品 → 应该用 `pm-demand` 深度调研 |
 | "我直接写文档就行" | **文档是产出不是起点**，需要先走 brainstorm→demand 流程 |
 | "用户让我写文档，我就直接写" | **"写文档"是用户表述的产出意图**，你的职责是引导完整流程 |
-| "这个需求很明确" | **明确的需求也需要验证**，应该用 `pm-demand` 验证 |
+| "这个需求很明确" | 新产品从0到1 → 应该用 `pm-brainstorm` 先发散；已有产品 → 应该用 `pm-demand` 验证 |
 | "只是看看市场数据" | **市场数据需要系统收集**，应该用 `pm-search` |
-| "我知道用户想要什么" | **你的假设需要验证**，应该用 `pm-demand` 调研 |
+| "我知道用户想要什么" | 新产品从0到1 → 应该用 `pm-brainstorm` 先发散；已有产品 → 应该用 `pm-demand` 调研 |
 | "功能很简单，不用拆解" | **简单功能也需要详细设计**，应该用 `pm-feature` |
 | "MVP 就是核心功能" | **MVP 需要系统规划**，应该用 `pm-mvp` |
 | "优先级看业务价值就行" | **优先级需要多维评估**，应该用 `pm-priority` |

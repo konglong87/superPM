@@ -587,7 +587,7 @@ Agent 5: Referral 分析
 ---
 
 **生成时间**: {时间}
-**分析工具**: super-pm v2.0.0 (Subagent 架构)
+**分析工具**: super-pm (Subagent 架构)
 **分析模式**: 5环节并行分析
 ```
 
