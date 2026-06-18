@@ -1,6 +1,5 @@
 ---
 name: pm-growth
-version: 2.0.1
 description: |
   Use when: 需要制定增长策略、优化增长指标、突破增长瓶颈、设计系统化增长方案
   Do NOT use when: 产品仍在验证期未上线、仅需单一渠道优化而非系统方案
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/03-增长迭代
 
 echo "📊 增长方案制定工具"

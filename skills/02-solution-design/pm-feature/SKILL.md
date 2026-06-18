@@ -1,6 +1,5 @@
 ---
 name: pm-feature
-version: 2.0.1
 description: |
   Use when: 需要细化功能实现细节、拆解复杂功能、为开发准备详细任务、功能点需多维度描述
   Do NOT use when: 功能已足够简单可直接进入开发、仅需功能列表无需深度拆解
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/02-方案设计
 
 echo "📊 正在检查前置文档..."

@@ -1,6 +1,5 @@
 ---
 name: super-pm-upgrade
-version: 1.1.0
 description: |
   Use when: 需要检查super-pm更新、升级到新版本、回退到旧版本
   Do NOT use when: 正常使用skill无需版本管理、首次安装而非升级
@@ -15,6 +14,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 检测当前版本
 if [ -f "VERSION" ]; then
   CURRENT_VERSION=$(cat VERSION)

@@ -1,6 +1,5 @@
 ---
 name: super-pm
-version: 2.4.0
 description: |
   Product Manager Skills Pack - Full lifecycle support from demand to delivery
   让一个产品经理拥有一个产品团队的能力
@@ -20,6 +19,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建文档目录（中英文双语支持）
 mkdir -p docs/01-需求调研 docs/01-demand-insight
 mkdir -p docs/02-方案设计 docs/02-solution-design

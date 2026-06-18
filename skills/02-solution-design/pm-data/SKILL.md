@@ -1,6 +1,5 @@
 ---
 name: pm-data
-version: 2.0.1
 description: |
   Use when: 需要设计产品数据指标、规划数据埋点、建立数据监控体系、进行数据分析和趋势预测
   Do NOT use when: 数据指标已明确、仅需简单统计无需指标体系
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 检查方案设计目录
 mkdir -p docs/02-方案设计
 

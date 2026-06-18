@@ -1,6 +1,5 @@
 ---
 name: pm-report
-version: 2.0.0
 description: |
   Use when: 需要生成数据报告、收集整理用户反馈、进行数据驱动的分析汇报
   Do NOT use when: 数据已由BI系统自动生成、无需人工分析
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/03-增长迭代/数据报告
 mkdir -p docs/03-增长迭代/用户反馈
 

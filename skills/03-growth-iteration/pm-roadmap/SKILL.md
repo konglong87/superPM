@@ -1,6 +1,5 @@
 ---
 name: pm-roadmap
-version: 2.0.0
 description: |
   Use when: 需要规划产品中长期发展、设定里程碑、对齐团队方向、制定季度/年度计划
   Do NOT use when: 短期执行无需长期规划、方向已锁定无需路线图
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/03-增长迭代
 
 echo "🗺️  产品路线图工具已启动"

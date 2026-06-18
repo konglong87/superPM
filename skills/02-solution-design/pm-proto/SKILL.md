@@ -1,6 +1,5 @@
 ---
 name: pm-proto
-version: 2.0.0
 description: |
   Use when: 需要设计产品原型、规划交互流程、确定界面布局、从PRD到视觉的过渡
   Do NOT use when: 原型已由设计师完成、仅需文字描述无需视觉产出
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 检查方案设计目录
 mkdir -p docs/02-方案设计
 

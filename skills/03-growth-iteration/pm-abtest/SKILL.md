@@ -1,6 +1,5 @@
 ---
 name: pm-abtest
-version: 2.0.0
 description: |
   Use when: 需要验证产品优化效果、进行数据驱动的A/B实验决策、评估功能改动的因果影响
   Do NOT use when: 改动无法量化测量、样本量不足、不需要严格统计验证
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/03-增长迭代/A-B测试
 
 echo "🧪 A/B测试工具已启动"

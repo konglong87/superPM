@@ -1,6 +1,5 @@
 ---
 name: pm-tech
-version: 2.0.0
 description: |
   Use when: 需要与技术团队对接技术方案、评估技术可行性、制定技术架构、评估第三方服务
   Do NOT use when: 技术方案已由技术团队确定、仅需功能描述无需技术评估
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/02-方案设计
 
 echo "📊 正在检查前置文档..."

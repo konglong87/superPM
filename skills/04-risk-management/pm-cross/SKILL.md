@@ -1,6 +1,5 @@
 ---
 name: pm-cross
-version: 2.0.0
 description: |
   Use when: 技术方案确定后涉及多部门协作、需要明确协作流程与职责分工、跨团队沟通困难
   Do NOT use when: 单一团队独立完成、协作关系已明确无需梳理
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/04-风控管理
 
 echo "🤝 跨部门协作方案制定工具已启动"

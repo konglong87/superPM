@@ -1,6 +1,5 @@
 ---
 name: pm-aarrr
-version: 2.0.1
 description: |
   Use when: 产品上线后需要分析用户增长、制定增长策略、诊断产品健康度、优化AARRR各环节
   Do NOT use when: 产品未上线、仅需单一指标分析无需全链路
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建增长迭代目录
 mkdir -p docs/03-增长迭代
 

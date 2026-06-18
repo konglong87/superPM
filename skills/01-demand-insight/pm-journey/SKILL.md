@@ -1,6 +1,5 @@
 ---
 name: pm-journey
-version: 2.0.1
 description: |
   Use when: 需要理解用户体验全链路、发现用户痛点与机会点、优化用户转化流程
   Do NOT use when: 用户流程已非常清晰、仅需单一功能分析而非全局体验
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建需求调研目录
 mkdir -p docs/01-需求调研
 

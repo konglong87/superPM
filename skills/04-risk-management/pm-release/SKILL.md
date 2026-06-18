@@ -1,6 +1,5 @@
 ---
 name: pm-release
-version: 2.0.0
 description: |
   Use when: 风险管控完成后准备上线发布、需要制定上线检查清单与回滚方案、正式发版流程
   Do NOT use when: 上线流程已标准化且由运维自动化执行、仅需简单发布无需检查清单
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/04-风控管理
 
 echo "🚀 上线执行方案制定工具已启动"

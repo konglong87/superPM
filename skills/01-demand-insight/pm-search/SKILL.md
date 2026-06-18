@@ -1,6 +1,5 @@
 ---
 name: pm-search
-version: 2.1.1
 description: |
   Use when: 需要进行市场调研数据收集、竞品信息采集、行业舆情监控、合规政策检查
   Do NOT use when: 已有完整数据无需补充、仅需内部数据分析无需外部信息
@@ -19,6 +18,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建需求调研目录
 mkdir -p docs/01-需求调研
 

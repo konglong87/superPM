@@ -1,6 +1,5 @@
 ---
 name: pm-docs
-version: 2.0.1
 description: |
   Use when: 需要输出PRD/BRD/MRD产品文档、方案文档、商业计划文档、需要文档模板
   Do NOT auto-select when: 用户用自然语言说"写需求文档""写PRD""帮我设计需求"等新产品请求
@@ -19,6 +18,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建方案设计目录
 mkdir -p docs/02-方案设计
 

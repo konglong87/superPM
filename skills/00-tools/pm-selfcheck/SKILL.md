@@ -1,6 +1,5 @@
 ---
 name: pm-selfcheck
-version: 1.1.0
 description: |
   Use when: 需要检查super-pm skills健康状态、定期维护审计、验证元数据完整性
   Do NOT use when: 正在使用某个功能skill、仅需执行产品管理任务
@@ -13,6 +12,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 echo "🔍 pm-selfcheck v1.0"
 echo "正在扫描 super-pm 健康状态..."
 echo ""
@@ -26,9 +28,9 @@ echo ""
 
 扫描所有 SKILL.md，检查：
 - `name:` 字段是否缺失
-- `version:` 字段是否缺失
 - `description:` 字段是否缺失
 - `allowed-tools:` 字段是否缺失
+- VERSION 文件是否存在且格式正确
 
 ### 2. 体积检查
 
@@ -107,9 +109,13 @@ for f in $(find ~/.claude/skills/super-pm -name 'SKILL.md' | sort); do
   dir=$(dirname "$f" | sed 's|.*/super-pm/||')
   missing=""
   grep -q '^name:' "$f" || missing="$missing name"
-  grep -q '^version:' "$f" || missing="$missing version"
   grep -q '^description:' "$f" || missing="$missing description"
   grep -q 'allowed-tools:' "$f" || missing="$missing allowed-tools"
+# VERSION 文件检查
+VERSION_FILE="$(dirname "$(dirname "$f")")/VERSION"
+if [ ! -f "$VERSION_FILE" ]; then
+  echo "❌ VERSION 文件缺失"
+fi
   if [ -n "$missing" ]; then
     echo "❌ $dir 缺失:$missing"
   fi
@@ -144,7 +150,7 @@ done
 # pm-selfcheck 报告
 
 **检查时间**: {当前时间}
-**super-pm 版本**: v2.2.0
+**super-pm 版本**: {从 VERSION 文件读取}
 
 ## 1️⃣ 元数据完整性
 {自动检测结果}

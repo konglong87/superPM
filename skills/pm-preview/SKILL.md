@@ -1,6 +1,5 @@
 ---
 name: pm-preview
-version: 1.0.0
 description: |
   产品文档实时预览 - 在浏览器中预览 docs/ 下的所有 MD 文档，文档更新时自动刷新
   Use when: 需要预览产品文档、查看 PRD/BRD/MRD 等 MD 文档的渲染效果

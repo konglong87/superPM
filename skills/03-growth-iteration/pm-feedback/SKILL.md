@@ -1,6 +1,5 @@
 ---
 name: pm-feedback
-version: 2.0.1
 description: |
   Use when: 需要分析用户反馈和评论、评估用户满意度、收集产品改进建议、进行情感分析
   Do NOT use when: 用户反馈数据极少、仅需收集无需分析
@@ -19,6 +18,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建增长迭代目录
 mkdir -p docs/03-增长迭代
 

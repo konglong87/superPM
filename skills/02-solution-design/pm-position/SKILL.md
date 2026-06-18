@@ -1,6 +1,5 @@
 ---
 name: pm-position
-version: 2.1.1
 description: |
   Use when: 需要明确产品定位、设计商业模式、规划盈利方式、制定定价策略、进行盈利预测
   Do NOT use when: 产品定位已明确、仅需执行无需重新定位
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/02-方案设计
 
 echo "📊 正在检查前置文档..."

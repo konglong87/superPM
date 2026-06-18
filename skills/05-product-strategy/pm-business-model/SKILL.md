@@ -1,6 +1,5 @@
 ---
 name: pm-business-model
-version: 2.0.0
 description: |
   Use when: 需要设计商业模式画布、规划盈利模式、制定定价策略、设计收入模型
   Do NOT use when: 商业模式已确定且已验证、仅需简单定价调整而非全面设计
@@ -19,6 +18,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建目录
 mkdir -p docs/05-产品战略
 
@@ -276,7 +278,6 @@ E) 撇脂定价（高价收割高端用户）
 ```markdown
 ---
 product: [产品名称]
-version: 1.0
 created_at: [当前时间]
 author: [用户]
 skill: pm-business-model

@@ -1,6 +1,5 @@
 ---
 name: pm-change
-version: 2.0.0
 description: |
   Use when: 项目进行中出现需求变更、需要评估变更影响范围和风险、记录变更历史
   Do NOT use when: 变更极小无需正式评估、变更已有明确决策无需分析
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/04-风控管理
 
 echo "📝 需求变更管理工具已启动"

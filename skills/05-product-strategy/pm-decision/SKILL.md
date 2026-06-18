@@ -1,6 +1,5 @@
 ---
 name: pm-decision
-version: 2.0.0
 description: |
   Use when: 需要做重大战略决策（自研vs外包vs收购）、投资评估、多方案比较选择
   Do NOT use when: 决策已由高层确定、决策影响极小无需系统分析
@@ -19,6 +18,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建目录
 mkdir -p docs/05-产品战略
 
@@ -264,7 +266,6 @@ E) 9-10分（成本极低）
 ```markdown
 ---
 product: [产品/项目名称]
-version: 1.0
 created_at: [当前时间]
 author: [用户]
 skill: pm-decision

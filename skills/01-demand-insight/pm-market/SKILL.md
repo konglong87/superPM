@@ -1,6 +1,5 @@
 ---
 name: pm-market
-version: 2.1.0
 description: |
   Use when: 需要了解市场格局与竞争态势、收集行业数据、分析竞品优劣势、评估市场机会
   Do NOT use when: 市场已有充分内部调研数据、仅需简单规模估算无需深度分析
@@ -19,6 +18,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建需求调研目录
 mkdir -p docs/01-需求调研
 

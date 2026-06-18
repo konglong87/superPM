@@ -1,6 +1,5 @@
 ---
 name: pm-funnel
-version: 2.0.2
 description: |
   Use when: 需要分析用户转化漏斗、诊断流失原因、生成优化建议、提升用户转化率
   Do NOT use when: 用户转化路径已非常清晰、仅需单一指标监控无需全链路分析
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建目录
 mkdir -p docs/05-产品战略
 
@@ -244,7 +246,6 @@ B组（实验组）：[优化方案]
 ```markdown
 ---
 product: [产品名称]
-version: 2.0.0
 created_at: [当前时间]
 author: [用户]
 skill: pm-funnel

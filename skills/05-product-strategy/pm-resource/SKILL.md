@@ -1,6 +1,5 @@
 ---
 name: pm-resource
-version: 2.0.0
 description: |
   Use when: 需要在多个产品间分配研发资源、进行ROI评估、解决资源冲突、团队规划
   Do NOT use when: 资源充足无需分配优先级、单产品无需多项目协调
@@ -19,6 +18,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建目录
 mkdir -p docs/05-产品战略
 
@@ -190,7 +192,6 @@ D) 极低风险（常规开发）
 ```markdown
 ---
 product: [产品组合]
-version: 1.0
 created_at: [当前时间]
 author: [用户]
 skill: pm-resource

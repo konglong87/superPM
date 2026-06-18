@@ -1,6 +1,5 @@
 ---
 name: pm-risk
-version: 2.0.0
 description: |
   Use when: 技术方案完成后需要风险排查、上线前风险识别评估、项目关键节点风险管控
   Do NOT use when: 项目极小风险可控、已存在完整的风险管理机制无需新建
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/04-风控管理
 
 echo "⚠️ 风险管控工具已启动"

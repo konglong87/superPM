@@ -1,6 +1,5 @@
 ---
 name: pm-portfolio
-version: 2.0.0
 description: |
   Use when: 管理多个产品线需要组合决策、BCG矩阵分析、产品生命周期评估、资源分配
   Do NOT use when: 单一产品无需组合管理、产品线已固定无需调整
@@ -19,6 +18,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建目录
 mkdir -p docs/05-产品战略
 
@@ -148,7 +150,6 @@ D) 试探性产品
 ```markdown
 ---
 product: [产品组合]
-version: 1.0
 created_at: [当前时间]
 author: [用户]
 skill: pm-portfolio

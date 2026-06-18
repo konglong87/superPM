@@ -1,6 +1,5 @@
 ---
 name: pm-agile
-version: 2.0.0
 description: |
   Use when: 项目启动时需要建立敏捷开发流程、设计团队协作机制、规划迭代节奏
   Do NOT use when: 团队已有成熟敏捷流程、仅需单一项目管理工具而非流程设计
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 mkdir -p docs/04-风控管理
 
 echo "🚀 敏捷管理方案制定工具已启动"

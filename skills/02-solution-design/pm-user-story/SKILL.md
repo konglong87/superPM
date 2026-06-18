@@ -1,6 +1,5 @@
 ---
 name: pm-user-story
-version: 2.0.0
 description: |
   Use when: 需要将需求转化为用户故事、准备敏捷开发任务、进行需求拆分、编写验收标准
   Do NOT use when: 需求已可直接进入开发、团队不使用用户故事格式
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 检查方案设计目录
 mkdir -p docs/02-方案设计
 

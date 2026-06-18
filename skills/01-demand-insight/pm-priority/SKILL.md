@@ -1,6 +1,5 @@
 ---
 name: pm-priority
-version: 2.0.0
 description: |
   Use when: 有多个需求需要排定先后顺序、资源有限需决定先做什么、需求冲突需要客观评分
   Do NOT use when: 只有一个需求无需排序、优先级已由上级/业务方明确指定
@@ -16,6 +15,9 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+# 读取技能包版本号
+SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
+if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
 # 创建需求调研目录
 mkdir -p docs/01-需求调研
 
