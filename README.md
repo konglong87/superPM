@@ -33,21 +33,17 @@
 
 | 平台 | clone 目标路径 | skills 链接路径 | 验证命令 |
 |------|---------------|----------------|---------|
-| Claude Code ⭐ | `~/.claude/skills/super-pm` | — (直接到位) | `/super-pm` |
-| Marketplace | — | `/plugin install super-pm` | `/super-pm` |
+| Claude Code ⭐ | — | Marketplace 一键安装 | `/super-pm` |
 | OpenCode | `~/.config/opencode/super-pm` | `~/.config/opencode/skills/super-pm` | `use skill tool to list all skills` |
 | Codex | `~/.codex/super-pm` | `~/.agents/skills/super-pm` | `list available skills` |
 | Cursor | `~/.cursor/super-pm` | `~/.cursor/skills/super-pm` | `list skills` |
 
-> 💡 Claude Code 最简单：直接 clone 到 skills 目录，无需创建链接。
+> 💡 Claude Code 最推荐：Marketplace 一键安装，自动注册 plugin + SessionStart hook，无需手动 clone。
 
 ### macOS / Linux
 
 ```bash
-# Claude Code（最推荐 ⭐）
-git clone https://github.com/konglong87/super-pm.git ~/.claude/skills/super-pm
-
-# Marketplace 一键安装
+# Claude Code（最推荐 ⭐ — Marketplace 一键安装）
 /plugin marketplace add konglong87/super-pm
 /plugin install super-pm@super-pm-marketplace
 
@@ -67,8 +63,9 @@ mkdir -p ~/.cursor/skills && ln -s ~/.cursor/super-pm/skills ~/.cursor/skills/su
 ### Windows (PowerShell)
 
 ```powershell
-# Claude Code（最推荐 ⭐）
-git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.claude\skills\super-pm"
+# Claude Code（最推荐 ⭐ — Marketplace 一键安装）
+/plugin marketplace add konglong87/super-pm
+/plugin install super-pm@super-pm-marketplace
 
 # OpenCode
 git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.config\opencode\super-pm"
@@ -144,7 +141,7 @@ web_search: true
 | 8 | `/pm-tech` | 技术对接方案 | 技术上怎么做？ |
 | 9 | `/pm-release` | 上线执行方案 | 怎么安全上线？ |
 
-> 💡 **方向已明确？** 可直接从 `/pm-demand` 开始，跳过头脑风暴。
+> 💡 **方向已明确？** 显式输入 `/pm-demand` 可直达，但需通过前置门禁。自然语言请求仍需先走 `/pm-brainstorm`。
 
 ### 路径 B：已有产品，优化增长
 
