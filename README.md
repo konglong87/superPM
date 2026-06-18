@@ -9,6 +9,8 @@
 
 </div>
 
+---
+
 ## 📖 项目简介
 
 <img align="right" src="./assets/slogan.png" alt="PM 的 AI 超能力" width="280">
