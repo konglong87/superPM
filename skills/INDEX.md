@@ -1,6 +1,6 @@
 # super-pm 技能索引
 
-**技能总数**: 38 (35核心+3工具) | 版本号见 `VERSION` 文件
+**技能总数**: 39 (36核心+3工具) | 版本号见 `VERSION` 文件
 
 ---
 
@@ -18,12 +18,13 @@
 | `/pm-journey` | 用户旅程地图 - 绘制旅程、分析痛点 | 用户旅程地图 |
 | `/pm-search` | 联网搜索整合 - subagent 并发搜索 | 市场调研报告 |
 
-## 02 方案设计模块（7个）
+## 02 方案设计模块（8个）
 
 | Skill | 说明 | 输出文档 |
 |-------|------|---------|
 | `/pm-docs` | PRD/BRD/MRD 文档生成 | PRD/BRD/MRD文档 |
 | `/pm-proto` | 原型设计指导 | 原型设计方案 |
+| `/pm-brand-motion` | 品牌动效方案 + 方向性 demo | 品牌动效方案 + demo HTML |
 | `/pm-tech` | 技术对接与可行性分析 | 技术对接方案 |
 | `/pm-feature` | 功能细节拆解 | 功能细节拆解 |
 | `/pm-data` | 数据指标体系设计 | 数据指标体系 |
@@ -84,7 +85,7 @@ pm-brainstorm → pm-demand → pm-clarify → pm-market(可选)
 > 自然语言请求必须先走 start-super-pm 路由；显式 /pm-demand 可直达但需通过前置门禁
 
 ```
-pm-docs(依赖MVP) → pm-preview(验证文档) → pm-proto → pm-tech → pm-feature → pm-data → pm-user-story
+pm-docs(依赖MVP) → pm-preview(验证文档) → pm-proto → pm-brand-motion → pm-tech → pm-feature → pm-data → pm-user-story
 
 pm-aarrr(上线后) → pm-growth → pm-report → pm-iteration → pm-retro → pm-roadmap
 
