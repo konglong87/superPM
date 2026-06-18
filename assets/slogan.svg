@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="80" viewBox="0 0 280 80">
+  <defs>
+    <!-- 蓝紫渐变 -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4A90D9"/>
+      <stop offset="50%" style="stop-color:#6CB4EE"/>
+      <stop offset="100%" style="stop-color:#A78BFA"/>
+    </linearGradient>
+    <!-- 光晕 -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- 主标语 -->
+  <text x="140" y="38" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="url(#textGrad)" filter="url(#glow)">
+    PM 的 AI 超能力
+  </text>
+  <!-- 副标语 -->
+  <text x="140" y="62" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#7EB8DA">
+    super-pm · 产品经理超能包
+  </text>
+</svg>
