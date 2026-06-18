@@ -29,6 +29,26 @@
 
 ## 🚀 快速开始
 
+### ⚡ 一行命令安装（最简单）
+
+```bash
+npx skills add https://github.com/konglong87/superPM
+```
+
+| 命令 | 说明 |
+|------|------|
+| `npx skills add https://github.com/konglong87/superPM` | 安装全部技能 |
+| `npx skills add https://github.com/konglong87/superPM --skill "pm-demand"` | 安装单个技能 |
+| `npx skills add https://github.com/konglong87/superPM --list` | 查看可用技能 |
+| `npx skills add https://github.com/konglong87/superPM -g` | 全局安装 |
+| `npx skills add https://github.com/konglong87/superPM --skill "pm-demand" --agent claude-code cursor` | 指定平台安装 |
+
+> 💡 支持 Claude Code、Cursor、Codex、OpenCode 等主流 AI 编程工具，通过 `--agent` 指定目标平台。
+
+---
+
+### 🔧 手动安装（各平台）
+
 所有平台统一模式：**git clone → 创建链接 → 重启**
 
 | 平台 | clone 目标路径 | skills 链接路径 | 验证命令 |
@@ -288,8 +308,9 @@ web_search: true
 
 ### 更新
 
-| 平台 | 命令 |
+| 方式 | 命令 |
 |------|------|
+| ⚡ 一行更新 | `npx skills update` |
 | Claude Code | `/plugin update super-pm` |
 | OpenCode | `cd ~/.config/opencode/super-pm && git pull` |
 | Codex | `cd ~/.codex/super-pm && git pull` |
