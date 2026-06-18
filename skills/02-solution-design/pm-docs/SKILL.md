@@ -3,6 +3,9 @@ name: pm-docs
 version: 2.0.1
 description: |
   Use when: 需要输出PRD/BRD/MRD产品文档、方案文档、商业计划文档、需要文档模板
+  Do NOT auto-select when: 用户用自然语言说"写需求文档""写PRD""帮我设计需求"等新产品请求
+    → 这些必须先路由到 start-super-pm
+  Direct slash-command use is allowed: 用户显式输入 /pm-docs 时可直接进入，但必须通过本 skill 的前置门禁
   Do NOT use when: 文档已完备无需生成、仅需口头讨论无需书面输出
 allowed-tools:
   - Read
@@ -40,6 +43,20 @@ else
   echo "⏳ 市场调研报告 - 未找到"
 fi
 ```
+
+---
+
+## 前置门禁
+
+无论从哪个入口进入，都必须执行前置文档检查：
+
+1. 检查 `docs/01-需求调研/` 中是否有 **MVP方案**（黄金路径的必要前置）
+2. 如果有 MVP方案 → 读取文档，判断是否与当前用户描述的产品相关
+   - 相关 → 前置已满足，继续执行
+   - 不相关 → 停止，建议先完成前置流程
+3. 如果没有 MVP方案 → 停止，建议先执行 `/pm-brainstorm` → `/pm-demand` → `/pm-mvp`
+
+不得在门禁不满足时生成文档。
 
 ---
 

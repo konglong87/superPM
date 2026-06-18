@@ -1,6 +1,6 @@
 # super-pm 技能索引
 
-**版本**: v2.3.4 | **技能总数**: 38 (35核心+3工具)
+**版本**: v2.4.0 | **技能总数**: 38 (35核心+3工具)
 
 ---
 
@@ -81,7 +81,7 @@ pm-brainstorm → pm-demand → pm-clarify → pm-market(可选)
 → pm-priority → pm-mvp
 ```
 
-> 已有明确方向可跳过 brainstorm，直接从 pm-demand 开始
+> 自然语言请求必须先走 start-super-pm 路由；显式 /pm-demand 可直达但需通过前置门禁
 
 ```
 pm-docs(依赖MVP) → pm-preview(验证文档) → pm-proto → pm-tech → pm-feature → pm-data → pm-user-story

@@ -6,10 +6,11 @@ description: |
     已完成 /pm-brainstorm 后，需要系统化收集需求、验证产品想法真伪、分析用户痛点
     用户明确要求"需求调研""需求验证""验证痛点""分析用户痛点"
     用户明确选择跳过 brainstorm，直接进入需求调研
-  Do NOT use when:
-    用户只是说"我想做一个XX""帮我规划XX产品""帮我设计一下需求"
-    新产品从0到1，且本轮没有完成 brainstorm 交互
-    仅因为已有 docs 文件存在就认为可以进入需求调研
+  Do NOT auto-select when:
+    用户用自然语言说"我想做一个XX""帮我规划XX产品""帮我设计一下需求"
+    → 这些必须先路由到 start-super-pm → pm-brainstorm
+  Direct slash-command use is allowed:
+    用户显式输入 /pm-demand 时可直接进入，但必须通过前置门禁
 allowed-tools:
   - Read
   - Write
@@ -43,16 +44,17 @@ fi
 
 ## 前置门禁
 
-如果用户本轮请求属于新产品从0到1，且没有本轮 brainstorm 交互记录，也没有用户明确说"跳过 brainstorm / 直接需求调研 / 已完成头脑风暴"：
+无论从哪个入口进入，都必须执行前置文档检查：
 
-- 立即停止当前 skill
-- 进入 /pm-brainstorm
-- 不得生成需求调研报告
+1. 检查 `docs/01-需求调研/` 中是否有创意方案库（pm-brainstorm 的输出文档）
+2. 如果有 → 读取文档，判断是否与当前用户描述的产品相关
+   - 相关 → 前置已满足，继续执行
+   - 不相关 → 停止，建议先执行 `/pm-brainstorm`
+3. 如果没有 → 检查用户是否明确说"跳过 brainstorm / 直接需求调研 / 已完成头脑风暴"
+   - 明确跳过 → 继续执行
+   - 否则 → 停止，建议先执行 `/pm-brainstorm`
 
-只有用户明确确认以下任一表达，才允许进入 pm-demand：
-- "跳过 brainstorm"
-- "直接需求调研"
-- "我已经完成头脑风暴"
+不得在门禁不满足时生成需求调研报告。
 
 ---
 
