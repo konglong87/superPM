@@ -323,7 +323,6 @@ web_search: true
 ## 📚 文档
 
 - [技能索引](./skills/INDEX.md) - 全部 38 个技能及依赖关系
-- [更新日志](./skills/CHANGELOG.md) - 版本历史
 - [Skill 模板](./skills/templates/subagent-skill-template.md) - Subagent 架构模板与最佳实践
 
 ---
@@ -343,21 +342,6 @@ web_search: true
 ## 📄 许可证
 
 本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
-
----
-
-## 📧 联系方式
-
-- 📧 Email: 2235998553@qq.com
-- 🐛 Bug反馈: [GitHub Issues](https://github.com/konglong87/super-pm/issues)
-- 💡 功能建议: [GitHub Discussions](https://github.com/konglong87/super-pm/discussions)
-
----
-
-## 🙏 致谢
-
-感谢以下开源项目的启发:
-- [Claude Code](https://claude.com/code) - AI编程助手
 
 ---
 
