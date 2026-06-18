@@ -9,9 +9,9 @@
 
 </div>
 
-<img align="right" src="./assets/slogan.png" alt="PM 的 AI 超能力" width="280">
-
 ## 📖 项目简介
+
+<img align="right" src="./assets/slogan.png" alt="PM 的 AI 超能力" width="280">
 
 **super-pm** 是专为产品经理设计的 Claude Code Skill Pack，提供全生命周期的产品管理工作流支持。
 
