@@ -1,5 +1,6 @@
 # IDE 配置
 .idea/
+.idea
 
 # 项目记忆系统
 memory/
@@ -51,8 +52,16 @@ docs/
 CLAUDE.md
 claude.md
 .claude/
+.claude
 AGENT.md
 .cursorrules
+
+# AI 插件配置（仅本地使用）
+.claude-plugin/
+
+# 运行时临时文件
+CHANGELOG.md
+CONTINUATION_SUMMARY.md
 
 # superPM 运行时文件
 .superpm/
