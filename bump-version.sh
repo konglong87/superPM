@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # super-pm 版本号同步脚本
-# VERSION 文件为唯一版本号源头，此脚本同步到 plugin.json 和 marketplace.json
+# VERSION 文件为唯一版本号源头，此脚本同步到 plugin.json、marketplace.json 并创建 git tag
 # 用法: ./bump-version.sh <新版本号>
 #   如: ./bump-version.sh 2.5.0
 
@@ -19,6 +19,14 @@ fi
 NEW_VERSION="$1"
 # 去掉可能的 v 前缀
 NEW_VERSION="${NEW_VERSION#v}"
+TAG="v${NEW_VERSION}"
+
+# 检查 tag 是否已存在
+if git tag -l "$TAG" | grep -q "$TAG"; then
+  echo "❌ tag ${TAG} 已存在"
+  echo "   如需覆盖，先执行: git tag -d ${TAG} && git push origin :refs/tags/${TAG}"
+  exit 1
+fi
 
 # 写入 VERSION 文件（唯一版本号源头）
 printf "v%s" "$NEW_VERSION" > "$VERSION_FILE"
@@ -37,4 +45,5 @@ echo "   marketplace.json:    ${NEW_VERSION}"
 echo ""
 echo "💡 下一步:"
 echo "   1. git add -A && git commit -m 'chore: bump version to v${NEW_VERSION}'"
-echo "   2. git push origin main"
+echo "   2. git tag ${TAG}"
+echo "   3. git push origin main --tags"
