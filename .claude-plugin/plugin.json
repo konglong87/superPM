@@ -1,6 +1,5 @@
 {
   "name": "super-pm",
-  "displayName": "Super PM",
   "description": "Product Manager Skills Pack - 39 skills across 5 modules: demand insight, solution design, growth iteration, risk management, and product strategy",
   "version": "2.4.2",
   "author": {
@@ -17,8 +16,21 @@
     "solution-design",
     "growth-iteration",
     "risk-management",
-    "product-management"
+    "product-management",
+    "claude-code"
   ],
-  "skills": "./skills/",
-  "hooks": "./hooks/hooks-cursor.json"
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh",
+            "async": false
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -57,8 +57,8 @@ claude.md
 AGENT.md
 .cursorrules
 
-# AI 插件配置（仅本地使用）
-.claude-plugin/
+# AI 插件配置（发布配置需入库）
+
 
 # 运行时临时文件
 CHANGELOG.md

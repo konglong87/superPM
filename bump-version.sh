@@ -31,17 +31,28 @@ fi
 # 写入 VERSION 文件（唯一版本号源头）
 printf "v%s" "$NEW_VERSION" > "$VERSION_FILE"
 
-# 同步到 plugin.json
+# 同步到 repo root VERSION
+printf "v%s" "$NEW_VERSION" > "${SCRIPT_DIR}/VERSION"
+
+# 同步到 package.json
+sed -i '' "s/\"version\": \"[0-9.]*\"/\"version\": \"${NEW_VERSION}\"/" "${SCRIPT_DIR}/package.json"
+
+# 同步到 .claude-plugin/plugin.json
 sed -i '' "s/\"version\": \"[0-9.]*\"/\"version\": \"${NEW_VERSION}\"/" "${SCRIPT_DIR}/.claude-plugin/plugin.json"
 
-# 同步到 marketplace.json
+# 同步到 .claude-plugin/marketplace.json
 sed -i '' "s/\"version\": \"[0-9.]*\"/\"version\": \"${NEW_VERSION}\"/" "${SCRIPT_DIR}/.claude-plugin/marketplace.json"
+
+# 同步到 .cursor-plugin/plugin.json
+sed -i '' "s/\"version\": \"[0-9.]*\"/\"version\": \"${NEW_VERSION}\"/" "${SCRIPT_DIR}/.cursor-plugin/plugin.json"
 
 echo "✅ 版本号已同步至 v${NEW_VERSION}"
 echo ""
-echo "   VERSION 文件:        v${NEW_VERSION}"
-echo "   plugin.json:         ${NEW_VERSION}"
-echo "   marketplace.json:    ${NEW_VERSION}"
+echo "   skills/VERSION:      v${NEW_VERSION}"
+echo "   VERSION (root):      v${NEW_VERSION}"
+echo "   package.json:        ${NEW_VERSION}"
+echo "   .claude-plugin:      ${NEW_VERSION}"
+echo "   .cursor-plugin:      ${NEW_VERSION}"
 echo ""
 echo "💡 下一步:"
 echo "   1. git add -A && git commit -m 'chore: bump version to v${NEW_VERSION}'"

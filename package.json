@@ -1,6 +1,6 @@
 {
   "name": "super-pm",
-  "version": "2.3.4",
+  "version": "2.4.2",
   "description": "Product Manager Skills Pack for Claude Code - Full lifecycle support from demand to delivery",
   "license": "MIT",
   "keywords": [
@@ -22,7 +22,7 @@
     "claude-code": ">=0.15.0"
   },
   "skills": {
-    "total": 38,
+    "total": 39,
     "modules": {
       "demand-insight": 9,
       "solution-design": 7,
