@@ -66,6 +66,7 @@ CONTINUATION_SUMMARY.md
 
 # superPM 运行时文件
 .superpm/
+skills-lock.json
 
 # Playwright MCP 测试产物
 .playwright-mcp/
