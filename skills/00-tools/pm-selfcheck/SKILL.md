@@ -93,7 +93,37 @@ fi
 echo "✅ WebSearch: 内置兜底，始终可用"
 ```
 
-### 5. 输出建议
+### 5. 跨 Agent 兜底覆盖率
+
+扫描所有使用 `AskUserQuestion` 的 SKILL.md，检查：
+- 是否包含 `跨 Agent 交互规则` 章节
+- 兜底规则是否完整（6 条规则全部覆盖）
+- 统计覆盖率：有兜底规则的 skill 数 / 使用 AskUserQuestion 的 skill 总数
+
+```bash
+echo "=== 5. 跨 Agent 兜底覆盖率 ==="
+total=0
+covered=0
+for f in $(find ~/.claude/skills/super-pm -name 'SKILL.md' | sort); do
+  if grep -q 'AskUserQuestion' "$f"; then
+    total=$((total+1))
+    if grep -q '跨 Agent 交互规则' "$f"; then
+      covered=$((covered+1))
+    else
+      dir=$(dirname "$f" | sed 's|.*/super-pm/||')
+      echo "❌ $dir: 缺少跨 Agent 兜底规则"
+    fi
+  fi
+done
+echo "覆盖率: ${covered}/${total}"
+if [ "$covered" -eq "$total" ]; then
+  echo "✅ 所有 AskUserQuestion skill 均有跨 Agent 兜底规则"
+else
+  echo "⚠️  有 $((total-covered)) 个 skill 缺少兜底规则"
+fi
+```
+
+### 6. 输出建议
 
 根据扫描结果给出维护建议。
 
@@ -164,7 +194,10 @@ done
 ## 4️⃣ 搜索依赖状态
 {自动检测结果 — AnySearch / Exa MCP / WebSearch 可用性}
 
-## 5️⃣ 维护建议
+## 5️⃣ 跨 Agent 兜底覆盖率
+{自动检测结果 — AskUserQuestion skill 兜底规则覆盖率}
+
+## 6️⃣ 维护建议
 {根据检测结果生成建议}
 ```
 
@@ -196,5 +229,6 @@ done
 - [ ] 体积检查无异常
 - [ ] 文档路径引用一致
 - [ ] 搜索依赖状态已检测（AnySearch / Exa MCP / WebSearch）
+- [ ] 跨 Agent 兜底覆盖率已检测（AskUserQuestion skill 兜底规则覆盖率）
 
 > ⚠️ 任何异常请标注修复。
