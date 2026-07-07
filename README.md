@@ -5,7 +5,7 @@
 **让每个产品经理都能轻轻松松的高效工作** ☕️ 📺 🚀
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-≥0.15.0-orange.svg)](https://claude.ai/code)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-≥2.0.0-orange.svg)](https://claude.ai/code)
 
 </div>
 
