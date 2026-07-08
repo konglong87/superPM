@@ -28,7 +28,7 @@ if [ -d "docs" ]; then
     [ -d "docs/04-风控管理" ] && completed_stages="${completed_stages}- ✅ 风控管理阶段\n"
 
     if [ -n "$completed_stages" ]; then
-        docs_status_message="\n\n<pm-progress>\n**📊 Current PM Workflow Progress:**\n${completed_stages}\nUse \`/pm-status\` to see detailed progress and recommended next steps.\n</pm-progress>"
+        docs_status_message="\n\n<pm-progress>\n**📊 Current PM Workflow Progress:**\n${completed_stages}\nUse \`/pm-selfcheck\` to see detailed progress and recommended next steps.\n</pm-progress>"
     fi
 fi
 

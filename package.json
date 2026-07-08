@@ -19,7 +19,7 @@
     "url": "https://github.com/konglong87/super-pm"
   },
   "engines": {
-    "claude-code": ">=0.15.0"
+    "claude-code": ">=2.0.0"
   },
   "skills": {
     "total": 39,
