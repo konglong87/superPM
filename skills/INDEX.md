@@ -1,6 +1,6 @@
 # super-pm 技能索引
 
-**技能总数**: 39 (36核心+4工具) | 版本号见 `VERSION` 文件
+**技能总数**: 39 (35核心+4工具) | 版本号见 `VERSION` 文件
 
 ---
 
@@ -97,4 +97,4 @@ pm-business-model / pm-decision / pm-funnel / pm-portfolio / pm-resource(独立)
 
 ---
 
-**更新日期**: 2026-06-18
+**更新日期**: 2026-07-13
