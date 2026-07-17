@@ -266,9 +266,10 @@ web_search: true
 - **pm-pool** - 需求池管理
 - **pm-journey** - 用户旅程地图
 
-### 方案设计模块 (7个)
+### 方案设计模块 (8个)
 - **pm-docs** - 文档生成（BRD/MRD/PRD）
 - **pm-proto** - 原型设计
+- **pm-brand-motion** - 品牌动效方案
 - **pm-tech** - 技术对接方案
 - **pm-feature** - 功能细节拆解
 - **pm-data** - 数据指标体系
