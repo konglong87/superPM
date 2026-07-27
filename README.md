@@ -307,6 +307,49 @@ web_search: true
 
 ---
 
+## ❓ 常见问题（FAQ）
+
+### super-pm 和 superpowers 有什么区别？
+
+**super-pm** 专为产品经理设计，聚焦产品管理全生命周期（需求洞察、方案设计、增长迭代、风控管理、产品策略），共 39 个技能。**superpowers** 是 Anthropic 官方出品的软件工程师技能包。两者定位不同，互不冲突，可以同时安装使用。
+
+### 需要安装什么依赖？
+
+零依赖。super-pm 全部由纯 Markdown 指令构成，无需 Node.js、Python 或其他运行时。只需要安装 Claude Code（或 Cursor/Codex/OpenCode）即可使用。
+
+### 支持哪些 AI 编程工具？
+
+支持四大主流平台：Claude Code（最推荐，支持 Marketplace 一键安装）、Cursor、Codex CLI、OpenCode。通过 `--agent` 参数指定目标平台。
+
+### 如何从零开始做一个产品需求？
+
+遵循黄金路径：`/pm-brainstorm` → `/pm-demand` → `/pm-market` → `/pm-priority` → `/pm-mvp` → `/pm-docs` → `/pm-preview` → `/pm-tech` → `/pm-release`。每个步骤都有清晰的输入输出和引导。
+
+### 39 个技能太多，从哪里开始？
+
+**路径 A（新产品从零到一）** 覆盖 80% 的使用场景。如果方向已明确，直接执行 `/pm-demand` 进入需求调研。如果不知道做什么，从 `/pm-brainstorm` 的灵感火花激发模式开始。
+
+### 如何更新到最新版本？
+
+```bash
+# 一行命令更新
+npx skills update
+
+# 或各平台手动更新
+/plugin update super-pm       # Claude Code
+cd ~/.config/opencode/super-pm && git pull  # OpenCode
+```
+
+### 生成的文档保存在哪里？
+
+全部保存在当前项目的 `docs/` 目录下，按模块分类（`01-需求调研/`、`02-方案设计/`、`03-增长迭代/`、`04-风控管理/`）。Markdown 格式，人类可读、可编辑。
+
+### 可以在团队中使用吗？
+
+可以。所有文档以 Markdown 文件形式保存，天然支持 Git 版本管理和团队协作。每个团队成员安装后共享同一套项目文档即可。
+
+---
+
 ## 💡 平台运维
 
 ### 更新
