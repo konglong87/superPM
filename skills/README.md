@@ -1,6 +1,6 @@
 # super-pm 产品经理技能包
 
-**版本**: v2.3.0
+**版本**: v2.6.0
 **对标**: superpowers/gstack 工业级标准
 
 ## 简介
@@ -9,7 +9,7 @@ super-pm 是专为产品经理设计的 Claude Code Skill Pack，覆盖需求洞
 
 ## 核心特性
 
-- ✅ 37个核心skill，简洁高效
+- ✅ 45个技能（40核心 + 5工具），简洁高效
 - ✅ Markdown文件存储，人机可读
 - ✅ 强制入口引导 + 流程推荐
 - ✅ 风险前置，早期验证需求真伪
@@ -38,7 +38,7 @@ super-pm 是专为产品经理设计的 Claude Code Skill Pack，覆盖需求洞
 - `/pm-pool` - 需求池管理
 - `/pm-journey` - 用户旅程
 
-### 方案设计模块（7个）
+### 方案设计模块（8个）
 - `/pm-docs` - 文档生成（PRD/BRD/MRD）
 - `/pm-proto` - 原型设计
 - `/pm-tech` - 技术对接
@@ -46,6 +46,7 @@ super-pm 是专为产品经理设计的 Claude Code Skill Pack，覆盖需求洞
 - `/pm-data` - 数据指标
 - `/pm-position` - 产品定位
 - `/pm-user-story` - 用户故事
+- `/pm-brand-motion` - 品牌动效方案 + 方向性 demo
 
 ### 增长迭代模块（8个）
 - `/pm-aarrr` - AARRR增长分析

@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.0] - 2026-07-30
+
+### Added
+- **新增 5 个技能（总数 40 → 45，35+5 → 40+5）**：
+  - `pm-geo` — GEO / AI 搜索优化（03 增长迭代）：提升产品在 ChatGPT/Perplexity/AI Overviews 等生成式引擎的可见性与被推荐率
+  - `pm-competitor` — 竞品监控（01 需求洞察）：持续追踪竞品动态、建立基线、异动预警与监控月报（与 pm-market 一次性研究区分）
+  - `pm-prd-review` — PRD/BRD/MRD 评审（02 方案设计）：六维清单把关文档质量，开发前评审（与 pm-docs 生成区分）
+  - `pm-interview` — 用户访谈（01 需求洞察）：一手定性研究的设计、提纲、招募与执行指引（与 pm-demand 案头调研区分）
+  - `pm-okr` — OKR 目标管理（03 增长迭代）：目标拆解、对齐地图与复盘节奏（与 pm-iteration 执行排期区分）
+- 全部新技能遵循 v2 subagent 架构与跨 Agent 兜底规则，搜索类技能沿用 AnySearch → Exa MCP → WebSearch 优先级
+
+### Changed
+- `start-super-pm` 路由新增 5 个技能的触发信号与关键词
+- `skills/SKILL.md` 根入口关键词表增补 GEO/竞品监控/PRD评审/用户访谈/OKR
+- `INDEX.md` 计数与依赖图更新、更新日期同步
+- `README.md` / `llms.txt` / `package.json` 模块计数与版本号同步为 45 / v2.6.0
+
+## [2.5.0] - 2026-07
+
+### Added
+- **pm-selfcheck 健康自检工具** — 元数据完整性、体积、文档路径、搜索依赖、跨 Agent 兜底覆盖率五项检测
+- 技能总数扩展至 **40**（35 核心 + 5 工具）
+
+### Changed
+- **全文档版本与计数口径统一**：README / llms.txt / package.json / INDEX / skills/README.md 一致为 40 个技能（35 核心 + 5 工具），修正此前 37/39 混用
+- **super-pm-upgrade 版本历史**补全至 v2.5.0（原停留在 v2.0.0「计划中」）
+- **pm-selfcheck 修复 VERSION 检测路径**：原先向上查找两级父目录，会误判每个子技能目录「缺失 VERSION」；改为向上查找技能包根目录，并移除对固定安装路径 `~/.claude/skills/super-pm` 的硬编码依赖
+
+> 注：2.4.x 中间版本的详细变更见 git 提交历史。
+
 ## [2.3.2] - 2026-06-09
 
 ### Fixed

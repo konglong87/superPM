@@ -1,10 +1,10 @@
 # super-pm 技能索引
 
-**技能总数**: 40 (35核心+5工具) | 版本号见 `VERSION` 文件
+**技能总数**: 45 (40核心+5工具) | 版本号见 `VERSION` 文件
 
 ---
 
-## 01 需求洞察模块（9个）
+## 01 需求洞察模块（11个）
 
 | Skill | 说明 | 输出文档 |
 |-------|------|---------|
@@ -17,8 +17,10 @@
 | `/pm-pool` | 需求池管理 - 收集、跟踪、管理需求 | 需求池管理表 |
 | `/pm-journey` | 用户旅程地图 - 绘制旅程、分析痛点 | 用户旅程地图 |
 | `/pm-search` | 联网搜索整合 - subagent 并发搜索 | 市场调研报告 |
+| `/pm-competitor` | 竞品监控 - 持续追踪竞品动态与异动预警 | 竞品监控月报 |
+| `/pm-interview` | 用户访谈 - 一手定性研究设计与执行 | 用户访谈方案 |
 
-## 02 方案设计模块（8个）
+## 02 方案设计模块（9个）
 
 | Skill | 说明 | 输出文档 |
 |-------|------|---------|
@@ -30,8 +32,9 @@
 | `/pm-data` | 数据指标体系设计 | 数据指标体系 |
 | `/pm-position` | 产品定位方案 | 产品定位方案 |
 | `/pm-user-story` | 用户故事编写 | 用户故事清单 |
+| `/pm-prd-review` | PRD/BRD/MRD 评审 - 完整性/可行性/风险把关 | PRD评审报告 |
 
-## 03 增长迭代模块（8个）
+## 03 增长迭代模块（10个）
 
 | Skill | 说明 | 输出文档 |
 |-------|------|---------|
@@ -43,6 +46,8 @@
 | `/pm-retro` | 迭代复盘 | 迭代复盘报告 |
 | `/pm-roadmap` | 产品路线图规划 | 产品路线图 |
 | `/pm-feedback` | 用户反馈分析 V2 | 用户反馈报告 |
+| `/pm-geo` | GEO / AI 搜索优化 - 提升生成式引擎可见性 | GEO优化方案 |
+| `/pm-okr` | OKR 目标管理 - 目标拆解与对齐 | OKR目标管理 |
 
 ## 04 风控管理模块（5个）
 
@@ -79,7 +84,7 @@
 ## 依赖关系
 
 ```
-pm-brainstorm → pm-demand → pm-clarify → pm-market(可选)
+pm-brainstorm → pm-demand → pm-clarify → pm-market(可选) → pm-competitor / pm-interview(需求洞察补充)
 → pm-priority → pm-mvp
 ```
 
@@ -87,8 +92,10 @@ pm-brainstorm → pm-demand → pm-clarify → pm-market(可选)
 
 ```
 pm-docs(依赖MVP) → pm-preview(验证文档) → pm-proto → pm-brand-motion → pm-tech → pm-feature → pm-data → pm-user-story
+pm-docs → pm-prd-review(评审把关)
 
 pm-aarrr(上线后) → pm-growth → pm-report → pm-iteration → pm-retro → pm-roadmap
+pm-growth → pm-geo(承接 GEO 流量) ｜ pm-okr → pm-iteration / pm-retro(目标对齐)
 
 pm-agile(项目启动) → pm-cross → pm-risk(上线前) → pm-release
 
@@ -97,4 +104,4 @@ pm-business-model / pm-decision / pm-funnel / pm-portfolio / pm-resource(独立)
 
 ---
 
-**更新日期**: 2026-07-13
+**更新日期**: 2026-07-30

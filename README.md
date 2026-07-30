@@ -19,7 +19,7 @@
 
 ### 核心特性
 
-- ✅ **39个技能** - 覆盖需求、方案、增长、风控、战略全流程
+- ✅ **45个技能** - 覆盖需求、方案、增长、风控、战略全流程（40 核心 + 5 工具）
 - ✅ **灵感火花激发** - AI主动生成创意灵感，解决"不知道做什么"困境 ⭐ NEW
 - ✅ **轻量级设计** - 纯 Markdown 指令，无代码依赖
 - ✅ **智能交互** - 一次一问，逐步引导
@@ -143,7 +143,7 @@ web_search: true
 
 ## 🛤️ 黄金路径 — 从零到一的主线流程
 
-39 个技能看起来很多，但大多数项目只需要走一条主线。以下是三条最常用的路径：
+45 个技能看起来很多，但大多数项目只需要走一条主线。以下是三条最常用的路径：
 
 ### 路径 A：新产品从零到一（最常用 ⭐）
 
@@ -253,9 +253,9 @@ web_search: true
 
 ---
 
-## 📊 核心技能（39个）
+## 📊 核心技能与工具（45个）
 
-### 需求洞察模块 (9个)
+### 需求洞察模块 (11个)
 - **pm-brainstorm** - 头脑风暴 ⭐ 先发散再收敛，支持灵感火花激发模式
 - **pm-demand** - 需求调研入口
 - **pm-clarify** - 需求细化与验证
@@ -265,8 +265,10 @@ web_search: true
 - **pm-mvp** - MVP最小可行产品拆解
 - **pm-pool** - 需求池管理
 - **pm-journey** - 用户旅程地图
+- **pm-competitor** - 竞品监控 - 持续追踪竞品动态与异动预警
+- **pm-interview** - 用户访谈 - 一手定性研究设计与执行
 
-### 方案设计模块 (8个)
+### 方案设计模块 (9个)
 - **pm-docs** - 文档生成（BRD/MRD/PRD）
 - **pm-proto** - 原型设计
 - **pm-brand-motion** - 品牌动效方案
@@ -275,8 +277,9 @@ web_search: true
 - **pm-data** - 数据指标体系
 - **pm-position** - 产品定位与商业模式
 - **pm-user-story** - 用户故事
+- **pm-prd-review** - PRD/BRD/MRD 评审 - 完整性/可行性/风险把关
 
-### 增长迭代模块 (8个)
+### 增长迭代模块 (10个)
 - **pm-aarrr** - 增长分析
 - **pm-growth** - 增长方案
 - **pm-report** - 数据报告（周报/月报/季报）
@@ -285,6 +288,8 @@ web_search: true
 - **pm-iteration** - 迭代计划
 - **pm-retro** - 迭代复盘
 - **pm-roadmap** - 产品路线图
+- **pm-geo** - GEO / AI 搜索优化 - 提升生成式引擎可见性
+- **pm-okr** - OKR 目标管理 - 目标拆解与对齐
 
 ### 风控管理模块 (5个)
 - **pm-agile** - 敏捷管理
@@ -300,10 +305,12 @@ web_search: true
 - **pm-portfolio** - 产品组合管理
 - **pm-resource** - 资源分配与ROI
 
-### 辅助工具 (3个)
-- **pm-preview** - 文档实时预览 ⭐ NEW — WebSocket 服务器 + 浏览器 MD 渲染 + 自动刷新
-- **super-pm-upgrade** - 版本升级工具
-- **start-super-pm** - 启动引导入口
+### 辅助工具 (5个)
+- **start-super-pm** - 启动引导入口 - 自动检测任务类型并智能路由
+- **super-pm-upgrade** - 版本升级工具 - 检测 / 升级 / 回退，升级前自动备份
+- **pm-preview** - 文档实时预览 ⭐ — WebSocket 服务器 + 浏览器 MD 渲染 + 自动刷新
+- **pm-selfcheck** - 技能包健康自检 ⭐ NEW — 元数据 / 体积 / 路径 / 搜索依赖 / 兜底覆盖率检测
+- **/super-pm** - 根技能入口 - 关键词语义路由 + 流程推荐引擎
 
 ---
 
@@ -311,7 +318,7 @@ web_search: true
 
 ### super-pm 和 superpowers 有什么区别？
 
-**super-pm** 专为产品经理设计，聚焦产品管理全生命周期（需求洞察、方案设计、增长迭代、风控管理、产品策略），共 39 个技能。**superpowers** 是 Anthropic 官方出品的软件工程师技能包。两者定位不同，互不冲突，可以同时安装使用。
+**super-pm** 专为产品经理设计，聚焦产品管理全生命周期（需求洞察、方案设计、增长迭代、风控管理、产品策略），共 45 个技能（40 核心 + 5 工具）。**superpowers** 是 Anthropic 官方出品的软件工程师技能包。两者定位不同，互不冲突，可以同时安装使用。
 
 ### 需要安装什么依赖？
 
@@ -325,7 +332,7 @@ web_search: true
 
 遵循黄金路径：`/pm-brainstorm` → `/pm-demand` → `/pm-market` → `/pm-priority` → `/pm-mvp` → `/pm-docs` → `/pm-preview` → `/pm-tech` → `/pm-release`。每个步骤都有清晰的输入输出和引导。
 
-### 39 个技能太多，从哪里开始？
+### 45 个技能太多，从哪里开始？
 
 **路径 A（新产品从零到一）** 覆盖 80% 的使用场景。如果方向已明确，直接执行 `/pm-demand` 进入需求调研。如果不知道做什么，从 `/pm-brainstorm` 的灵感火花激发模式开始。
 
@@ -366,7 +373,7 @@ cd ~/.config/opencode/super-pm && git pull  # OpenCode
 
 ## 📚 文档
 
-- [技能索引](./skills/INDEX.md) - 全部 39 个技能及依赖关系
+- [技能索引](./skills/INDEX.md) - 全部 45 个技能及依赖关系
 - [Skill 模板](./skills/templates/subagent-skill-template.md) - Subagent 架构模板与最佳实践
 
 ---

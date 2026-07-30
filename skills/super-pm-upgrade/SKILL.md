@@ -13,10 +13,11 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
-bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+bash "$(dirname "${BASH_SOURCE[0]}")/../check-update.sh" 2>/dev/null || true
 # 读取技能包版本号
 SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
-if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
+PKG_ROOT="$(cd "$SKILL_ROOT" && while [ "$PWD" != "/" ]; do [ -f VERSION ] && { pwd; break; }; cd ..; done)"
+if [ -n "$PKG_ROOT" ] && [ -f "$PKG_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$PKG_ROOT/VERSION")"; fi
 # 检测当前版本
 if [ -f "VERSION" ]; then
   CURRENT_VERSION=$(cat VERSION)
@@ -300,10 +301,13 @@ fi
 
 ## 版本历史
 
-- **v1.0.0** (2026-03-25): 初始版本，包含需求洞察模块8个skill
-- **v1.1.0** (计划中): 方案设计模块
-- **v1.2.0** (计划中): 增长迭代模块
-- **v2.0.0** (计划中): 完整27个skill
+- **v1.0.0** (2026-03-25): 初始版本，27 个核心技能
+- **v2.0.0**: Subagent 并行架构全面升级，Token 大幅优化，执行速度提升 2-4x
+- **v2.1.0**: 产品策略模块扩展（pm-portfolio / pm-resource / pm-decision），技能扩展至 37
+- **v2.2.0**: 灵感火花激发模式（pm-brainstorm），check-update 自动更新检测
+- **v2.3.0**: 黄金路径主线引导；check-update 5 秒超时机制
+- **v2.3.2** (2026-06-09): pm-funnel 前置文档路径修复
+- **v2.5.0**: 新增 pm-selfcheck 健康自检工具，技能总数 40（35 核心 + 5 工具）；全文档版本/计数口径统一
 
 ---
 

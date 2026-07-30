@@ -17,10 +17,11 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
-bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
+bash "$(dirname "${BASH_SOURCE[0]}")/../../check-update.sh" 2>/dev/null || true
 # 读取技能包版本号
 SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
-if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
+PKG_ROOT="$(cd "$SKILL_ROOT" && while [ "$PWD" != "/" ]; do [ -f VERSION ] && { pwd; break; }; cd ..; done)"
+if [ -n "$PKG_ROOT" ] && [ -f "$PKG_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$PKG_ROOT/VERSION")"; fi
 # 创建增长迭代目录
 mkdir -p docs/03-增长迭代
 

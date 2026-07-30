@@ -11,10 +11,11 @@ allowed-tools:
 ## Preamble
 
 ```bash
-bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
-# 读取技能包版本号
+bash "$(dirname "${BASH_SOURCE[0]}")/../../check-update.sh" 2>/dev/null || true
+# 读取技能包版本号（向上查找根目录 VERSION）
 SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
-if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
+PKG_ROOT="$(cd "$SKILL_ROOT" && while [ "$PWD" != "/" ]; do [ -f VERSION ] && { pwd; break; }; cd ..; done)"
+if [ -n "$PKG_ROOT" ] && [ -f "$PKG_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$PKG_ROOT/VERSION")"; fi
 echo "🔍 pm-selfcheck v1.0"
 echo "正在扫描 super-pm 健康状态..."
 echo ""
@@ -104,13 +105,13 @@ echo "✅ WebSearch: 内置兜底，始终可用"
 echo "=== 5. 跨 Agent 兜底覆盖率 ==="
 total=0
 covered=0
-for f in $(find ~/.claude/skills/super-pm -name 'SKILL.md' | sort); do
+for f in $(find "$PKG_ROOT" -name 'SKILL.md' 2>/dev/null | sort); do
   if grep -q 'AskUserQuestion' "$f"; then
     total=$((total+1))
     if grep -q '跨 Agent 交互规则' "$f"; then
       covered=$((covered+1))
     else
-      dir=$(dirname "$f" | sed 's|.*/super-pm/||')
+      dir=$(echo "$f" | sed "s|^$PKG_ROOT/||")
       echo "❌ $dir: 缺少跨 Agent 兜底规则"
     fi
   fi
@@ -135,17 +136,19 @@ fi
 
 ```bash
 echo "=== 1. 元数据完整性 ==="
-for f in $(find ~/.claude/skills/super-pm -name 'SKILL.md' | sort); do
-  dir=$(dirname "$f" | sed 's|.*/super-pm/||')
+# 定位技能包根目录（向上查找包含 VERSION 的最近目录）
+PKG_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && while [ "$PWD" != "/" ]; do [ -f VERSION ] && { pwd; break; }; cd ..; done)"
+if [ -z "$PKG_ROOT" ]; then
+  echo "❌ 未找到技能包根目录 VERSION 文件"
+else
+  echo "✅ 技能包根目录: $PKG_ROOT (VERSION=$(cat "$PKG_ROOT/VERSION" 2>/dev/null))"
+fi
+for f in $(find "$PKG_ROOT" -name 'SKILL.md' 2>/dev/null | sort); do
+  dir=$(echo "$f" | sed "s|^$PKG_ROOT/||")
   missing=""
   grep -q '^name:' "$f" || missing="$missing name"
   grep -q '^description:' "$f" || missing="$missing description"
   grep -q 'allowed-tools:' "$f" || missing="$missing allowed-tools"
-# VERSION 文件检查
-VERSION_FILE="$(dirname "$(dirname "$f")")/VERSION"
-if [ ! -f "$VERSION_FILE" ]; then
-  echo "❌ VERSION 文件缺失"
-fi
   if [ -n "$missing" ]; then
     echo "❌ $dir 缺失:$missing"
   fi
@@ -153,8 +156,8 @@ done
 
 echo ""
 echo "=== 2. 体积检查 ==="
-for f in $(find ~/.claude/skills/super-pm -name 'SKILL.md' | sort); do
-  dir=$(dirname "$f" | sed 's|.*/super-pm/||' | sed 's|/|/|')
+for f in $(find "$PKG_ROOT" -name 'SKILL.md' 2>/dev/null | sort); do
+  dir=$(echo "$f" | sed "s|^$PKG_ROOT/||")
   lines=$(wc -l < "$f" | tr -d ' ')
   if [ "$lines" -gt 600 ]; then
     echo "⚠️  $dir: ${lines}行 (超大)"
@@ -166,8 +169,8 @@ echo "✅ 其他skill体积正常"
 
 echo ""
 echo "=== 3. 文档路径检查 ==="
-for f in $(find ~/.claude/skills/super-pm -name 'SKILL.md' | sort); do
-  dir=$(dirname "$f" | sed 's|.*/super-pm/||')
+for f in $(find "$PKG_ROOT" -name 'SKILL.md' 2>/dev/null | sort); do
+  dir=$(echo "$f" | sed "s|^$PKG_ROOT/||")
   grep -oP '`?docs/[^`()\n]+`?' "$f" 2>/dev/null | sed "s/^/$dir: /"
 done
 ```
