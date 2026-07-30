@@ -1,0 +1,57 @@
+name: Package super-pm zip
+
+# 每次往 main 提交 -> 生成 commit 快照 zip（作为 Actions Artifact）
+# 每次推送 v* tag -> 自动创建 GitHub Release 并挂载 zip 资产
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+permissions:
+  contents: write   # 创建 Release / 上传资产需要写权限
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 确保 tag / 历史完整
+
+      - name: Determine artifact name
+        id: meta
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            VERSION="${GITHUB_REF_NAME}"
+            NAME="super-pm-${VERSION}"
+          else
+            SHA="${GITHUB_SHA::7}"
+            NAME="super-pm-${SHA}"
+          fi
+          echo "name=${NAME}" >> "$GITHUB_OUTPUT"
+          echo "version=${VERSION:-snapshot}" >> "$GITHUB_OUTPUT"
+
+      - name: Create zip via git archive
+        run: |
+          # 只打包已纳入 git 跟踪的文件，自动排除 .git 与 .gitignore 中的运行时/临时文件
+          # --prefix 让解压后自动套一层 super-pm/ 目录，不会散落一地
+          git archive --format=zip --prefix=super-pm/ -o "${{ steps.meta.outputs.name }}.zip" HEAD
+
+      - name: Upload artifact (commit snapshot)
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.meta.outputs.name }}
+          path: ${{ steps.meta.outputs.name }}.zip
+          retention-days: 90
+
+      - name: Create GitHub Release and attach zip
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "${GITHUB_REF_NAME}" \
+            --generate-notes \
+            "${{ steps.meta.outputs.name }}.zip"
