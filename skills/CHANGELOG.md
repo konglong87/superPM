@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.2] - 2026-07-30
+
+### Added
+- **06-experts 专家视角模块** — 首个专家技能 `steve-jobs-perspective`（乔布斯思维与表达DNA）
+- 技能总数 45 → 46（41 核心 + 5 工具）
+- 中度适配：新增「对话模式 / 思维碰撞循环」「学习内化引导」「与 superPM 配合」三块，支持用户以乔布斯视角持续对话、碰撞灵感、内化思考
+- 补 `allowed-tools`、修源文件悬空引用 `references/research/`
+
+### Changed
+- `skills/SKILL.md` 根入口与 `start-super-pm` 路由新增「视角/顾问类」触发，自然语言请求直达本技能（不走 brainstorm 前置门禁）
+- `INDEX.md` / `README.md` / `skills/README.md` / `llms.txt` / `package.json` 计数与版本号同步为 46 / v2.6.2
+
+> 注：pm-skills（方法论）、lenny-skills（实战智慧）作为「专家 / 方法论 / 智慧」统一容器的后续候选，本期未合并。
+
+## [2.6.1] - 2026-07-30
+
+### Changed
+- P0 优化：全包子技能 Preamble 去重（`check-update.sh` 调用路径修正 + 版本打印收归脚本），42 个子技能 SKILL.md 批量精简；`pm-selfcheck`/`super-pm-upgrade` 功能代码不受影响
+
 ## [2.6.0] - 2026-07-30
 
 ### Added
