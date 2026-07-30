@@ -15,10 +15,6 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")/../../check-update.sh" 2>/dev/null || true
-# 读取技能包版本号
-SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
-PKG_ROOT="$(cd "$SKILL_ROOT" && while [ "$PWD" != "/" ]; do [ -f VERSION ] && { pwd; break; }; cd ..; done)"
-if [ -n "$PKG_ROOT" ] && [ -f "$PKG_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$PKG_ROOT/VERSION")"; fi
 # 创建目录
 mkdir -p docs/05-产品战略
 
