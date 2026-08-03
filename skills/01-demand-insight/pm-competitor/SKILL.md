@@ -4,7 +4,7 @@ description: |
   Use when: 需要持续监控竞品动态、建立竞品情报预警、定期输出竞品监控月报、追踪竞品版本/定价/功能/舆情/融资异动
   Do NOT use when: 仅需一次性竞品调研（用 pm-market / pm-search --type=competitor）；产品尚无明确竞品
 allowed-tools:
-  - Agent
+  - Task
   - Read
   - Write
   - AskUserQuestion
@@ -83,7 +83,7 @@ fi
 使用 Agent 工具并行派发 subagent，对每个竞品做全量快照（搜索优先）：
 
 ```
-Tool: Agent
+Tool: Task
 Parameters:
   subagent_type: "general-purpose"
   description: "竞品基线调研-{竞品名}"

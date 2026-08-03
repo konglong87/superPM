@@ -12,9 +12,6 @@ allowed-tools:
 
 ```bash
 bash "$(dirname "${BASH_SOURCE[0]}")/../../check-update.sh" 2>/dev/null || true
-# selfcheck 需定位技能包根目录以扫描全部 SKILL.md（功能必需，非版本打印冗余）
-SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
-PKG_ROOT="$(cd "$SKILL_ROOT" && while [ "$PWD" != "/" ]; do [ -f VERSION ] && { pwd; break; }; cd ..; done)"
 echo "🔍 pm-selfcheck v1.0"
 echo "正在扫描 super-pm 健康状态..."
 echo ""

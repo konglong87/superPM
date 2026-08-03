@@ -4,7 +4,7 @@ description: |
   Use when: 需要提升产品在 AI 搜索/生成式引擎（ChatGPT、Perplexity、AI Overviews、豆包、文心）中的可见性与被推荐率、做 GEO（Generative Engine Optimization）方案
   Do NOT use when: 仅做传统 SEO/关键词排名、产品尚未上线且无任何公开信息可优化
 allowed-tools:
-  - Agent
+  - Task
   - Read
   - Write
   - AskUserQuestion
@@ -94,7 +94,7 @@ fi
 使用 Agent 工具派发 subagent，模拟在 ChatGPT / Perplexity / AI Overviews 中查询目标问题，记录当前是否提及本产品、提及时的描述是否准确：
 
 ```
-Tool: Agent
+Tool: Task
 Parameters:
   subagent_type: "general-purpose"
   description: "GEO现状召回诊断"

@@ -4,7 +4,7 @@ description: |
   Use when: 需要设计用户访谈/用户调研方案、编写访谈提纲、规划样本与招募、制定访谈执行与分析方法
   Do NOT use when: 仅做案头需求调研（用 pm-demand）；已有明确结论只需验证单一假设且无需访谈
 allowed-tools:
-  - Agent
+  - Task
   - Read
   - Write
   - AskUserQuestion
@@ -100,7 +100,7 @@ fi
 使用 Agent 工具（可选，针对复杂主题）派发 subagent 生成分群提纲：
 
 ```
-Tool: Agent
+Tool: Task
 Parameters:
   subagent_type: "general-purpose"
   description: "访谈提纲生成"

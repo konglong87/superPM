@@ -4,7 +4,7 @@ description: |
   Use when: 需要制定 OKR（目标与关键结果）、拆解公司/产品级目标、做目标对齐与 cascading、设定复盘节奏
   Do NOT use when: 仅需简单待办清单（用 pm-iteration）；目标已由上级完全锁定且无需拆解
 allowed-tools:
-  - Agent
+  - Task
   - Read
   - Write
   - AskUserQuestion
@@ -98,7 +98,7 @@ fi
 可选使用 Agent 工具派发 subagent 对复杂主题生成 KR 草案：
 
 ```
-Tool: Agent
+Tool: Task
 Parameters:
   subagent_type: "general-purpose"
   description: "OKR-KR草案"
