@@ -7,6 +7,8 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥2.0.0-orange.svg)](https://claude.ai/code)
 
+**[English](./README.en.md)** | 中文
+
 </div>
 
 ---
