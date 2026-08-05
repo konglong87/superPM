@@ -1,0 +1,17 @@
+{
+  "name": "pm-career",
+  "description": "Career Development Module - 3 skills: career-coach, interview-prep, resume",
+  "version": "2.6.2",
+  "author": {
+    "name": "Kong Long",
+    "email": "2235998553@qq.com"
+  },
+  "skills": "./skills/",
+  "keywords": [
+    "product-manager",
+    "career",
+    "interview-prep",
+    "resume",
+    "career-coach"
+  ]
+}

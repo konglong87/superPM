@@ -22,7 +22,7 @@
     "claude-code": ">=2.0.0"
   },
   "skills": {
-    "total": 46,
+    "total": 49,
     "modules": {
       "demand-insight": 11,
       "solution-design": 9,
@@ -30,7 +30,16 @@
       "risk-management": 5,
       "product-strategy": 5,
       "experts": 1,
+      "career": 3,
       "tools": 5
     }
+  },
+  "commands": {
+    "total": 6,
+    "list": ["discover", "write-prd", "plan-launch", "analyze-growth", "define-strategy", "validate-idea"]
+  },
+  "plugins": {
+    "total": 6,
+    "list": ["pm-demand-insight", "pm-solution-design", "pm-growth-iteration", "pm-risk-management", "pm-product-strategy", "pm-career"]
   }
 }

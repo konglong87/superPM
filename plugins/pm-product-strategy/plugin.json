@@ -1,0 +1,17 @@
+{
+  "name": "pm-product-strategy",
+  "description": "Product Strategy Module - 5 skills: business-model, decision, funnel, portfolio, resource",
+  "version": "2.6.2",
+  "author": {
+    "name": "Kong Long",
+    "email": "2235998553@qq.com"
+  },
+  "skills": "./skills/",
+  "keywords": [
+    "product-manager",
+    "product-strategy",
+    "business-model",
+    "portfolio",
+    "resource-allocation"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "pm-growth-iteration",
+  "description": "Growth Iteration Module - 10 skills: aarrr, growth, report, feedback, abtest, iteration, retro, roadmap, geo, okr",
+  "version": "2.6.2",
+  "author": {
+    "name": "Kong Long",
+    "email": "2235998553@qq.com"
+  },
+  "skills": "./skills/",
+  "keywords": [
+    "product-manager",
+    "growth",
+    "aarrr",
+    "ab-testing",
+    "okr",
+    "roadmap"
+  ]
+}

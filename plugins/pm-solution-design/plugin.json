@@ -1,0 +1,17 @@
+{
+  "name": "pm-solution-design",
+  "description": "Solution Design Module - 9 skills: docs, proto, brand-motion, tech, feature, data, position, user-story, prd-review",
+  "version": "2.6.2",
+  "author": {
+    "name": "Kong Long",
+    "email": "2235998553@qq.com"
+  },
+  "skills": "./skills/",
+  "keywords": [
+    "product-manager",
+    "solution-design",
+    "prd",
+    "prototype",
+    "technical-design"
+  ]
+}

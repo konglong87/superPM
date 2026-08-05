@@ -1,0 +1,17 @@
+{
+  "name": "pm-risk-management",
+  "description": "Risk Management Module - 5 skills: agile, cross, risk, release, change",
+  "version": "2.6.2",
+  "author": {
+    "name": "Kong Long",
+    "email": "2235998553@qq.com"
+  },
+  "skills": "./skills/",
+  "keywords": [
+    "product-manager",
+    "risk-management",
+    "agile",
+    "release",
+    "change-management"
+  ]
+}
