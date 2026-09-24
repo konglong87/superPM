@@ -24,6 +24,7 @@
 - ✅ **Lightweight core** — Markdown skills; optional preview requires Node.js (no npm install or CDN)
 - ✅ **Smart interaction** — One question at a time, step-by-step guidance
 - ✅ **Data flow** — Markdown documents auto-propagate between skills, human-readable
+- ✅ **Discussion without writes** — Preambles do not create directories; confirm the destination and overwrite choice before saving an artifact
 - ✅ **Risk-first** — Validate assumptions early, avoid wasted effort
 - ✅ **Graceful fallbacks** — Error handling, cross-session recovery, flexible skipping
 

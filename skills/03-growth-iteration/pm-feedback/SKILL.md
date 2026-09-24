@@ -17,13 +17,16 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
-# 创建增长迭代目录
-mkdir -p docs/03-增长迭代
-
 echo "📊 PM-Feedback V2 - 用户反馈分析工具"
 echo "支持并发分析：反馈分类 | 情感分析 | 优先级评估 | 问题归类"
 echo ""
 ```
+
+---
+
+## 写入时边界
+
+只讨论时不写文件，启动检查不创建目录。用户要求保存产物时，先确认当前产品、精确输出路径及已有文件的覆盖/追加选择；确认后**仅在实际 Write 前**创建该输出文件的父目录。完整安装可参见 `skills/_shared/artifact-policy.md`，单独安装本 skill 也按本段执行。
 
 ---
 

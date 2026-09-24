@@ -14,8 +14,6 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
-mkdir -p docs/03-增长迭代
-
 echo "📊 增长方案制定工具"
 
 if [ -f "docs/03-增长迭代/AARRR增长分析报告.md" ]; then
@@ -24,6 +22,12 @@ else
   echo "⏳ AARRR分析报告 - 未找到"
 fi
 ```
+
+---
+
+## 写入时边界
+
+只讨论时不写文件，启动检查不创建目录。用户要求保存产物时，先确认当前产品、精确输出路径及已有文件的覆盖/追加选择；确认后**仅在实际 Write 前**创建该输出文件的父目录。完整安装可参见 `skills/_shared/artifact-policy.md`，单独安装本 skill 也按本段执行。
 
 ---
 

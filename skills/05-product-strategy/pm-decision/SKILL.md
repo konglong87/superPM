@@ -17,9 +17,6 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
-# 创建目录
-mkdir -p docs/05-产品战略
-
 # 检查是否有相关前置文档
 if [ -f "docs/05-产品战略/产品组合战略.md" ]; then
   echo "✅ 检测到产品组合战略文档"
@@ -29,6 +26,12 @@ if [ -f "docs/05-产品战略/资源分配方案.md" ]; then
   echo "✅ 检测到资源分配方案文档"
 fi
 ```
+
+---
+
+## 写入时边界
+
+只讨论时不写文件，启动检查不创建目录。用户要求保存产物时，先确认当前产品、精确输出路径及已有文件的覆盖/追加选择；确认后**仅在实际 Write 前**创建该输出文件的父目录。完整安装可参见 `skills/_shared/artifact-policy.md`，单独安装本 skill 也按本段执行。
 
 ---
 

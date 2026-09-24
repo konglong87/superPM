@@ -14,8 +14,6 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
-mkdir -p docs/02-方案设计
-
 echo "📊 正在检查前置文档..."
 if [ -f "docs/02-方案设计/PRD产品需求文档.md" ]; then
   echo "✅ PRD文档 - 已找到"
@@ -28,6 +26,12 @@ else
   echo "⏳ 原型设计方案 - 未找到"
 fi
 ```
+
+---
+
+## 写入时边界
+
+只讨论时不写文件，启动检查不创建目录。用户要求保存产物时，先确认当前产品、精确输出路径及已有文件的覆盖/追加选择；确认后**仅在实际 Write 前**创建该输出文件的父目录。完整安装可参见 `skills/_shared/artifact-policy.md`，单独安装本 skill 也按本段执行。
 
 ---
 

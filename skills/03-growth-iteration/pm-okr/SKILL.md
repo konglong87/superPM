@@ -14,15 +14,18 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
-# 创建增长迭代目录
-mkdir -p docs/03-增长迭代
-
 if [ -f "docs/05-产品战略/战略决策建议.md" ]; then
   echo "✅ 战略决策建议 - 已找到（可承接为 O 的来源）"
 else
   echo "⏳ 战略决策建议 - 未找到（可选）"
 fi
 ```
+
+---
+
+## 写入时边界
+
+只讨论时不写文件，启动检查不创建目录。用户要求保存产物时，先确认当前产品、精确输出路径及已有文件的覆盖/追加选择；确认后**仅在实际 Write 前**创建该输出文件的父目录。完整安装可参见 `skills/_shared/artifact-policy.md`，单独安装本 skill 也按本段执行。
 
 ---
 
