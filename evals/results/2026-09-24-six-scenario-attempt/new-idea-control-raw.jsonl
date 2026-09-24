@@ -1,0 +1,3 @@
+{"type":"thread.started","thread_id":"01a0d2a2-822e-7972-ac7a-8fd954949568"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/konglong/.superpm-eval-20260924/config.toml."}}
+{"type":"turn.started"}

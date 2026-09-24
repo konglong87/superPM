@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a0d29d-cc0c-76f3-b01f-fd2a18515088"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/konglong/.superpm-eval-20260924/config.toml."}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"不可用。会话自动提供的技能清单中没有 `pm-brainstorm` 技能，因此也没有提供它的文件路径。"}}
+{"type":"turn.completed","usage":{"input_tokens":7905,"cached_input_tokens":7424,"cache_write_input_tokens":0,"output_tokens":61,"reasoning_output_tokens":25}}

@@ -16,33 +16,35 @@ function scoreScenarios(scenarios, runs, baseDir) {
     if (!run) return { id: scenario.id, category: scenario.category, status: 'NOT RUN', note: 'No independent transcript reviewed' };
     const file = run.transcriptPath && path.resolve(baseDir, run.transcriptPath);
     const checks = run.observations || [];
-    const reviewed = typeof run.reviewer === 'string' && run.reviewer.trim().length > 0;
+    const reviewed = typeof run.reviewer === 'string' && run.reviewer.trim().length > 0 &&
+      ['independent', 'self'].includes(run.reviewType);
     const validChecks = checks.length === scenario.checks.length &&
       scenario.checks.every(check => checks.some(item => item.check === check &&
         typeof item.passed === 'boolean' && typeof item.evidence === 'string' && item.evidence.trim())) &&
       checks.every(item => scenario.checks.includes(item.check));
     if (!reviewed || !file || !fs.existsSync(file) || !validChecks) {
-      return { id: scenario.id, category: scenario.category, status: 'INVALID', note: 'Missing reviewer, transcript, or check evidence' };
+      return { id: scenario.id, category: scenario.category, status: 'INVALID', note: 'Missing review type, reviewer, transcript, or check evidence' };
     }
     const failed = checks.filter(item => !item.passed).map(item => item.check);
     return {
       id: scenario.id,
       category: scenario.category,
-      status: failed.length ? 'FAIL' : 'PASS',
-      note: failed.length ? `Failed: ${failed.join(', ')}` : `Reviewed by ${run.reviewer}`
+      status: failed.length ? 'FAIL' : run.reviewType === 'self' ? 'SELF-REVIEW' : 'PASS',
+      note: failed.length ? `Failed (${run.reviewType}): ${failed.join(', ')}` :
+        `Reviewed by ${run.reviewer} (${run.reviewType})`
     };
   });
 }
 
 function renderReport(scored) {
-  const counts = Object.fromEntries(['PASS', 'FAIL', 'INVALID', 'NOT RUN']
+  const counts = Object.fromEntries(['PASS', 'FAIL', 'SELF-REVIEW', 'INVALID', 'NOT RUN']
     .map(status => [status, scored.filter(item => item.status === status).length]));
   const lines = [
     '# Super-PM behavioral evaluation',
     '',
-    `Total ${scored.length} | PASS ${counts.PASS} | FAIL ${counts.FAIL} | INVALID ${counts.INVALID} | NOT RUN ${counts['NOT RUN']}`,
+    `Total ${scored.length} | PASS ${counts.PASS} | FAIL ${counts.FAIL} | SELF-REVIEW ${counts['SELF-REVIEW']} | INVALID ${counts.INVALID} | NOT RUN ${counts['NOT RUN']}`,
     '',
-    'Only reviewed transcripts with evidence for every check can pass. Static repository tests do not count as agent runs.',
+    'Only independently reviewed transcripts with evidence for every check can pass. Self-review is reported separately and static repository tests do not count as agent runs.',
     '',
     '| Scenario | Category | Result | Note |',
     '|---|---|---|---|',

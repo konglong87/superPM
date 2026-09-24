@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a0d29e-8c64-7fd2-8051-ebe594631497"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/konglong/.superpm-eval-20260924/config.toml."}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"可以使用 `super-pm:pm-brainstorm` 技能。\n\n文件路径：`/Users/konglong/GolandProjects/superPM/tmp/superpm-eval-20260924/skill-probe/.agents/skills/pm-brainstorm/SKILL.md`"}}
+{"type":"turn.completed","usage":{"input_tokens":8078,"cached_input_tokens":6400,"cache_write_input_tokens":0,"output_tokens":125,"reasoning_output_tokens":61}}

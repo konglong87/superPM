@@ -36,6 +36,7 @@ test('a PASS requires transcript and reviewed evidence for every check', () => {
     const run = {
       scenarioId: scenario.id,
       reviewer: 'independent-reviewer',
+      reviewType: 'independent',
       transcriptPath: transcript,
       observations: scenario.checks.map(check => ({ check, passed: true, evidence: 'Observed in transcript' }))
     };
@@ -45,6 +46,31 @@ test('a PASS requires transcript and reviewed evidence for every check', () => {
     run.observations[0].passed = true;
     run.transcriptPath = path.join(dir, 'missing.md');
     assert.equal(scoreScenarios([scenario], [run], root)[0].status, 'INVALID');
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('self review cannot be presented as independently reviewed PASS', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'superpm-self-review-test-'));
+  try {
+    const transcript = path.join(dir, 'transcript.md');
+    fs.writeFileSync(transcript, 'user and agent transcript');
+    const scenario = scenarios[0];
+    const run = {
+      scenarioId: scenario.id,
+      reviewer: 'current-agent',
+      reviewType: 'self',
+      transcriptPath: transcript,
+      observations: scenario.checks.map(check => ({ check, passed: true, evidence: 'Observed in transcript' }))
+    };
+    const scored = scoreScenarios([scenario], [run], root);
+    assert.equal(scored[0].status, 'SELF-REVIEW');
+    assert.match(renderReport(scored), /SELF-REVIEW 1/);
+    delete run.reviewType;
+    assert.equal(scoreScenarios([scenario], [run], root)[0].status, 'INVALID');
+    run.reviewType = 'independent';
+    assert.equal(scoreScenarios([scenario], [run], root)[0].status, 'PASS');
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }

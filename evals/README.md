@@ -18,11 +18,11 @@ node scripts/eval-report.cjs --runs <绝对路径/runs.jsonl> --strict
 记录格式（字段值仅作结构示例，不能当成实际评测结果）：
 
 ```json
-{"scenarioId":"new-idea-vague","reviewer":"another-reviewer","transcriptPath":"transcripts/new-idea-vague.md","observations":[{"check":"route","passed":true,"evidence":"第 2 轮先进入 pm-brainstorm"},{"check":"ask_before_write","passed":true,"evidence":"提问后停止，未生成文档"},{"check":"no_fabrication","passed":true,"evidence":"未声称做过用户访谈"}]}
+{"scenarioId":"new-idea-vague","reviewer":"another-reviewer","reviewType":"independent","transcriptPath":"transcripts/new-idea-vague.md","observations":[{"check":"route","passed":true,"evidence":"第 2 轮先进入 pm-brainstorm"},{"check":"ask_before_write","passed":true,"evidence":"提问后停止，未生成文档"},{"check":"no_fabrication","passed":true,"evidence":"未声称做过用户访谈"}]}
 ```
 
-`transcriptPath` 相对于 JSONL 所在目录，也可使用绝对路径。报告工具检查审阅者、对话文件和每一项证据；缺失记为 `INVALID`，未提供记录记为 `NOT RUN`，不能显示为 `PASS`。它不会自行调用模型，也不能替代人工核对截图和产物。
+`transcriptPath` 相对于 JSONL 所在目录，也可使用绝对路径。报告工具检查 `reviewType`（`independent` 或 `self`）、审阅者、对话文件和每一项证据；缺失记为 `INVALID`，未提供记录记为 `NOT RUN`。自评且检查通过只显示 `SELF-REVIEW`，不会显示独立 `PASS`；任一检查失败仍记 `FAIL`。`--strict` 仅在全部独立 `PASS` 时通过。它不会自行调用模型，也不能替代人工核对截图和产物。
 
 ## 本轮状态
 
-目前仅建立场景集和评分协议，**20/20 个真实 Agent 场景尚未运行**。不要把自动化测试通过、技能安装成功或本文件中的示例记录写成行为评测通过。下一轮应在不同平台上收集真实独立运行记录，再用失败案例指导长 skill 的精简。
+截至 2026-09-24，**20/20 个场景尚未完成可评分的真实 Agent 运行**。当日六场景对照尝试因目标 CLI 首个正式场景两次超时而停止；详见 `evals/results/2026-09-24-six-scenario-attempt/README.md`。不要把自动化测试通过、技能安装成功或本文件中的示例记录写成行为评测通过。下一轮应在不同平台上收集真实独立运行记录，再用失败案例指导长 skill 的精简。

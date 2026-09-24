@@ -1,0 +1,3 @@
+可以使用 `super-pm:pm-brainstorm` 技能。
+
+文件路径：`/Users/konglong/GolandProjects/superPM/tmp/superpm-eval-20260924/skill-probe/.agents/skills/pm-brainstorm/SKILL.md`
