@@ -66,3 +66,14 @@ test('priority skill does not assign numbers to unnamed A B C requirements', () 
   assert.match(priority, /A.?B.?C.*(?:占位|代号)/);
   assert.match(priority, /(?:Reach|覆盖人数).*(?:Effort|工作量)/);
 });
+
+
+test('discussion routing distinguishes positioning from new-product brainstorming', () => {
+  const scenarios = JSON.parse(read('evals/scenarios.json'));
+  const positioning = scenarios.find(item => item.id === 'discussion-only');
+  const brainstorming = scenarios.find(item => item.id === 'brainstorm-discussion-only');
+  assert.equal(positioning.expectedRoute, 'pm-position');
+  assert.match(positioning.prompt, /已有产品/);
+  assert.equal(brainstorming.expectedRoute, 'pm-brainstorm');
+  assert.match(brainstorming.prompt, /还没有确定/);
+});

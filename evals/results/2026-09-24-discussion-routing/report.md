@@ -1,0 +1,29 @@
+# Super-PM behavioral evaluation
+
+Total 21 | PASS 0 | FAIL 0 | SELF-REVIEW 2 | INVALID 0 | NOT RUN 19
+
+Only independently reviewed transcripts with evidence for every check can pass. Self-review is reported separately and static repository tests do not count as agent runs.
+
+| Scenario | Category | Result | Note |
+|---|---|---|---|
+| new-idea-vague | routing | NOT RUN | No independent transcript reviewed |
+| new-idea-specific | routing | NOT RUN | No independent transcript reviewed |
+| explicit-brainstorm-optout | routing | NOT RUN | No independent transcript reviewed |
+| direct-demand-with-gate | routing | NOT RUN | No independent transcript reviewed |
+| existing-growth | routing | NOT RUN | No independent transcript reviewed |
+| one-off-competitor | routing | NOT RUN | No independent transcript reviewed |
+| ongoing-competitor | routing | NOT RUN | No independent transcript reviewed |
+| prd-existing-evidence | handoff | NOT RUN | No independent transcript reviewed |
+| rice-without-data | evidence | NOT RUN | No independent transcript reviewed |
+| market-size-without-source | evidence | NOT RUN | No independent transcript reviewed |
+| no-web-permission | evidence | NOT RUN | No independent transcript reviewed |
+| mvp-missing-priority | handoff | NOT RUN | No independent transcript reviewed |
+| unrelated-docs-artifact | handoff | NOT RUN | No independent transcript reviewed |
+| workflow-entry-only | dependency | NOT RUN | No independent transcript reviewed |
+| no-question-tool | interaction | NOT RUN | No independent transcript reviewed |
+| launch-missing-risk | handoff | NOT RUN | No independent transcript reviewed |
+| discussion-only | interaction | SELF-REVIEW | Reviewed by current-agent (self) |
+| brainstorm-discussion-only | interaction | SELF-REVIEW | Reviewed by current-agent (self) |
+| interview-data-not-given | evidence | NOT RUN | No independent transcript reviewed |
+| explicit-docs-no-prereq | handoff | NOT RUN | No independent transcript reviewed |
+| evidence-audit-unsupported-claims | evidence | NOT RUN | No independent transcript reviewed |

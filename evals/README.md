@@ -25,4 +25,4 @@ node scripts/eval-report.cjs --runs <绝对路径/runs.jsonl> --strict
 
 ## 本轮状态
 
-截至 2026-09-24，六个场景已完成有/无 skill 的真实隔离对照（原始记录见 `evals/results/2026-09-24-six-scenario-baseline/`）；两个失败场景经修复做了定向回归（见 `evals/results/2026-09-24-six-scenario-post-fix/`）。当前 Agent 自评的合并结果是 **5 个 SELF-REVIEW、1 个 FAIL、14 个 NOT RUN、0 个独立 PASS**。较早一次 120 秒超时的中止记录保留在 `evals/results/2026-09-24-six-scenario-attempt/`。不要把自动化测试、自评或技能安装成功说成独立行为验收通过；下一步需独立审阅与处理有歧义的 `discussion-only` 路由场景。
+截至 2026-09-24，六个场景已完成有/无 skill 的真实隔离对照（原始记录见 `evals/results/2026-09-24-six-scenario-baseline/`）；两个失败场景经修复做了定向回归（见 `evals/results/2026-09-24-six-scenario-post-fix/`）。当前 Agent 自评的合并结果是 **5 个 SELF-REVIEW、1 个 FAIL、14 个 NOT RUN、0 个独立 PASS**。较早一次 120 秒超时的中止记录保留在 `evals/results/2026-09-24-six-scenario-attempt/`。不要把自动化测试、自评或技能安装成功说成独立行为验收通过；下一步需独立审阅；`discussion-only` 的定位讨论与新增 `brainstorm-discussion-only` 已拆成两个无歧义场景，回归记录见 `evals/results/2026-09-24-discussion-routing/`。

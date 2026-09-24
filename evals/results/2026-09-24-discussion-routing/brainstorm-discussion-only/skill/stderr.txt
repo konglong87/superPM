@@ -1,0 +1,4 @@
+Reading additional input from stdin...
+2026-09-24T14:31:18.210874Z ERROR codex_skills_extension::host_service: failed to install system skills: io error while remove existing system skills dir: Directory not empty (os error 66)
+2026-09-24T14:31:18.259658Z  WARN codex_models_manager::model_info: Unknown model gpt-5.6-luna is used. This will use fallback model metadata.
+2026-09-24T14:31:29.864623Z ERROR codex_core::tools::router: error=exec_command failed: CreateProcess { message: "Rejected(\"Failed to create unified exec process: No such file or directory (os error 2)\")" }

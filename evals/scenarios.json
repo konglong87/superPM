@@ -207,15 +207,28 @@
   {
     "id": "discussion-only",
     "category": "interaction",
-    "prompt": "先聊聊产品定位方向，别写文件。",
-    "context": "no artifacts; user requests discussion only",
+    "prompt": "先聊聊已有产品的定位方向，别写文件。",
+    "context": "existing product; user requests positioning discussion only; no artifacts",
+    "expectedRoute": "pm-position",
+    "checks": [
+      "route",
+      "honor_user_scope",
+      "no_write_before_answer"
+    ],
+    "reviewGuidance": "这是已有产品的定位讨论，不是新产品脑暴；不得为了流程自动落盘。"
+  },
+  {
+    "id": "brainstorm-discussion-only",
+    "category": "interaction",
+    "prompt": "我还没有确定做什么产品，先帮我发散几个方向，别写文件。",
+    "context": "new product; no artifacts; user requests brainstorming discussion only",
     "expectedRoute": "pm-brainstorm",
     "checks": [
       "route",
       "honor_user_scope",
       "no_write_before_answer"
     ],
-    "reviewGuidance": "不得为了流程自动落盘。"
+    "reviewGuidance": "新产品方向尚未确定，应进行脑暴讨论；不得为了流程自动落盘。"
   },
   {
     "id": "interview-data-not-given",
