@@ -15,6 +15,8 @@
 | `/analyze-growth` | AARRR → 报告 → 增长 → 迭代 | 适用于已上线产品 |
 | `/define-strategy` | 定位 → 商业模式 → OKR → 路线图 | 需要战略目标与约束 |
 
+单独安装入口不会自动安装链内技能；入口在执行前检查依赖，缺失则停止并给出完整 `npx skills add ... --skill` 命令。
+
 六个入口同时位于 `skills/workflows/`（跨平台 skill 发现）与 `commands/`（完整插件命令），后者以相对符号链接指向前者，不维护两套正文。排序和交接规则见 [`_shared/workflow-contract.md`](./_shared/workflow-contract.md)。
 
 ## 01 需求洞察模块（11个）

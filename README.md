@@ -60,6 +60,16 @@ npx skills add https://github.com/konglong87/superPM
 
 > 💡 支持 Claude Code、Cursor、Codex、OpenCode 等主流 AI 编程工具，通过 `--agent` 指定目标平台。
 
+> ⚠️ **单装工作流入口不等于装齐依赖。** 例如 `/validate-idea` 会调用需求、市场、优先级、MVP 等技能。完整安装见上方「全部技能」命令；只想安装这条链时使用：
+>
+> ```bash
+> npx skills add https://github.com/konglong87/superPM --skill validate-idea pm-demand pm-market pm-priority pm-mvp pm-brainstorm
+> ```
+>
+> 执行前，入口会检查所需技能；缺失时停止并提示安装，不会伪造已完成的环节。新产品默认需要头脑风暴；相关产物已存在或用户明确跳过时不调用。
+
+
+
 ---
 
 ### 🔧 手动安装（各平台）

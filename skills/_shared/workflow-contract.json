@@ -2,14 +2,50 @@
   "version": 1,
   "ideaGate": {
     "newIdea": "pm-brainstorm",
-    "bypassWhen": "The user explicitly asks to skip brainstorming, or a relevant brainstorm artifact already exists. Never infer a bypass solely from apparent clarity."
+    "bypassWhen": "The user explicitly asks to skip brainstorming, or a relevant brainstorm artifact already exists. Never infer a bypass solely from apparent clarity.",
+    "appliesTo": [
+      "discover",
+      "validate-idea",
+      "write-prd"
+    ]
   },
   "commands": {
-    "analyze-growth": ["pm-aarrr", "pm-report", "pm-growth", "pm-iteration"],
-    "define-strategy": ["pm-position", "pm-business-model", "pm-okr", "pm-roadmap"],
-    "discover": ["pm-market", "pm-competitor", "pm-demand", "pm-priority"],
-    "plan-launch": ["pm-risk", "pm-cross", "pm-agile", "pm-release"],
-    "validate-idea": ["pm-demand", "pm-market", "pm-priority", "pm-mvp"],
-    "write-prd": ["pm-demand", "pm-clarify", "pm-priority", "pm-mvp", "pm-docs"]
+    "analyze-growth": [
+      "pm-aarrr",
+      "pm-report",
+      "pm-growth",
+      "pm-iteration"
+    ],
+    "define-strategy": [
+      "pm-position",
+      "pm-business-model",
+      "pm-okr",
+      "pm-roadmap"
+    ],
+    "discover": [
+      "pm-market",
+      "pm-competitor",
+      "pm-demand",
+      "pm-priority"
+    ],
+    "plan-launch": [
+      "pm-risk",
+      "pm-cross",
+      "pm-agile",
+      "pm-release"
+    ],
+    "validate-idea": [
+      "pm-demand",
+      "pm-market",
+      "pm-priority",
+      "pm-mvp"
+    ],
+    "write-prd": [
+      "pm-demand",
+      "pm-clarify",
+      "pm-priority",
+      "pm-mvp",
+      "pm-docs"
+    ]
   }
 }

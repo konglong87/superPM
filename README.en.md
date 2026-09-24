@@ -54,6 +54,14 @@ npx skills add https://github.com/konglong87/superPM
 | `npx skills add https://github.com/konglong87/superPM -g` | Global install |
 | `npx skills add https://github.com/konglong87/superPM --agent claude-code cursor` | Platform-specific install |
 
+**Workflow dependencies:** Installing only `validate-idea` does not install the skills it invokes. To install that full chain:
+
+```bash
+npx skills add https://github.com/konglong87/superPM --skill validate-idea pm-demand pm-market pm-priority pm-mvp pm-brainstorm
+```
+
+The entry checks for missing skills and stops with an installation hint; it never claims skipped steps were completed. A relevant existing brainstorm artifact or explicit opt-out can bypass the new-idea gate.
+
 ### Claude Code (Recommended ⭐ — Marketplace)
 
 ```

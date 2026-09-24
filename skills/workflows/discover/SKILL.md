@@ -12,6 +12,23 @@ allowed-tools:
   - Bash
 ---
 
+<!-- workflow-deps:start -->
+## 安装依赖预检（执行工作流之前）
+
+本工作流入口 **discover** 只负责编排；单独安装它**不会**自动安装所调用的技能。
+必需技能：`pm-market`、`pm-competitor`、`pm-demand`、`pm-priority`。
+新产品额外需要 `pm-brainstorm`；仅在已有相关头脑风暴产物或用户明确跳过时可不调用它。
+
+先用当前平台的技能列表检查必需技能是否可用。**若缺少依赖，停止工作流**，不要假装已执行；告知用户缺少的技能并给出安装方式。不要擅自安装或跳过。
+完整安装命令（只装本入口并不够）：
+
+```bash
+npx skills add https://github.com/konglong87/superPM --skill discover pm-market pm-competitor pm-demand pm-priority pm-brainstorm
+```
+
+没有 Node.js/npm 时，可按仓库 README 手动安装完整技能包；安装后重新检查技能列表，再继续流程。
+<!-- workflow-deps:end -->
+
 ## Workflow contract
 
 When the full pack is installed, also consult `skills/_shared/workflow-contract.md`; standalone installation follows the complete steps below. For a new product idea, run `/pm-brainstorm` before this chain unless a relevant artifact exists or the user explicitly opted out. This optional pre-step satisfies `/pm-demand`'s gate later in the chain. Existing-product discovery need not brainstorm. Reuse relevant artifacts after confirmation; report only outputs actually created.
