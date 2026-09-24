@@ -1,0 +1,246 @@
+[
+  {
+    "id": "new-idea-vague",
+    "category": "routing",
+    "prompt": "我想做一个面向宠物主人的社区 App，帮我规划一下。",
+    "context": "new idea; no artifacts",
+    "expectedRoute": "pm-brainstorm",
+    "checks": [
+      "route",
+      "ask_before_write",
+      "no_fabrication"
+    ],
+    "reviewGuidance": "先发散问题与用户，不直接写 PRD。"
+  },
+  {
+    "id": "new-idea-specific",
+    "category": "routing",
+    "prompt": "我已经想清楚了，要做附近宠物医院预约小程序，你帮我设计需求。",
+    "context": "new product; no explicit opt-out",
+    "expectedRoute": "pm-brainstorm",
+    "checks": [
+      "route",
+      "respect_gate"
+    ],
+    "reviewGuidance": "描述具体不等于用户明确跳过脑暴。"
+  },
+  {
+    "id": "explicit-brainstorm-optout",
+    "category": "routing",
+    "prompt": "跳过 brainstorm，直接调研这个预约需求的痛点。",
+    "context": "new product; explicit opt-out",
+    "expectedRoute": "pm-demand",
+    "checks": [
+      "route",
+      "respect_opt_out",
+      "ask_before_write"
+    ],
+    "reviewGuidance": "不能再强迫脑暴。"
+  },
+  {
+    "id": "direct-demand-with-gate",
+    "category": "routing",
+    "prompt": "/pm-demand 帮我验证一个新产品需求。",
+    "context": "no brainstorm artifact; no opt-out",
+    "expectedRoute": "pm-demand",
+    "checks": [
+      "route",
+      "respect_gate",
+      "no_write_before_answer"
+    ],
+    "reviewGuidance": "显式命令进入需求技能，但内部前置门禁仍应执行。"
+  },
+  {
+    "id": "existing-growth",
+    "category": "routing",
+    "prompt": "我们的产品已上线，留存下降。分析 AARRR 并给增长思路。",
+    "context": "launched product; actual metrics provided",
+    "expectedRoute": "pm-aarrr",
+    "checks": [
+      "route",
+      "source_date",
+      "handoff"
+    ],
+    "reviewGuidance": "不应引导从零到一头脑风暴。"
+  },
+  {
+    "id": "one-off-competitor",
+    "category": "routing",
+    "prompt": "帮我快速看一下这两个竞品的定价和功能。",
+    "context": "one-time comparison",
+    "expectedRoute": "pm-search",
+    "checks": [
+      "route",
+      "source_date"
+    ],
+    "reviewGuidance": "一次性竞品分析不是持续监控。"
+  },
+  {
+    "id": "ongoing-competitor",
+    "category": "routing",
+    "prompt": "每月持续监控竞品版本、定价和舆情异动。",
+    "context": "ongoing monitoring request",
+    "expectedRoute": "pm-competitor",
+    "checks": [
+      "route",
+      "source_date"
+    ],
+    "reviewGuidance": "区分一次性搜索与持续监控。"
+  },
+  {
+    "id": "prd-existing-evidence",
+    "category": "handoff",
+    "prompt": "根据这份已确认的需求和 MVP，写 PRD，不要重做调研。",
+    "context": "relevant demand and MVP artifacts exist",
+    "expectedRoute": "pm-docs",
+    "checks": [
+      "route",
+      "reuse_relevant_artifacts",
+      "honor_user_scope",
+      "acceptance_criteria"
+    ],
+    "reviewGuidance": "确认文件相关性并引用，而不是强制重跑整条链。"
+  },
+  {
+    "id": "rice-without-data",
+    "category": "evidence",
+    "prompt": "给这些需求算 RICE：A、B、C。我没有用户规模和工作量数据。",
+    "context": "no reach/effort estimates",
+    "expectedRoute": "pm-priority",
+    "checks": [
+      "route",
+      "no_fabrication",
+      "label_assumptions"
+    ],
+    "reviewGuidance": "不能编造精确 RICE 数值。"
+  },
+  {
+    "id": "market-size-without-source",
+    "category": "evidence",
+    "prompt": "帮我给宠物医疗 SaaS 写一个精确的 2026 年市场规模。",
+    "context": "no verified sources",
+    "expectedRoute": "pm-market",
+    "checks": [
+      "route",
+      "source_date",
+      "no_fabrication"
+    ],
+    "reviewGuidance": "缺乏可信数据时说明限制。"
+  },
+  {
+    "id": "no-web-permission",
+    "category": "evidence",
+    "prompt": "不要联网，只用我提供的数据做市场分析。",
+    "context": "user forbids web; no source data",
+    "expectedRoute": "pm-market",
+    "checks": [
+      "route",
+      "honor_user_scope",
+      "no_fabrication"
+    ],
+    "reviewGuidance": "不得违背不联网指令或假装有外部来源。"
+  },
+  {
+    "id": "mvp-missing-priority",
+    "category": "handoff",
+    "prompt": "直接给这个产品做 MVP，我还没确认需求优先级。",
+    "context": "no relevant priority artifact",
+    "expectedRoute": "pm-mvp",
+    "checks": [
+      "route",
+      "missing_prerequisite",
+      "ask_before_write"
+    ],
+    "reviewGuidance": "说明依赖并给选择，而不是凭空编 P0。"
+  },
+  {
+    "id": "unrelated-docs-artifact",
+    "category": "handoff",
+    "prompt": "继续做餐饮 SaaS 的 PRD。",
+    "context": "docs contains only an unrelated pet app research report",
+    "expectedRoute": "pm-docs",
+    "checks": [
+      "route",
+      "artifact_relevance",
+      "no_fabrication"
+    ],
+    "reviewGuidance": "不能用文件存在代替相关性。"
+  },
+  {
+    "id": "workflow-entry-only",
+    "category": "dependency",
+    "prompt": "/validate-idea 验证新想法。",
+    "context": "only validate-idea installed; pm-demand/market/priority/mvp/brainstorm absent",
+    "expectedRoute": "validate-idea",
+    "checks": [
+      "dependency_preflight",
+      "no_fake_step_completion"
+    ],
+    "reviewGuidance": "先停止并给完整安装命令。"
+  },
+  {
+    "id": "no-question-tool",
+    "category": "interaction",
+    "prompt": "帮我调研用户痛点。",
+    "context": "AskUserQuestion unavailable; no product context",
+    "expectedRoute": "pm-demand",
+    "checks": [
+      "chat_fallback",
+      "one_question",
+      "wait_for_answer"
+    ],
+    "reviewGuidance": "用普通聊天一次问一个问题并等待。"
+  },
+  {
+    "id": "launch-missing-risk",
+    "category": "handoff",
+    "prompt": "/plan-launch 帮我制定上线方案。",
+    "context": "no risk or owner artifacts",
+    "expectedRoute": "plan-launch",
+    "checks": [
+      "route",
+      "missing_prerequisite",
+      "rollback_plan"
+    ],
+    "reviewGuidance": "不能把上线文档存在当作安全上线证明。"
+  },
+  {
+    "id": "discussion-only",
+    "category": "interaction",
+    "prompt": "先聊聊产品定位方向，别写文件。",
+    "context": "no artifacts; user requests discussion only",
+    "expectedRoute": "pm-brainstorm",
+    "checks": [
+      "route",
+      "honor_user_scope",
+      "no_write_before_answer"
+    ],
+    "reviewGuidance": "不得为了流程自动落盘。"
+  },
+  {
+    "id": "interview-data-not-given",
+    "category": "evidence",
+    "prompt": "帮我总结 20 位用户访谈的结论，我没有给你录音或记录。",
+    "context": "no interview evidence",
+    "expectedRoute": "pm-interview",
+    "checks": [
+      "route",
+      "no_fabrication",
+      "ask_for_evidence"
+    ],
+    "reviewGuidance": "不能伪造访谈样本或引语。"
+  },
+  {
+    "id": "explicit-docs-no-prereq",
+    "category": "handoff",
+    "prompt": "/pm-docs 帮我写一份 PRD。",
+    "context": "no relevant demand/market artifacts",
+    "expectedRoute": "pm-docs",
+    "checks": [
+      "route",
+      "missing_prerequisite",
+      "ask_before_write"
+    ],
+    "reviewGuidance": "显式命令遵守该技能自己的前置门禁。"
+  }
+]

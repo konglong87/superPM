@@ -60,6 +60,7 @@
   "scripts": {
     "test": "node --test tests/*.test.cjs",
     "sync:workflow-deps": "node scripts/sync-workflow-deps.cjs --write",
-    "sync:skill-index": "node scripts/sync-skill-index.cjs --write"
+    "sync:skill-index": "node scripts/sync-skill-index.cjs --write",
+    "eval:report": "node scripts/eval-report.cjs"
   }
 }

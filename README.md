@@ -345,6 +345,15 @@ web_search: true
 
 ---
 
+## 🧪 验证与行为评测
+
+```bash
+npm test                                # 安装结构、依赖闭包、预览和脚本回归
+npm run eval:report                     # 19 个 Agent 场景；未运行时如实显示 NOT RUN
+```
+
+自动化通过不等于真实 Agent 对话通过。场景、审阅格式和截图/产物验收方式见 [`evals/README.md`](./evals/README.md)。评测时请保存独立会话及产物，再由另一名审阅者逐项判定。
+
 ## ❓ 常见问题（FAQ）
 
 ### super-pm 和 superpowers 有什么区别？

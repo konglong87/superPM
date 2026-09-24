@@ -157,6 +157,10 @@ Or step by step:
 
 ---
 
+## Verification
+
+Run `npm test` for installation, workflow-dependency, preview, and script checks. `npm run eval:report` reports the 19 behavioral scenarios as **NOT RUN** until independently reviewed agent transcripts are supplied. See [`evals/README.md`](./evals/README.md); static tests do not certify model behavior.
+
 ## 📊 Skill Catalog (49 skills + 6 workflows)
 
 ### Demand Insight (11 skills)
