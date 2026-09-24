@@ -57,7 +57,7 @@ bash skills/pm-preview/scripts/start-preview.sh --project-dir .
 
 **说明**：
 - 服务器在随机高端口启动（49152-65535）
-- 使用 `--project-dir .` 将 session 持久化到 `.superpm/preview/`，服务器停止后文件保留
+- 使用 `--project-dir .` 将 session 持久化到 `.superpm/preview/`，服务器停止后文件保留；验收完毕后应删除不再需要的 session
 - 后台运行，不阻塞终端
 
 **输出示例**：
@@ -120,7 +120,7 @@ bash skills/pm-preview/scripts/stop-preview.sh .superpm/preview/{session_id}
 
 1. **首次使用**：确保 `docs/` 目录下有至少一个 .md 文件
 2. **浏览器兼容**：需要支持 WebSocket 的现代浏览器（Chrome/Firefox/Safari/Edge）
-3. **网络要求**：Markdown 渲染使用 marked.js CDN，首次加载需要联网
+3. **网络要求**：Markdown 渲染和 HTML 清理库随 skill 本地提供，预览不依赖 CDN；需要本地 Node.js
 4. **端口冲突**：如果随机端口被占用，服务器会自动使用其他端口
 5. **多会话**：每次启动创建独立 session，可同时运行多个预览实例
 

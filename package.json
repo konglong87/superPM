@@ -1,7 +1,7 @@
 {
   "name": "super-pm",
   "version": "2.6.2",
-  "description": "Product Manager Skills Pack for Claude Code - Full lifecycle support from demand to delivery",
+  "description": "Product Manager Skills Pack for Claude Code, Cursor, Codex and OpenCode",
   "license": "MIT",
   "keywords": [
     "claude-code",
@@ -36,10 +36,27 @@
   },
   "commands": {
     "total": 6,
-    "list": ["discover", "write-prd", "plan-launch", "analyze-growth", "define-strategy", "validate-idea"]
+    "list": [
+      "discover",
+      "write-prd",
+      "plan-launch",
+      "analyze-growth",
+      "define-strategy",
+      "validate-idea"
+    ]
   },
   "plugins": {
     "total": 6,
-    "list": ["pm-demand-insight", "pm-solution-design", "pm-growth-iteration", "pm-risk-management", "pm-product-strategy", "pm-career"]
+    "list": [
+      "pm-demand-insight",
+      "pm-solution-design",
+      "pm-growth-iteration",
+      "pm-risk-management",
+      "pm-product-strategy",
+      "pm-career"
+    ]
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.cjs"
   }
 }

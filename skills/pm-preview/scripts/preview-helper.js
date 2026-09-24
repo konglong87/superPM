@@ -5,19 +5,6 @@
   let currentDoc = null;
   let docTree = [];
 
-  // Load marked.js from CDN for Markdown rendering
-  function loadMarked(callback) {
-    if (typeof marked !== 'undefined') { callback(); return; }
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
-    script.onload = callback;
-    script.onerror = () => {
-      document.getElementById('content-area').innerHTML =
-        '<div class="welcome"><h2>Failed to load Markdown renderer</h2><p>Please check your network connection.</p></div>';
-    };
-    document.head.appendChild(script);
-  }
-
   // ========== WebSocket ==========
 
   function connect() {
@@ -141,12 +128,6 @@
       const doc = await resp.json();
 
       // Render Markdown
-      if (typeof marked === 'undefined') {
-        // Retry: marked might not be loaded yet
-        loadMarked(() => renderDoc(doc, scrollToTop));
-        return;
-      }
-
       renderDoc(doc, scrollToTop);
     } catch (e) {
       document.getElementById('content-area').innerHTML =
@@ -164,7 +145,12 @@
 
     // Render content
     const area = document.getElementById('content-area');
-    const html = marked.parse(doc.content);
+    // Fail closed if either local renderer is unavailable; never inject unsanitized HTML.
+    if (typeof marked === 'undefined' || typeof DOMPurify === 'undefined') {
+      area.textContent = doc.content;
+      return;
+    }
+    const html = DOMPurify.sanitize(marked.parse(doc.content));
     area.innerHTML = '<div class="rendered-markdown">' + html + '</div>';
 
     if (scrollToTop) {
@@ -196,9 +182,6 @@
     renderDocTree(docTree);
     updateDocCount(docTree);
   }
-
-  // Load marked.js for Markdown rendering
-  loadMarked(() => { /* ready */ });
 
   connect();
 })();

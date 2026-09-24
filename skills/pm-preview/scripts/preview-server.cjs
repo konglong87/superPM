@@ -82,9 +82,8 @@ const STATE_DIR = path.join(SESSION_DIR, 'state');
 let ownerPid = process.env.PREVIEW_OWNER_PID ? Number(process.env.PREVIEW_OWNER_PID) : null;
 
 const MIME_TYPES = {
-  '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
-  '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.svg': 'image/svg+xml'
+  '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
+  '.gif': 'image/gif', '.webp': 'image/webp', '.svg': 'image/svg+xml'
 };
 
 // ========== Templates and Constants ==========
@@ -101,6 +100,20 @@ h1 { color: #333; } p { color: #666; }</style>
 const frameTemplate = fs.readFileSync(path.join(__dirname, 'preview-frame.html'), 'utf-8');
 const helperScript = fs.readFileSync(path.join(__dirname, 'preview-helper.js'), 'utf-8');
 const helperInjection = '<script>\n' + helperScript + '\n</script>';
+const VENDOR_FILES = {
+  '/vendor/marked.umd.js': 'marked.umd.js',
+  '/vendor/purify.min.js': 'purify.min.js'
+};
+
+function resolveDocsFile(relativePath) {
+  const root = fs.realpathSync(DOCS_DIR);
+  const candidate = fs.realpathSync(path.resolve(root, relativePath));
+  const relative = path.relative(root, candidate);
+  if (!relative || relative === '..' || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
+    return null;
+  }
+  return candidate;
+}
 
 // ========== Document Scanning ==========
 
@@ -149,7 +162,7 @@ function handleRequest(req, res) {
   if (req.method === 'GET' && req.url === '/') {
     // Serve the frame with embedded doc tree
     const docTree = scanDocs(DOCS_DIR);
-    const treeJson = JSON.stringify(docTree);
+    const treeJson = JSON.stringify(docTree).replace(/</g, '\\u003c');
     let html = frameTemplate.replace('<!-- DOC_TREE -->', treeJson);
 
     if (html.includes('</body>')) {
@@ -175,15 +188,21 @@ function handleRequest(req, res) {
       return;
     }
 
-    const fullPath = path.join(DOCS_DIR, path.normalize(docPath));
-    // Security: ensure path is within DOCS_DIR
-    if (!fullPath.startsWith(DOCS_DIR)) {
+    let fullPath;
+    try {
+      fullPath = resolveDocsFile(docPath);
+    } catch (e) {
+      if (e.code !== 'ENOENT' && e.code !== 'ENOTDIR') throw e;
+      res.writeHead(404);
+      res.end(JSON.stringify({ error: 'Not found' }));
+      return;
+    }
+    if (!fullPath) {
       res.writeHead(403);
       res.end(JSON.stringify({ error: 'Forbidden' }));
       return;
     }
-
-    if (!fs.existsSync(fullPath) || !fullPath.endsWith('.md')) {
+    if (!fullPath.endsWith('.md') || !fs.statSync(fullPath).isFile()) {
       res.writeHead(404);
       res.end(JSON.stringify({ error: 'Not found' }));
       return;
@@ -206,17 +225,34 @@ function handleRequest(req, res) {
     }
   } else if (req.method === 'GET' && req.url.startsWith('/files/')) {
     // Serve static assets from DOCS_DIR (e.g. images embedded in docs)
-    const fileName = req.url.slice(7);
-    const filePath = path.join(DOCS_DIR, path.basename(fileName));
-    if (!fs.existsSync(filePath)) {
+    let fileName;
+    try {
+      fileName = decodeURIComponent(req.url.slice(7));
+    } catch {
+      res.writeHead(400);
+      res.end('Invalid asset path');
+      return;
+    }
+    let filePath;
+    try {
+      filePath = resolveDocsFile(fileName);
+    } catch (e) {
+      if (e.code !== 'ENOENT' && e.code !== 'ENOTDIR') throw e;
+    }
+    const ext = filePath && path.extname(filePath).toLowerCase();
+    if (!filePath || !MIME_TYPES[ext] || !fs.statSync(filePath).isFile()) {
       res.writeHead(404);
       res.end('Not found');
       return;
     }
-    const ext = path.extname(filePath).toLowerCase();
-    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-    res.writeHead(200, { 'Content-Type': contentType });
+    const headers = { 'Content-Type': MIME_TYPES[ext], 'X-Content-Type-Options': 'nosniff' };
+    if (ext === '.svg') headers['Content-Security-Policy'] = 'sandbox';
+    res.writeHead(200, headers);
     res.end(fs.readFileSync(filePath));
+  } else if (req.method === 'GET' && VENDOR_FILES[req.url]) {
+    const vendorPath = path.join(__dirname, 'vendor', VENDOR_FILES[req.url]);
+    res.writeHead(200, { 'Content-Type': 'application/javascript; charset=utf-8', 'X-Content-Type-Options': 'nosniff' });
+    res.end(fs.readFileSync(vendorPath));
   } else {
     res.writeHead(404);
     res.end('Not found');
