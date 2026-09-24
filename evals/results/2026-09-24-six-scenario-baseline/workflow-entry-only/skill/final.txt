@@ -1,0 +1,22 @@
+当前缺少该工作流所需的依赖技能，无法执行 `/validate-idea`，也不会假装跳过这些步骤。
+
+缺少：
+
+- `pm-demand`
+- `pm-market`
+- `pm-priority`
+- `pm-mvp`
+- 新想法还需要：`pm-brainstorm`
+
+请先安装完整技能包：
+
+```bash
+npx skills add https://github.com/konglong87/superPM \
+  --skill validate-idea pm-demand pm-market pm-priority pm-mvp pm-brainstorm
+```
+
+安装完成后重新执行：
+
+```text
+/validate-idea
+```

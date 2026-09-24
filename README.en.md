@@ -160,7 +160,7 @@ Or step by step:
 
 ## Verification
 
-Run `npm test` for installation, workflow-dependency, preview, and script checks. `npm run eval:report` reports the 20 behavioral scenarios as **NOT RUN** until independently reviewed agent transcripts are supplied. See [`evals/README.md`](./evals/README.md); static tests do not certify model behavior.
+Run `npm test` for installation, workflow-dependency, preview, and script checks. `npm run eval:report` shows **NOT RUN** without a run file. Six isolated with/without-skill scenarios now have raw transcripts and a clearly labeled **self-review**; the post-fix merged view is 5 SELF-REVIEW, 1 FAIL, and 14 NOT RUN, with no independently reviewed PASS. See [`evals/README.md`](./evals/README.md) and the dated results under `evals/results/`; static tests do not certify model behavior.
 
 ## 📊 Skill Catalog (50 skills + 6 workflows)
 

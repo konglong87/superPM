@@ -354,7 +354,7 @@ npm test                                # 安装结构、依赖闭包、预览�
 npm run eval:report                     # 20 个 Agent 场景；未运行时如实显示 NOT RUN
 ```
 
-自动化通过不等于真实 Agent 对话通过。场景、审阅格式和截图/产物验收方式见 [`evals/README.md`](./evals/README.md)。评测时请保存独立会话及产物，再由另一名审阅者逐项判定。
+自动化通过不等于真实 Agent 对话通过。场景、审阅格式和截图/产物验收方式见 [`evals/README.md`](./evals/README.md)。六场景真实隔离对照及修复后定向回归已留原始记录；当前是自评（5 SELF-REVIEW、1 FAIL、14 NOT RUN），不是独立 PASS。评测时请保存独立会话及产物，再由另一名审阅者逐项判定。
 
 ## ❓ 常见问题（FAQ）
 

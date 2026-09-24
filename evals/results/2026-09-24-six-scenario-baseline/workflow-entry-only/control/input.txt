@@ -1,0 +1,1 @@
+/validate-idea 验证新想法。

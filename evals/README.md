@@ -25,4 +25,4 @@ node scripts/eval-report.cjs --runs <绝对路径/runs.jsonl> --strict
 
 ## 本轮状态
 
-截至 2026-09-24，**20/20 个场景尚未完成可评分的真实 Agent 运行**。当日六场景对照尝试因目标 CLI 首个正式场景两次超时而停止；详见 `evals/results/2026-09-24-six-scenario-attempt/README.md`。不要把自动化测试通过、技能安装成功或本文件中的示例记录写成行为评测通过。下一轮应在不同平台上收集真实独立运行记录，再用失败案例指导长 skill 的精简。
+截至 2026-09-24，六个场景已完成有/无 skill 的真实隔离对照（原始记录见 `evals/results/2026-09-24-six-scenario-baseline/`）；两个失败场景经修复做了定向回归（见 `evals/results/2026-09-24-six-scenario-post-fix/`）。当前 Agent 自评的合并结果是 **5 个 SELF-REVIEW、1 个 FAIL、14 个 NOT RUN、0 个独立 PASS**。较早一次 120 秒超时的中止记录保留在 `evals/results/2026-09-24-six-scenario-attempt/`。不要把自动化测试、自评或技能安装成功说成独立行为验收通过；下一步需独立审阅与处理有歧义的 `discussion-only` 路由场景。

@@ -50,3 +50,19 @@ test('README does not claim an unmeasured 80 percent coverage', () => {
   assert.doesNotMatch(read('README.md'), /覆盖 80%/);
   assert.doesNotMatch(read('skills/SKILL.md'), /80% 用户/);
 });
+
+test('specific new product intent is not mistaken for completed brainstorming', () => {
+  const router = read('skills/start-super-pm/SKILL.md');
+  const card = read('skills/start-super-pm/routing-card.md');
+  for (const [name, text] of [['router', router], ['card', card]]) {
+    assert.match(text, /我已经想清楚了/, name);
+    assert.match(text, /pm-brainstorm/, name);
+    assert.match(text, /pm-clarify/, name);
+  }
+});
+
+test('priority skill does not assign numbers to unnamed A B C requirements', () => {
+  const priority = read('skills/01-demand-insight/pm-priority/SKILL.md');
+  assert.match(priority, /A.?B.?C.*(?:占位|代号)/);
+  assert.match(priority, /(?:Reach|覆盖人数).*(?:Effort|工作量)/);
+});
