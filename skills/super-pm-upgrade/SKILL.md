@@ -1,333 +1,56 @@
 ---
 name: super-pm-upgrade
 description: |
-  Use when: 需要检查super-pm更新、升级到新版本、回退到旧版本
-  Do NOT use when: 正常使用skill无需版本管理、首次安装而非升级
+  Use when: 用户要求检查 super-pm 更新、升级完整 Git 安装或回退
+  Do NOT use when: 正在执行普通 PM 任务、仅需安装健康检查或用户没有要求升级
 allowed-tools:
   - Read
-  - Write
   - Bash
   - AskUserQuestion
 ---
 
-## Preamble (run first)
+# 安全升级 super-pm
+
+**绝不在用户的业务项目仓库中运行升级用 Git 命令。** 从已加载的本 SKILL.md 找到同目录的 `scripts/package-root.sh`，执行它获取技能包 Git 根目录。此脚本使用自身真实位置定位，不依赖当前工作目录。
 
 ```bash
-bash "$(dirname "${BASH_SOURCE[0]}")/../check-update.sh" 2>/dev/null || true
-# 检测当前版本
-if [ -f "VERSION" ]; then
-  CURRENT_VERSION=$(cat VERSION)
-  echo "📦 当前版本: $CURRENT_VERSION"
-else
-  echo "⚠️  未找到VERSION文件"
-  CURRENT_VERSION="unknown"
-fi
-
-# 检测Git仓库
-if [ -d ".git" ]; then
-  echo "✅ Git仓库检测成功"
-else
-  echo "❌ 未检测到Git仓库，无法升级"
-  exit 1
-fi
+PACK_ROOT="$(bash "<当前 super-pm-upgrade skill 的绝对目录>/scripts/package-root.sh")" || exit 2
+printf 'super-pm package: %s\n' "$PACK_ROOT"
 ```
 
----
+如果该命令失败，当前为复制安装或非 Git 安装；**停止 Git 升级流程**，根据安装方式使用 `npx skills update` 或平台自己的更新机制。不要退回 `git pull` 用户当前项目。
 
-## 跨 Agent 交互规则
+## 检查（只读，网络 fetch 除外）
 
-当流程要求与用户交互时：
-
-1. 如果当前环境支持 AskUserQuestion，使用 AskUserQuestion（最佳体验）。
-2. 如果当前环境不支持 AskUserQuestion，必须用普通聊天消息提出同样问题。
-3. 一次只问一个问题。
-4. 提问后必须停止当前回合，等待用户回答（STOP and WAIT）。
-5. 不得在用户回答前生成文档、写入 docs。
-6. 已有 docs 文件不能替代本轮用户回答。
-
----
-
-## 执行流程
-
-### 步骤 1: 检测当前版本
-
-使用 Read 工具读取 `VERSION` 文件。
-
-记录当前版本到变量 `CURRENT_VERSION`
-
----
-
-### 步骤 2: 查询最新版本
-
-使用 Bash 工具执行：
+每次调用 Bash 工具时重新设置绝对的 `PACK_ROOT`，或显式将命令的工作目录设为该包。以下所有 `git` 命令必须带 `-C "$PACK_ROOT"`：
 
 ```bash
-# 获取远程仓库最新版本标签
-git fetch --tags
-
-# 获取最新标签
-LATEST_TAG=$(git tag --sort=-v:refname | head -n 1)
-
-echo "🏷️  最新版本: $LATEST_TAG"
+PACK_ROOT="$(bash "<当前 skill 绝对目录>/scripts/package-root.sh")" || exit 2
+git -C "$PACK_ROOT" status --short
+git -C "$PACK_ROOT" branch --show-current
+cat "$PACK_ROOT/VERSION"
+git -C "$PACK_ROOT" fetch origin main --tags
+git -C "$PACK_ROOT" log -1 --oneline HEAD
+git -C "$PACK_ROOT" log -1 --oneline origin/main
 ```
 
-记录最新版本到变量 `LATEST_VERSION`
+比较当前 HEAD 与 `origin/main`。有未提交改动、非快进、未处在预期分支或远程不可用时停止并说明，不自动 stash、重置、切换分支或覆盖文件。用户仅要求“检查”时到此为止。
 
----
+## 执行升级（需要用户明确确认）
 
-### 步骤 3: 对比版本
-
-AI 对比 `CURRENT_VERSION` 和 `LATEST_VERSION`：
-
-**如果当前版本 = 最新版本**：
-
-> ✅ 您已在最新版本！
->
-> 当前版本: {CURRENT_VERSION}
-> 最新版本: {LATEST_VERSION}
->
-> 无需升级。
-
-结束流程。
-
----
-
-**如果当前版本 < 最新版本**：
-
-> 🎉 发现新版本！
->
-> 当前版本: {CURRENT_VERSION}
-> 最新版本: {LATEST_VERSION}
->
-> 是否查看更新日志？
-
-用户选择后，继续。
-
----
-
-### 步骤 4: 查看更新日志
-
-使用 Bash 工具：
+告知用户目标提交、当前版本和影响后确认。确认前不运行以下命令：
 
 ```bash
-# 查看最新版本的更新日志
-git log --pretty=format:"- %s" $CURRENT_VERSION..$LATEST_TAG
+PACK_ROOT="$(bash "<当前 skill 绝对目录>/scripts/package-root.sh")" || exit 2
+OLD_COMMIT="$(git -C "$PACK_ROOT" rev-parse HEAD)"
+test -z "$(git -C "$PACK_ROOT" status --porcelain)" || exit 1
+git -C "$PACK_ROOT" merge --ff-only origin/main || exit 1
+printf 'previous=%s\ncurrent=%s\n' "$OLD_COMMIT" "$(git -C "$PACK_ROOT" rev-parse HEAD)"
+cat "$PACK_ROOT/VERSION"
 ```
 
-显示更新内容：
+只用快进合并，不创建新分支或 worktree。验证版本与实际技能清单，再报告升级结果；没有验证时不能说成功。记录 `OLD_COMMIT` 以便用户决定是否回退，但**不自动回退**。回退需要再次确认，并确保技能包工作区干净；不得改动业务项目。
 
-> 📋 更新日志 ({LATEST_VERSION})：
->
-> {更新内容}
+## 交互与兜底
 
-询问用户：
-
-> 是否升级到 {LATEST_VERSION}？
->
-> A) 是的，立即升级（推荐）
-> B) 查看完整变更日志后再决定
-> C) 暂不升级
-
----
-
-### 步骤 5: 执行升级
-
-如果用户选择升级：
-
-#### 5.1 备份当前版本
-
-使用 Bash 工具：
-
-```bash
-# 创建备份分支
-BACKUP_BRANCH="backup/$(date +%Y%m%d_%H%M%S)"
-git checkout -b $BACKUP_BRANCH
-
-echo "✅ 已创建备份分支: $BACKUP_BRANCH"
-```
-
----
-
-#### 5.2 切换到最新版本
-
-```bash
-# 切换到最新标签
-git checkout $LATEST_TAG
-
-# 验证VERSION文件
-NEW_VERSION=$(cat VERSION)
-echo "✅ 已切换到版本: $NEW_VERSION"
-```
-
----
-
-#### 5.3 验证升级
-
-使用 Read 工具验证 `VERSION` 文件内容。
-
-确认版本号已更新。
-
----
-
-### 步骤 6: 输出完成提示
-
-> ✅ 升级成功！
->
-> 原版本: {CURRENT_VERSION}
-> 新版本: {LATEST_VERSION}
->
-> 备份分支: {BACKUP_BRANCH}
->
-> 如需回退，执行：
-> ```bash
-> git checkout {BACKUP_BRANCH}
-> ```
-
----
-
-## 回退流程
-
-### 步骤 1: 查看备份分支
-
-如果用户需要回退：
-
-使用 Bash 工具：
-
-```bash
-# 列出所有备份分支
-git branch | grep "backup/"
-```
-
-显示备份分支列表：
-
-> 📂 可回退的版本：
->
-> A) backup/20260325_154500 (v1.0.0)
-> B) backup/20260324_120000 (v0.9.0)
-> ...
-
----
-
-### 步骤 2: 选择回退版本
-
-使用 AskUserQuestion：
-
-> 选择要回退的版本：
-
-用户选择后，执行回退：
-
-```bash
-# 切换到备份分支
-git checkout {BACKUP_BRANCH}
-
-# 验证版本
-cat VERSION
-```
-
----
-
-### 步骤 3: 验证回退
-
-确认版本号正确。
-
-输出：
-
-> ✅ 已回退到版本 {VERSION}
-
----
-
-## 兜底机制
-
-### 场景 1: 网络问题
-
-如果无法获取远程版本：
-
-```bash
-git fetch --tags 2>&1
-if [ $? -ne 0 ]; then
-  echo "❌ 无法连接到远程仓库"
-  echo "请检查网络连接或稍后重试"
-fi
-```
-
----
-
-### 场景 2: 未提交的更改
-
-如果有未提交的更改：
-
-```bash
-git status --porcelain
-if [ $? -ne 0 ]; then
-  echo "⚠️  检测到未提交的更改"
-  echo ""
-  echo "建议先提交或暂存更改后再升级"
-  echo ""
-  echo "您可以选择："
-  echo "A) 暂存更改（git stash）"
-  echo "B) 提交更改"
-  echo "C) 放弃升级"
-fi
-```
-
----
-
-### 场景 3: 版本号格式错误
-
-如果VERSION文件格式不正确：
-
-```bash
-if ! [[ "$CURRENT_VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-  echo "⚠️  VERSION文件格式不正确: $CURRENT_VERSION"
-  echo "期望格式: v1.0.0"
-fi
-```
-
----
-
-## 注意事项
-
-1. **备份重要**：升级前自动创建备份分支
-2. **网络依赖**：需要访问Git远程仓库
-3. **版本号格式**：遵循语义化版本（v1.0.0）
-4. **回退支持**：任何时候都可以回退到旧版本
-5. **Git依赖**：需要Git仓库环境
-
----
-
-## 版本历史
-
-- **v1.0.0** (2026-03-25): 初始版本，27 个核心技能
-- **v2.0.0**: Subagent 并行架构全面升级，Token 大幅优化，执行速度提升 2-4x
-- **v2.1.0**: 产品策略模块扩展（pm-portfolio / pm-resource / pm-decision），技能扩展至 37
-- **v2.2.0**: 灵感火花激发模式（pm-brainstorm），check-update 自动更新检测
-- **v2.3.0**: 黄金路径主线引导；check-update 5 秒超时机制
-- **v2.3.2** (2026-06-09): pm-funnel 前置文档路径修复
-- **v2.5.0**: 新增 pm-selfcheck 健康自检工具，技能总数 40（35 核心 + 5 工具）；全文档版本/计数口径统一
-- **v2.6.1** (2026-07-30): P0 优化 — 全包子技能 Preamble 去重、版本打印收归 check-update.sh
-- **v2.6.2** (2026-07-30): 新增 06-experts 专家视角模块与 steve-jobs-perspective（乔布斯思维与表达DNA），技能总数 46（41 核心 + 5 工具）
-
----
-
-## 产出质量检查 / Verification Checklist
-
-- [ ] 版本号已确认（当前版本 vs 目标版本）
-- [ ] 升级脚本已验证
-- [ ] 回退方案已准备
-- [ ] VERSION 文件已更新
-
-> ⚠️ 任何一项未通过 → 不要执行升级。
-
----
-
-## 常见误区 / Red Flags — STOP
-
-出现以下情况立即停止并回溯：
-
-| 误区 | 正确做法 |
-|------|---------|
-| 使用"应该"、"大概"、"看起来"做结论 | 必须基于实际数据和验证 |
-| 未运行检查就声称已完成 | 先验证，再陈述 |
-| 跳过备份直接升级 | 先备份，再升级 |
-
----
+如环境无 AskUserQuestion，普通聊天一次只问一个问题并等待回答。用户拒绝升级时停止。复制安装、权限不足、网络失败或无法快进时解释原因和安全的手动路径，不静默忽略错误。

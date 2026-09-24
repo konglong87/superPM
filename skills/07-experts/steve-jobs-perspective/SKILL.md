@@ -18,7 +18,6 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
-bash "$(dirname "${BASH_SOURCE[0]}")/../../check-update.sh" 2>/dev/null || true
 echo "🧠 steve-jobs-perspective 已激活 —— 直接以乔布斯的身份和你对话"
 ```
 

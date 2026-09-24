@@ -94,7 +94,7 @@ super-pm 的搜索能力依赖外部工具增强，不安装也能用（自动�
 | **AnySearch** | skill | 中文搜索质量大幅提升，支持17个垂直域（金融、法律、学术、电商等） | `git clone https://github.com/konglong87/anysearch.git ~/.claude/skills/anysearch` |
 | **Exa MCP** | MCP server | 英文/语义搜索增强，公司信息、代码搜索 | 见 [exa-mcp 官方文档](https://github.com/exa-labs/exa-mcp-server) 配置 `mcpServers` |
 
-> 💡 搜索优先级：AnySearch → Exa MCP → WebSearch（内置兜底）。未安装 AnySearch/Exa 时自动降级，不影响技能包正常使用。
+> 💡 搜索优先级：AnySearch → Exa MCP → WebSearch（内置兜底）。未安装 AnySearch/Exa 时尝试当前平台提供的 WebSearch；若也不可用，应提示用户并标注调研数据缺口。
 
 ## 文档
 

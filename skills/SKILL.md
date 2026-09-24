@@ -15,34 +15,9 @@ allowed-tools:
   - mcp__exa__web_fetch_exa
 ---
 
-## Preamble (run first)
+## 启动原则
 
-```bash
-bash "$(dirname "${BASH_SOURCE[0]}")"/check-update.sh 2>/dev/null || true
-# 读取技能包版本号
-SKILL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)" || true
-if [ -f "$SKILL_ROOT/VERSION" ]; then echo "📦 super-pm $(cat "$SKILL_ROOT/VERSION")"; fi
-# 创建文档目录（中英文双语支持）
-mkdir -p docs/01-需求调研 docs/01-demand-insight
-mkdir -p docs/02-方案设计 docs/02-solution-design
-mkdir -p docs/03-增长迭代 docs/03-growth-iteration
-mkdir -p docs/04-风控管理 docs/04-risk-management
-mkdir -p docs/05-产品战略 docs/05-product-strategy
-
-# 检测当前进度
-echo "📊 当前项目进度："
-echo ""
-
-for prefix in "01-需求调研" "02-方案设计" "03-增长迭代" "04-风控管理" "05-产品战略"; do
-  count=$(ls docs/$prefix/*.md 2>/dev/null | wc -l | tr -d ' ')
-  echo "  $prefix: $count 个文档"
-done
-
-echo ""
-echo "💡 查看全部技能: /start-super-pm 或查看 INDEX.md"
-echo "🎯 新产品: '我想做一个XX' → /pm-brainstorm → /pm-demand → /pm-market → /pm-priority → /pm-mvp → /pm-docs"
-echo "📝 写文档: '写需求文档/PRD' → 先检查前置，无则从头开始"
-```
+按本轮用户任务读取现有项目资料；不要在激活 skill 时自动创建 `docs/` 目录或联网检查更新。版本检查和升级请显式使用 `/super-pm-upgrade`。路径由已安装 skill 的实际位置确定，而不是从粘贴的 Bash 代码块推测技能文件路径。
 
 ---
 
@@ -261,7 +236,7 @@ AI: 📊 检测到您的进度：
      未安装时自动降级，不影响流程执行。
    - **Exa MCP**（MCP server）— 英文/语义搜索增强。
      需在项目 `.claude/settings.json` 中配置 `mcpServers`。未配置时降级到 WebSearch。
-   - **WebSearch**（Claude Code 内置工具）— 始终可用，兜底搜索。
+   - **WebSearch**（若当前平台提供）— 作为搜索兜底；若不可用，应如实告知而不是假定成功。
    - **优先级**：AnySearch → Exa MCP → WebSearch，不得跳级。使用 WebSearch 时标注「⚠️ 降级模式」
 3. **兜底机制**：文件缺失时提供替代方案
 4. **Markdown存储**：所有文档人类可读可编辑
@@ -292,6 +267,5 @@ AI: 📊 检测到您的进度：
 - [ ] 流程推荐引擎已触发
 - [ ] 已根据当前项目状态推荐对应 skill
 - [ ] 用户已了解下一步可选路径
-- [ ] 检查更新已完成
 
 > ⚠️ 确保用户获得明确的下步建议。

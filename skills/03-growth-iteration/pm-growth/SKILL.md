@@ -14,7 +14,6 @@ allowed-tools:
 ## Preamble (run first)
 
 ```bash
-bash "$(dirname "${BASH_SOURCE[0]}")/../../check-update.sh" 2>/dev/null || true
 mkdir -p docs/03-增长迭代
 
 echo "📊 增长方案制定工具"
