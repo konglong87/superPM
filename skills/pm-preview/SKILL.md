@@ -49,10 +49,10 @@ fi
 
 ### 步骤 1: 启动预览服务器
 
-使用 `Bash` 工具启动预览服务器：
+先从已加载的本 skill 路径确定其绝对目录（单独安装时不在项目的 `skills/` 目录内），再使用 `Bash` 启动：
 
 ```bash
-bash skills/pm-preview/scripts/start-preview.sh --project-dir .
+bash "<当前 pm-preview skill 所在目录>/scripts/start-preview.sh" --project-dir .
 ```
 
 **说明**：
@@ -84,7 +84,7 @@ bash skills/pm-preview/scripts/start-preview.sh --project-dir .
 
 > 💡 **提示**：
 > - 预览服务器 30 分钟无活动后自动停止
-> - 如需手动停止，执行：`bash skills/pm-preview/scripts/stop-preview.sh .superpm/preview/{session_id}`
+> - 如需手动停止，执行：`bash "<当前 pm-preview skill 所在目录>/scripts/stop-preview.sh" .superpm/preview/{session_id}`
 > - 执行其他 skill（如 `/pm-docs`）生成新文档后，浏览器会自动刷新
 
 ---
@@ -98,7 +98,7 @@ bash skills/pm-preview/scripts/start-preview.sh --project-dir .
 ls -d .superpm/preview/*/
 
 # 停止服务器
-bash skills/pm-preview/scripts/stop-preview.sh .superpm/preview/{session_id}
+bash "<当前 pm-preview skill 所在目录>/scripts/stop-preview.sh" .superpm/preview/{session_id}
 ```
 
 ---

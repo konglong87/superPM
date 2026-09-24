@@ -6,8 +6,8 @@
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥2.0.0-orange.svg)](https://claude.ai/code)
-[![GitHub Stars](https://img.shields.io/github/stars/konglong87/super-pm)](https://github.com/konglong87/super-pm)
-[![Skills](https://img.shields.io/badge/skills-49-informational)](./skills/INDEX.md)
+[![GitHub Stars](https://img.shields.io/github/stars/konglong87/super-pm)](https://github.com/konglong87/superPM)
+[![Skills](https://img.shields.io/badge/skills-55-informational)](./skills/INDEX.md)
 
 </div>
 
@@ -15,13 +15,13 @@
 
 ## 📖 About
 
-**super-pm** is a comprehensive Product Manager Skill Pack for Claude Code, Cursor, Codex, and OpenCode. It provides full lifecycle product management workflow support through **49 battle-tested skills** across **7 modules**.
+**super-pm** is a comprehensive Product Manager Skill Pack for Claude Code, Cursor, Codex, and OpenCode. It provides full lifecycle product management workflow support through **49 functional/tool skills and 6 installable workflows** across **7 modules**.
 
 ### Key Features
 
-- ✅ **49 skills** — Covering demand insight, solution design, growth iteration, risk management, product strategy, career development, and expert perspectives
+- ✅ **55 discoverable entries** (49 skills + 6 workflows) — Covering demand insight, solution design, growth iteration, risk management, product strategy, career development, and expert perspectives
 - ✅ **6 chain workflows** — Predefined multi-step commands for common PM scenarios
-- ✅ **Lightweight** — Pure Markdown instructions, zero code dependencies
+- ✅ **Lightweight core** — Markdown skills; optional preview requires Node.js (no npm install or CDN)
 - ✅ **Smart interaction** — One question at a time, step-by-step guidance
 - ✅ **Data flow** — Markdown documents auto-propagate between skills, human-readable
 - ✅ **Risk-first** — Validate assumptions early, avoid wasted effort
@@ -29,21 +29,30 @@
 
 ---
 
+## Start with a task
+
+| Goal | Entry point | Checkable result |
+|---|---|---|
+| Validate a new idea | `/validate-idea` | Evidence, priorities and MVP boundary |
+| Write a PRD | `/write-prd` | Traceable requirements and acceptance criteria |
+| Plan a launch | `/plan-launch` | Risks, owners and rollback plan |
+| Improve a live product | `/analyze-growth` | Funnel diagnosis and iteration proposal |
+
 ## 🚀 Quick Start
 
 ### One-line Install
 
 ```bash
-npx skills add https://github.com/konglong87/super-pm
+npx skills add https://github.com/konglong87/superPM
 ```
 
 | Command | Description |
 |---------|-------------|
-| `npx skills add https://github.com/konglong87/super-pm` | Install all skills |
-| `npx skills add https://github.com/konglong87/super-pm --skill "pm-demand"` | Install a single skill |
-| `npx skills add https://github.com/konglong87/super-pm --list` | List available skills |
-| `npx skills add https://github.com/konglong87/super-pm -g` | Global install |
-| `npx skills add https://github.com/konglong87/super-pm --agent claude-code cursor` | Platform-specific install |
+| `npx skills add https://github.com/konglong87/superPM` | Install all skills |
+| `npx skills add https://github.com/konglong87/superPM --skill "pm-demand"` | Install a single skill |
+| `npx skills add https://github.com/konglong87/superPM --list` | List available skills |
+| `npx skills add https://github.com/konglong87/superPM -g` | Global install |
+| `npx skills add https://github.com/konglong87/superPM --agent claude-code cursor` | Platform-specific install |
 
 ### Claude Code (Recommended ⭐ — Marketplace)
 
@@ -55,21 +64,21 @@ npx skills add https://github.com/konglong87/super-pm
 ### OpenCode (macOS/Linux)
 
 ```bash
-git clone https://github.com/konglong87/super-pm.git ~/.config/opencode/super-pm
+git clone https://github.com/konglong87/superPM.git ~/.config/opencode/super-pm
 mkdir -p ~/.config/opencode/skills && ln -s ~/.config/opencode/super-pm/skills ~/.config/opencode/skills/super-pm
 ```
 
 ### Codex (macOS/Linux)
 
 ```bash
-git clone https://github.com/konglong87/super-pm.git ~/.codex/super-pm
+git clone https://github.com/konglong87/superPM.git ~/.codex/super-pm
 mkdir -p ~/.agents/skills && ln -s ~/.codex/super-pm/skills ~/.agents/skills/super-pm
 ```
 
 ### Cursor (macOS/Linux)
 
 ```bash
-git clone https://github.com/konglong87/super-pm.git ~/.cursor/super-pm
+git clone https://github.com/konglong87/superPM.git ~/.cursor/super-pm
 mkdir -p ~/.cursor/skills && ln -s ~/.cursor/super-pm/skills ~/.cursor/skills/super-pm
 ```
 
@@ -81,17 +90,17 @@ mkdir -p ~/.cursor/skills && ln -s ~/.cursor/super-pm/skills ~/.cursor/skills/su
 /plugin install super-pm@super-pm-marketplace
 
 # OpenCode
-git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.config\opencode\super-pm"
+git clone https://github.com/konglong87/superPM.git "$env:USERPROFILE\.config\opencode\super-pm"
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.config\opencode\skills"
 New-Item -ItemType Junction -Path "$env:USERPROFILE\.config\opencode\skills\super-pm" -Target "$env:USERPROFILE\.config\opencode\super-pm\skills"
 
 # Codex
-git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.codex\super-pm"
+git clone https://github.com/konglong87/superPM.git "$env:USERPROFILE\.codex\super-pm"
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills"
 cmd /c mklink /J "$env:USERPROFILE\.agents\skills\super-pm" "$env:USERPROFILE\.codex\super-pm\skills"
 
 # Cursor
-git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.cursor\super-pm"
+git clone https://github.com/konglong87/superPM.git "$env:USERPROFILE\.cursor\super-pm"
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.cursor\skills"
 New-Item -ItemType Junction -Path "$env:USERPROFILE\.cursor\skills\super-pm" -Target "$env:USERPROFILE\.cursor\super-pm\skills"
 ```
@@ -100,16 +109,16 @@ New-Item -ItemType Junction -Path "$env:USERPROFILE\.cursor\skills\super-pm" -Ta
 
 ## 🛤️ Chain Workflows
 
-Six chain commands automate multi-step PM processes. Each step pauses for your confirmation — you can skip any step.
+Six chain commands guide multi-step PM processes. Existing relevant artifacts may be reused; new ideas first check the brainstorming gate unless you explicitly opt out. Confirm before creating or overwriting artifacts. See [`workflow-contract.md`](./skills/_shared/workflow-contract.md) for handoffs and evidence rules.
 
 | Command | Description | Chain |
 |---------|-------------|-------|
 | `/discover` | Product discovery | Market → Competitor → Demand → Priority |
-| `/write-prd` | Write PRD | Demand → Clarify → MVP → Docs |
-| `/plan-launch` | Launch planning | Release → Risk → Cross-team → Agile |
+| `/write-prd` | Write PRD | Demand → Clarify → Priority → MVP → Docs |
+| `/plan-launch` | Launch planning | Risk → Cross-team → Agile → Release |
 | `/analyze-growth` | Growth analysis | AARRR → Report → Growth → Iteration |
 | `/define-strategy` | Product strategy | Position → Business Model → OKR → Roadmap |
-| `/validate-idea` | Idea validation | Demand → Brainstorm → Market → MVP |
+| `/validate-idea` | Idea validation | Brainstorm gate → Demand → Market → Priority → MVP |
 
 ---
 
@@ -140,7 +149,7 @@ Or step by step:
 
 ---
 
-## 📊 Skill Catalog (49 skills)
+## 📊 Skill Catalog (49 skills + 6 workflows)
 
 ### Demand Insight (11 skills)
 

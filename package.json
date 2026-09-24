@@ -16,13 +16,13 @@
   "author": "Kong Long",
   "repository": {
     "type": "git",
-    "url": "https://github.com/konglong87/super-pm"
+    "url": "https://github.com/konglong87/superPM"
   },
   "engines": {
     "claude-code": ">=2.0.0"
   },
   "skills": {
-    "total": 49,
+    "total": 55,
     "modules": {
       "demand-insight": 11,
       "solution-design": 9,
@@ -31,7 +31,8 @@
       "product-strategy": 5,
       "experts": 1,
       "career": 3,
-      "tools": 5
+      "tools": 5,
+      "workflows": 6
     }
   },
   "commands": {

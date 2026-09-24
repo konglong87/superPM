@@ -66,6 +66,8 @@ allowed-tools:
 
 ## PM Skill 自动触发决策流程（详见下方各模块触发信号）
 
+> 完整技能包的编排与交接参见 `skills/_shared/workflow-contract.md`，六条命令顺序由 `workflow-contract.json` 校验。若单独安装本 skill，直接按下方内置规则执行，不依赖这些共享文件。
+
 ## ⚠️ 最高优先级路由（仅适用于自然语言请求）
 
 当用户用**自然语言**提出产品管理任务（而非显式输入 `/pm-xxx` slash command）：

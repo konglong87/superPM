@@ -21,7 +21,7 @@
 
 ### 核心特性
 
-- ✅ **49个技能** - 覆盖需求、方案、增长、风控、战略、职业发展、专家视角全流程（44 核心 + 5 工具）
+- ✅ **55个可发现入口** - 覆盖需求、方案、增长、风控、战略、职业发展、专家视角全流程（44 核心 + 5 工具 + 6 工作流）
 - ✅ **灵感火花激发** - AI主动生成创意灵感，解决"不知道做什么"困境 ⭐ NEW
 - ✅ **轻量级设计** - 纯 Markdown 指令，无代码依赖
 - ✅ **智能交互** - 一次一问，逐步引导
@@ -30,6 +30,17 @@
 - ✅ **兜底完善** - 异常处理、跨会话恢复、灵活跳过
 
 ---
+
+## 先选任务，而不是先选 55 个入口
+
+| 我现在要做什么 | 建议入口 | 需要准备 | 可验证产出 |
+|---|---|---|---|
+| 验证新想法 | `/validate-idea` | 想法和目标用户（不完整也可开始） | 痛点证据、优先级、MVP 边界 |
+| 将需求写成 PRD | `/write-prd` | 已有调研或待澄清的需求 | 可追溯需求、范围与验收标准 |
+| 为上线做准备 | `/plan-launch` | 方案、当前交付状态 | 风险、责任人、回滚与上线检查 |
+| 优化已上线产品 | `/analyze-growth` | 实际指标与时间范围 | 漏斗诊断、增长实验和迭代建议 |
+
+新产品链会先检查是否需要 `/pm-brainstorm`；已有相关产物可复用，用户明确跳过时不强迫走完整流程。每个环节应区分**事实（来源与日期）/假设/决策**，文档是否生成以实际结果为准，而非预先承诺。完整步骤见 [`skills/_shared/workflow-contract.md`](./skills/_shared/workflow-contract.md)。
 
 ## 🚀 快速开始
 
@@ -72,15 +83,15 @@ npx skills add https://github.com/konglong87/superPM
 /plugin install super-pm@super-pm-marketplace
 
 # OpenCode
-git clone https://github.com/konglong87/super-pm.git ~/.config/opencode/super-pm
+git clone https://github.com/konglong87/superPM.git ~/.config/opencode/super-pm
 mkdir -p ~/.config/opencode/skills && ln -s ~/.config/opencode/super-pm/skills ~/.config/opencode/skills/super-pm
 
 # Codex
-git clone https://github.com/konglong87/super-pm.git ~/.codex/super-pm
+git clone https://github.com/konglong87/superPM.git ~/.codex/super-pm
 mkdir -p ~/.agents/skills && ln -s ~/.codex/super-pm/skills ~/.agents/skills/super-pm
 
 # Cursor
-git clone https://github.com/konglong87/super-pm.git ~/.cursor/super-pm
+git clone https://github.com/konglong87/superPM.git ~/.cursor/super-pm
 mkdir -p ~/.cursor/skills && ln -s ~/.cursor/super-pm/skills ~/.cursor/skills/super-pm
 ```
 
@@ -92,17 +103,17 @@ mkdir -p ~/.cursor/skills && ln -s ~/.cursor/super-pm/skills ~/.cursor/skills/su
 /plugin install super-pm@super-pm-marketplace
 
 # OpenCode
-git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.config\opencode\super-pm"
+git clone https://github.com/konglong87/superPM.git "$env:USERPROFILE\.config\opencode\super-pm"
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.config\opencode\skills"
 New-Item -ItemType Junction -Path "$env:USERPROFILE\.config\opencode\skills\super-pm" -Target "$env:USERPROFILE\.config\opencode\super-pm\skills"
 
 # Codex
-git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.codex\super-pm"
+git clone https://github.com/konglong87/superPM.git "$env:USERPROFILE\.codex\super-pm"
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills"
 cmd /c mklink /J "$env:USERPROFILE\.agents\skills\super-pm" "$env:USERPROFILE\.codex\super-pm\skills"
 
 # Cursor
-git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.cursor\super-pm"
+git clone https://github.com/konglong87/superPM.git "$env:USERPROFILE\.cursor\super-pm"
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.cursor\skills"
 New-Item -ItemType Junction -Path "$env:USERPROFILE\.cursor\skills\super-pm" -Target "$env:USERPROFILE\.cursor\super-pm\skills"
 ```
@@ -145,7 +156,7 @@ web_search: true
 
 ## 🛤️ 黄金路径 — 从零到一的主线流程
 
-49 个技能看起来很多，但大多数项目只需要走一条主线。以下是三条最常用的路径：
+55 个入口看起来很多，但大多数项目只需要走一条主线。以下是三条最常用的路径：
 
 ### 路径 A：新产品从零到一（最常用 ⭐）
 
@@ -193,7 +204,7 @@ web_search: true
 | 3 | `/pm-portfolio` | 产品组合战略 | 多产品线怎么管？ |
 | 4 | `/pm-resource` | 资源分配方案 | 人和钱怎么分？ |
 
-> 🎯 **记住：** 路径 A 覆盖 80% 的使用场景。其他 31 个技能是"按需调用"——遇到具体问题时再查 INDEX.md。
+> 🎯 **记住：** 从具体任务入口开始即可；其他技能按需调用，详见 [INDEX.md](./skills/INDEX.md)。
 
 ---
 
@@ -255,7 +266,7 @@ web_search: true
 
 ---
 
-## 📊 核心技能与工具（49个）
+## 📊 核心技能与工具（49个，另有6条工作流）
 
 ### 需求洞察模块 (11个)
 - **pm-brainstorm** - 头脑风暴 ⭐ 先发散再收敛，支持灵感火花激发模式
@@ -328,11 +339,11 @@ web_search: true
 
 ### super-pm 和 superpowers 有什么区别？
 
-**super-pm** 专为产品经理设计，聚焦产品管理全生命周期（需求洞察、方案设计、增长迭代、风控管理、产品策略、职业发展），共 49 个技能（44 核心 + 5 工具）。**superpowers** 是 Anthropic 官方出品的软件工程师技能包。两者定位不同，互不冲突，可以同时安装使用。
+**super-pm** 专为产品经理设计，聚焦产品管理全生命周期（需求洞察、方案设计、增长迭代、风控管理、产品策略、职业发展），共 55 个可发现入口（44 核心 + 5 工具 + 6 工作流）。**superpowers** 面向软件工程工作流。两者定位不同，互不冲突，可以同时安装使用。
 
 ### 需要安装什么依赖？
 
-零依赖。super-pm 全部由纯 Markdown 指令构成，无需 Node.js、Python 或其他运行时。只需要安装 Claude Code（或 Cursor/Codex/OpenCode）即可使用。
+核心产品管理 skill 是 Markdown 指令，不需要额外运行时。`npx skills add` 安装方式需要 Node.js/npm；可选的 `/pm-preview` 本地预览也需要 Node.js（内置 Markdown 渲染与 HTML 清理库，无需联网或 `npm install`）。搜索增强工具 AnySearch、Exa 为可选项。
 
 ### 支持哪些 AI 编程工具？
 
@@ -342,7 +353,7 @@ web_search: true
 
 遵循黄金路径：`/pm-brainstorm` → `/pm-demand` → `/pm-market` → `/pm-priority` → `/pm-mvp` → `/pm-docs` → `/pm-preview` → `/pm-tech` → `/pm-release`。每个步骤都有清晰的输入输出和引导。
 
-### 49 个技能太多，从哪里开始？
+### 55 个入口太多，从哪里开始？
 
 **路径 A（新产品从零到一）** 覆盖 80% 的使用场景。如果方向已明确，直接执行 `/pm-demand` 进入需求调研。如果不知道做什么，从 `/pm-brainstorm` 的灵感火花激发模式开始。
 
@@ -383,7 +394,7 @@ cd ~/.config/opencode/super-pm && git pull  # OpenCode
 
 ## 📚 文档
 
-- [技能索引](./skills/INDEX.md) - 全部 49 个技能及依赖关系
+- [技能索引](./skills/INDEX.md) - 全部 55 个入口及依赖关系
 - [Skill 模板](./skills/templates/subagent-skill-template.md) - Subagent 架构模板与最佳实践
 
 ---

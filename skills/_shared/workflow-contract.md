@@ -1,0 +1,11 @@
+# Workflow contract (entry points and command chains)
+
+`workflow-contract.json` is the machine-checkable source for the order of the six command chains. Do not copy an alternative sequence into a new router. This document defines the behavior behind that order.
+
+1. **User intent wins.** An explicit `/pm-xxx` request enters that skill, including its own precondition checks. An explicit request to skip brainstorming is honored, not silently ignored. Ask one focused question only if the missing input changes the next action; do not force a new-product ceremony onto a scoped task for an existing product.
+2. **New idea gate.** Before `/pm-demand` for a new product idea, run `/pm-brainstorm` unless a relevant brainstorm artifact exists or the user explicitly opted out. In `/discover`, `/validate-idea`, and `/write-prd`, this is an optional pre-step, not an extra unconditional step after demand. Check relevance, not merely file existence.
+3. **Artifact handoff.** Before each command step, check that its required inputs exist and relate to this product. Reuse relevant existing artifacts after user confirmation; do not pretend a directory alone means a stage is complete. Missing inputs trigger the owning skill's gate or a concrete user choice, not fabricated data. `/pm-mvp` follows `/pm-priority` in a full chain; `/pm-docs` follows validated demand and scope.
+4. **Interaction.** Pause for confirmation between chain steps when proceeding would create or overwrite artifacts. Respect Stop/Skip; report which outputs were actually created, not a fixed list of promised documents. In a platform without `AskUserQuestion`, ask in ordinary chat and wait.
+5. **Evidence and decisions.** Label verified evidence with source and date, separate assumptions from facts, and record uncertainty. Downstream artifacts should refer to the requirement/decision they implement. Never invent user interviews, numerical estimates, or test outcomes. A final document includes unresolved questions, next owner/action, and an acceptance criterion when applicable.
+
+This contract does not replace the detailed methods inside individual skills. Standalone installations of a single skill must retain their own essential gates and must not require this shared file to function.

@@ -7,13 +7,13 @@ Guide for using Super-PM with OpenAI Codex via native skill discovery.
 Tell Codex:
 
 ```
-Fetch and follow instructions from https://raw.githubusercontent.com/konglong87/super-pm/main/.codex/INSTALL.md
+Fetch and follow instructions from https://raw.githubusercontent.com/konglong87/superPM/main/.codex/INSTALL.md
 ```
 
 Or execute this command directly:
 
 ```
-Clone https://github.com/konglong87/super-pm to ~/.codex/super-pm, then create directory ~/.agents/skills, then symlink ~/.codex/super-pm/skills to ~/.agents/skills/super-pm, then restart codex.
+Clone https://github.com/konglong87/superPM to ~/.codex/super-pm, then create directory ~/.agents/skills, then symlink ~/.codex/super-pm/skills to ~/.agents/skills/super-pm, then restart codex.
 ```
 
 ## Manual Installation
@@ -27,7 +27,7 @@ Clone https://github.com/konglong87/super-pm to ~/.codex/super-pm, then create d
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/konglong87/super-pm.git ~/.codex/super-pm
+   git clone https://github.com/konglong87/superPM.git ~/.codex/super-pm
    ```
 
 2. Create the skills symlink:
@@ -44,7 +44,7 @@ Use a junction instead of a symlink (works without Developer Mode):
 
 ```powershell
 # 1. Clone the repo
-git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.codex\super-pm"
+git clone https://github.com/konglong87/superPM.git "$env:USERPROFILE\.codex\super-pm"
 
 # 2. Create skills directory
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills"
@@ -83,7 +83,7 @@ Skills are discovered automatically. Codex activates them when:
 帮我做一个新产品的需求调研
 ```
 
-Codex will automatically invoke `pm-demand` skill.
+For a new product, the route checks `/pm-brainstorm` first unless you explicitly skip it or already have a relevant artifact; then `pm-demand` handles research.
 
 **优先级排序：**
 ```
@@ -130,53 +130,11 @@ description: Use when [condition] - [what it does]
 
 The `description` field is how Codex decides when to activate a skill automatically — write it as a clear trigger condition.
 
-## Core Skills
+## Skill Catalog
 
-Super-PM provides 37 skills across 5 modules:
+Super-PM currently has **49 core/tool skills and six installable workflows** across demand insight, solution design, growth iteration, risk management, product strategy, career development, expert perspectives and five tools. See [`skills/INDEX.md`](../skills/INDEX.md) for the maintained catalog rather than a second copy here.
 
-### 需求洞察模块 (9 skills)
-- **pm-demand** - 需求调研入口，收集用户痛点
-- **pm-brainstorm** - 头脑风暴
-- **pm-clarify** - 需求细化与验证
-- **pm-market** - 市场分析
-- **pm-search** - 联网调研整合（市场/竞品/数据/舆情/合规）
-- **pm-priority** - 优先级排序（RICE/KANO/MoSCoW）
-- **pm-mvp** - MVP最小可行产品拆解
-- **pm-pool** - 需求池管理
-- **pm-journey** - 用户旅程地图
-
-### 方案设计模块 (7 skills)
-- **pm-docs** - 文档生成（BRD/MRD/PRD）
-- **pm-proto** - 原型设计方案
-- **pm-tech** - 技术对接方案
-- **pm-feature** - 功能细节拆解
-- **pm-data** - 数据指标体系
-- **pm-position** - 产品定位
-- **pm-user-story** - 用户故事
-
-### 增长迭代模块 (8 skills)
-- **pm-aarrr** - AARRR增长分析
-- **pm-growth** - 增长执行方案
-- **pm-report** - 数据报告（周报/月报/季报）
-- **pm-feedback** - 用户反馈分析
-- **pm-abtest** - A/B测试方案
-- **pm-iteration** - 迭代计划
-- **pm-retro** - 迭代复盘
-- **pm-roadmap** - 产品路线图
-
-### 风控管理模块 (5 skills)
-- **pm-agile** - 敏捷管理
-- **pm-cross** - 跨部门协作
-- **pm-risk** - 风险管控
-- **pm-release** - 上线执行方案
-- **pm-change** - 需求变更管理
-
-### 产品策略模块 (5 skills)
-- **pm-business-model** - 商业模式画布
-- **pm-decision** - 战略决策支持
-- **pm-funnel** - 漏斗分析优化
-- **pm-portfolio** - 产品组合管理
-- **pm-resource** - 资源分配与ROI
+Core skills are Markdown instructions. The optional `/pm-preview` uses local Node.js and ships its own renderer/sanitizer, with no CDN or `npm install` required. The `npx skills add` installation method itself requires Node.js/npm.
 
 ## Workflow Example
 
@@ -241,8 +199,8 @@ Junctions normally work without special permissions. If creation fails, try runn
 
 ## Getting Help
 
-- Report issues: https://github.com/konglong87/super-pm/issues
-- Main documentation: https://github.com/konglong87/super-pm
+- Report issues: https://github.com/konglong87/superPM/issues
+- Main documentation: https://github.com/konglong87/superPM
 - Codex documentation: https://github.com/openai/codex
 
 ## Testing

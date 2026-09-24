@@ -7,7 +7,7 @@ Guide for using Super-PM with Cursor editor.
 Tell Cursor:
 
 ```
-Clone https://github.com/konglong87/super-pm to ~/.cursor/super-pm, create directory ~/.cursor/skills, symlink ~/.cursor/super-pm/skills to ~/.cursor/skills/super-pm, then restart Cursor.
+Clone https://github.com/konglong87/superPM to ~/.cursor/super-pm, create directory ~/.cursor/skills, symlink ~/.cursor/super-pm/skills to ~/.cursor/skills/super-pm, then restart Cursor.
 ```
 
 ## Manual Installation
@@ -24,7 +24,7 @@ Clone https://github.com/konglong87/super-pm to ~/.cursor/super-pm, create direc
 if [ -d ~/.cursor/super-pm ]; then
   cd ~/.cursor/super-pm && git pull
 else
-  git clone https://github.com/konglong87/super-pm.git ~/.cursor/super-pm
+  git clone https://github.com/konglong87/superPM.git ~/.cursor/super-pm
 fi
 
 # 2. Create skills directory
@@ -63,7 +63,7 @@ Run as Administrator, or with Developer Mode enabled:
 
 ```cmd
 :: 1. Install Super-PM
-git clone https://github.com/konglong87/super-pm.git "%USERPROFILE%\.cursor\super-pm"
+git clone https://github.com/konglong87/superPM.git "%USERPROFILE%\.cursor\super-pm"
 
 :: 2. Create skills directory
 mkdir "%USERPROFILE%\.cursor\skills" 2>nul
@@ -83,7 +83,7 @@ Run as Administrator, or with Developer Mode enabled:
 
 ```powershell
 # 1. Install Super-PM
-git clone https://github.com/konglong87/super-pm.git "$env:USERPROFILE\.cursor\super-pm"
+git clone https://github.com/konglong87/superPM.git "$env:USERPROFILE\.cursor\super-pm"
 
 # 2. Create skills directory
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.cursor\skills"
@@ -103,7 +103,7 @@ Note: Git Bash's native `ln` command copies files instead of creating symlinks. 
 
 ```bash
 # 1. Install Super-PM
-git clone https://github.com/konglong87/super-pm.git ~/.cursor/super-pm
+git clone https://github.com/konglong87/superPM.git ~/.cursor/super-pm
 
 # 2. Create skills directory
 mkdir -p ~/.cursor/skills
@@ -229,53 +229,9 @@ Cursor discovers skills from these locations:
 2. **Personal skills** (`~/.cursor/skills/`)
 3. **Super-PM skills** (`~/.cursor/skills/super-pm/`) - via symlink
 
-## Core Skills
+## Skill Catalog
 
-Super-PM provides 37 skills across 5 modules:
-
-### 需求洞察模块 (9 skills)
-- **pm-demand** - 需求调研入口
-- **pm-brainstorm** - 头脑风暴
-- **pm-clarify** - 需求细化与验证
-- **pm-market** - 市场分析
-- **pm-search** - 联网调研整合
-- **pm-priority** - 优先级排序
-- **pm-mvp** - MVP规划
-- **pm-pool** - 需求池管理
-- **pm-journey** - 用户旅程地图
-
-### 方案设计模块 (7 skills)
-- **pm-docs** - 文档生成（BRD/MRD/PRD）
-- **pm-proto** - 原型设计
-- **pm-tech** - 技术对接方案
-- **pm-feature** - 功能细节拆解
-- **pm-data** - 数据指标体系
-- **pm-position** - 产品定位
-- **pm-user-story** - 用户故事
-
-### 增长迭代模块 (8 skills)
-- **pm-aarrr** - AARRR增长分析
-- **pm-growth** - 增长方案
-- **pm-report** - 数据报告
-- **pm-feedback** - 用户反馈分析
-- **pm-abtest** - A/B测试方案
-- **pm-iteration** - 迭代计划
-- **pm-retro** - 迭代复盘
-- **pm-roadmap** - 产品路线图
-
-### 风控管理模块 (5 skills)
-- **pm-agile** - 敏捷管理
-- **pm-cross** - 跨部门协作
-- **pm-risk** - 风险管控
-- **pm-release** - 上线方案
-- **pm-change** - 需求变更管理
-
-### 产品策略模块 (5 skills)
-- **pm-business-model** - 商业模式画布
-- **pm-decision** - 战略决策支持
-- **pm-funnel** - 漏斗分析优化
-- **pm-portfolio** - 产品组合管理
-- **pm-resource** - 资源分配与ROI
+Super-PM has 49 functional/tool skills plus six installable workflow skills (55 discoverable entries). See [`skills/INDEX.md`](../skills/INDEX.md) for the maintained catalog. The core uses Markdown; optional `/pm-preview` needs local Node.js but no CDN or `npm install`.
 
 ## Typical Workflow
 
@@ -380,8 +336,8 @@ If you see errors creating junctions:
 
 ## Getting Help
 
-- Report issues: https://github.com/konglong87/super-pm/issues
-- Main documentation: https://github.com/konglong87/super-pm
+- Report issues: https://github.com/konglong87/superPM/issues
+- Main documentation: https://github.com/konglong87/superPM
 - Cursor documentation: https://cursor.sh/docs
 
 ## Testing

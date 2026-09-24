@@ -1,6 +1,6 @@
 {
   "name": "super-pm-marketplace",
-  "description": "Product Manager Skills Pack for Claude Code - 49 skills across 7 modules covering full product lifecycle from demand to delivery",
+  "description": "Product Manager Skills Pack for Claude Code - 49 core/tool skills plus 6 installable workflows across 7 modules covering full product lifecycle from demand to delivery",
   "owner": {
     "name": "Kong Long",
     "email": "2235998553@qq.com"
@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "super-pm",
-      "description": "Product Manager Skills Pack - 49 skills across 7 modules: demand insight, solution design, growth iteration, risk management, product strategy, career, and expert perspectives",
+      "description": "Product Manager Skills Pack - 49 core/tool skills plus 6 installable workflows across 7 modules: demand insight, solution design, growth iteration, risk management, product strategy, career, and expert perspectives",
       "version": "2.6.2",
       "source": "./",
       "author": {

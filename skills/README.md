@@ -82,7 +82,7 @@ super-pm 是专为产品经理设计的 Claude Code Skill Pack，覆盖需求洞
 /plugin install konglong87/super-pm
 
 # 或手动安装
-git clone https://github.com/konglong87/super-pm.git ~/.claude/skills/super-pm
+git clone https://github.com/konglong87/superPM.git ~/.claude/skills/super-pm
 ```
 
 ## 推荐搭配

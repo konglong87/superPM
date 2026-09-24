@@ -19,6 +19,14 @@ jobs:
         with:
           fetch-depth: 0   # 确保 tag / 历史完整
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify skills, workflow and preview
+        run: npm test
+
       - name: Determine artifact name
         id: meta
         run: |
@@ -37,6 +45,21 @@ jobs:
           # 只打包已纳入 git 跟踪的文件，自动排除 .git 与 .gitignore 中的运行时/临时文件
           # --prefix 让解压后自动套一层 super-pm/ 目录，不会散落一地
           git archive --format=zip --prefix=super-pm/ -o "${{ steps.meta.outputs.name }}.zip" HEAD
+
+      - name: Verify archive installation layout
+        run: |
+          unzip -t "${{ steps.meta.outputs.name }}.zip"
+          mkdir -p "$RUNNER_TEMP/super-pm-install"
+          unzip -q "${{ steps.meta.outputs.name }}.zip" -d "$RUNNER_TEMP/super-pm-install"
+          test -f "$RUNNER_TEMP/super-pm-install/super-pm/skills/pm-preview/scripts/vendor/purify.min.js"
+          for plugin in "$RUNNER_TEMP/super-pm-install/super-pm"/plugins/*; do
+            test -L "$plugin/skills"
+            test -d "$plugin/skills"
+          done
+          for command in "$RUNNER_TEMP/super-pm-install/super-pm"/commands/*; do
+            test -L "$command/SKILL.md"
+            test -f "$command/SKILL.md"
+          done
 
       - name: Upload artifact (commit snapshot)
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
