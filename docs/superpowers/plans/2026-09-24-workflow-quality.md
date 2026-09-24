@@ -57,4 +57,4 @@
 - `npm test`: 17 tests passed (preview HTTP, manifest/link integrity and workflow order). These static routing tests do **not** prove an AI agent will follow the route in every conversation.
 - `npx skills add . --list`: 55 discoverable entries. Selective `--copy --global --skill pm-preview` and `--skill validate-idea` into a temporary HOME succeeded.
 - From the copied `pm-preview` script, ran a foreground server and opened it in the real browser. Screenshot/AX showed title, bold text, table, code and safe link. The hostile sample's `script` and `onerror` were removed; `window.__previewXss` stayed null. Appending text to the Markdown file appeared via WebSocket without page navigation.
-- CI archive extraction and remote push are checked after commit; if they fail, this record must be amended rather than claiming success.
+- The `git archive` ZIP passed `unzip -t` and extracted vendor assets, module links and workflow command links resolved. After rebasing over the existing remote brainstorm change, both commits were pushed to `main` (head `7250d3a`). GitHub Actions run `35970831404` completed successfully for that SHA.
