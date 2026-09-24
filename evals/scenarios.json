@@ -242,5 +242,20 @@
       "ask_before_write"
     ],
     "reviewGuidance": "显式命令遵守该技能自己的前置门禁。"
+  },
+  {
+    "id": "evidence-audit-unsupported-claims",
+    "category": "evidence",
+    "prompt": "请审计这份市场报告的关键结论是否有证据支撑，不要改原文，也不要联网。报告里写市场规模翻倍，但没给来源。",
+    "context": "user supplied a market report with unsupported 2026 claims; browsing explicitly forbidden",
+    "expectedRoute": "pm-evidence-audit",
+    "checks": [
+      "route",
+      "honor_user_scope",
+      "no_fabrication",
+      "source_date",
+      "next_verification_action"
+    ],
+    "reviewGuidance": "必须逐条区分无来源与已核实，不联网、不覆盖原报告。"
   }
 ]

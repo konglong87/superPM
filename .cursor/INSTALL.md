@@ -231,7 +231,7 @@ Cursor discovers skills from these locations:
 
 ## Skill Catalog
 
-Super-PM has 49 functional/tool skills plus six installable workflow skills (55 discoverable entries). See [`skills/INDEX.md`](../skills/INDEX.md) for the maintained catalog. The core uses Markdown; optional `/pm-preview` needs local Node.js but no CDN or `npm install`.
+Super-PM has 50 functional/tool skills plus six installable workflow skills (56 discoverable entries). See [`skills/INDEX.md`](../skills/INDEX.md) for the maintained catalog. The core uses Markdown; optional `/pm-preview` needs local Node.js but no CDN or `npm install`.
 
 ## Typical Workflow
 

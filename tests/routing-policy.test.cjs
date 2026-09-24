@@ -48,4 +48,5 @@ test('discussion does not create folders before the user asks for an artifact', 
 
 test('README does not claim an unmeasured 80 percent coverage', () => {
   assert.doesNotMatch(read('README.md'), /覆盖 80%/);
+  assert.doesNotMatch(read('skills/SKILL.md'), /80% 用户/);
 });

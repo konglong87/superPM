@@ -36,7 +36,8 @@ test('selfcheck scans the installed repository from an unrelated project', () =>
     const result = spawnSync('bash', [selfcheck], { cwd, encoding: 'utf8' });
     assert.equal(result.status, 0, result.stderr + result.stdout);
     assert.match(result.stdout, /super-pm v2\.6\.2/);
-    assert.match(result.stdout, /55\/55/);
+    const total = require('../package.json').skills.total;
+    assert.match(result.stdout, new RegExp(`skills=${total}/${total}`));
   });
 });
 
@@ -81,13 +82,13 @@ test('a flat copy of the full skill pack is diagnosed without a VERSION file', (
       fs.mkdirSync(dest, { recursive: true });
       fs.symlinkSync(path.join(root, 'skills', file), path.join(dest, 'SKILL.md'));
     }
-    assert.equal(expected.length, 55);
+    assert.equal(expected.length, require('../package.json').skills.total);
     const target = path.join(flat, 'pm-selfcheck');
     fs.cpSync(path.join(root, 'skills/00-tools/pm-selfcheck/scripts'), path.join(target, 'scripts'), { recursive: true });
     fs.copyFileSync(path.join(root, 'skills/00-tools/pm-selfcheck/expected-skills.txt'), path.join(target, 'expected-skills.txt'));
     const result = spawnSync('bash', [path.join(target, 'scripts/selfcheck.sh')], { cwd, encoding: 'utf8' });
     assert.equal(result.status, 0, result.stderr + result.stdout);
-    assert.match(result.stdout, /mode=flat \| skills=55\/55/);
+    assert.match(result.stdout, new RegExp(`mode=flat \\| skills=${expected.length}/${expected.length}`));
   });
 });
 

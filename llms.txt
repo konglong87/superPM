@@ -2,7 +2,7 @@
 
 ## 项目简介
 
-super-pm 是专为产品经理设计的 AI 编程助手 Skill Pack，提供全生命周期的产品管理工作流支持。覆盖需求洞察、方案设计、增长迭代、风控管理、产品策略、职业发展、专家视角七大模块，共 55 个可发现入口（44 核心 + 5 工具 + 6 工作流）。核心为 Markdown 指令；可选预览需 Node.js，一次一问逐步引导，支持 Claude Code、Cursor、Codex、OpenCode 四大平台。
+super-pm 是专为产品经理设计的 AI 编程助手 Skill Pack，提供全生命周期的产品管理工作流支持。覆盖需求洞察、方案设计、增长迭代、风控管理、产品策略、职业发展、专家视角七大模块，共 56 个可发现入口（44 核心 + 6 工具 + 6 工作流）。核心为 Markdown 指令；可选预览需 Node.js，一次一问逐步引导，支持 Claude Code、Cursor、Codex、OpenCode 四大平台。
 
 ## 核心能力
 
@@ -12,7 +12,7 @@ super-pm 是专为产品经理设计的 AI 编程助手 Skill Pack，提供全�
 - **风控管理（5个技能）**: 敏捷管理、跨部门协作、风险管控、上线方案、需求变更管理
 - **产品策略（5个技能）**: 商业模式画布、战略决策支持、漏斗分析优化、产品组合管理、资源分配与ROI
 - **专家视角（1个技能）**: 乔布斯思维与表达DNA（steve-jobs-perspective）——以乔布斯视角对话、碰撞灵感、内化思考
-- **辅助工具（5个）**: 启动引导(start-super-pm)、版本升级(super-pm-upgrade)、文档预览(pm-preview)、健康自检(pm-selfcheck)、根入口(/super-pm)
+- **辅助工具（6个）**: 启动引导(start-super-pm)、版本升级(super-pm-upgrade)、文档预览(pm-preview)、健康自检(pm-selfcheck)、证据审计(pm-evidence-audit)、根入口(/super-pm)
 
 ## 适用场景
 
@@ -34,7 +34,7 @@ npx skills add https://github.com/konglong87/superPM --skill "pm-demand"
 ## 常见问题（FAQ）
 
 ### super-pm 和 superpowers 有什么区别？
-super-pm 专为产品经理设计，聚焦产品管理全生命周期（需求洞察、方案设计、增长迭代、风控管理、产品策略、职业发展、专家视角），共 55 个可发现入口（44 核心 + 5 工具 + 6 工作流）。superpowers 面向软件工程工作流。两者定位不同，互不冲突，可同时安装使用。
+super-pm 专为产品经理设计，聚焦产品管理全生命周期（需求洞察、方案设计、增长迭代、风控管理、产品策略、职业发展、专家视角），共 56 个可发现入口（44 核心 + 6 工具 + 6 工作流）。superpowers 面向软件工程工作流。两者定位不同，互不冲突，可同时安装使用。
 
 ### 需要安装什么依赖？
 零依赖。全部由纯 Markdown 指令构成，无需 Node.js、Python 或其他运行时。只需安装 Claude Code（或 Cursor/Codex/OpenCode）即可使用。
@@ -45,7 +45,7 @@ super-pm 专为产品经理设计，聚焦产品管理全生命周期（需求�
 ### 如何从零开始做一个产品需求？
 遵循黄金路径：/pm-brainstorm → /pm-demand → /pm-market → /pm-priority → /pm-mvp → /pm-docs → /pm-preview → /pm-tech → /pm-release。
 
-### 55 个入口太多，从哪里开始？
+### 56 个入口太多，从哪里开始？
 路径 A 适用于新产品从零到一；按任务选择入口，其他技能按需调用。方向已明确则直接执行 /pm-demand，不知道做什么则从 /pm-brainstorm 的灵感火花激发模式开始。
 
 ### 如何更新到最新版本？

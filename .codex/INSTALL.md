@@ -132,7 +132,7 @@ The `description` field is how Codex decides when to activate a skill automatica
 
 ## Skill Catalog
 
-Super-PM currently has **49 core/tool skills and six installable workflows** across demand insight, solution design, growth iteration, risk management, product strategy, career development, expert perspectives and five tools. See [`skills/INDEX.md`](../skills/INDEX.md) for the maintained catalog rather than a second copy here.
+Super-PM currently has **50 core/tool skills and six installable workflows** across demand insight, solution design, growth iteration, risk management, product strategy, career development, expert perspectives and six tools. See [`skills/INDEX.md`](../skills/INDEX.md) for the maintained catalog rather than a second copy here.
 
 Core skills are Markdown instructions. The optional `/pm-preview` uses local Node.js and ships its own renderer/sanitizer, with no CDN or `npm install` required. The `npx skills add` installation method itself requires Node.js/npm.
 

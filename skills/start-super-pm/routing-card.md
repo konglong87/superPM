@@ -25,6 +25,7 @@
 | 竞品分析 | /pm-search --type=competitor | |
 | 行业数据/市场规模 | /pm-search --type=data | |
 | 市场/行业综合分析 | /pm-market | |
+| 审核报告结论的数据来源、日期与支持关系 | /pm-evidence-audit | 区别于 /pm-prd-review 的文档完整性评审 |
 | 需求细化/明确边界 | /pm-clarify | |
 | 优先级排序 | /pm-priority | 需前置：demand |
 | MVP规划 | /pm-mvp | 需前置：priority |

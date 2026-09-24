@@ -1,6 +1,6 @@
 # super-pm 技能索引
 
-**可发现的技能总数**: 55 (44核心+5工具+6工作流) | 版本号见 `VERSION` 文件
+**可发现的技能总数**: 56 (44核心+6工具+6工作流) | 版本号见 `VERSION` 文件
 
 ---
 
@@ -106,6 +106,7 @@
 | `super-pm-upgrade` | 版本升级工具 |
 | `/pm-preview` | 文档实时预览 - WebSocket 服务器 + 浏览器 MD 渲染 + 自动刷新 |
 | `/pm-selfcheck` | 技能包健康自检 - 完整安装、元数据完整性和体积检查 |
+| `/pm-evidence-audit` | 证据审计 - 核对主张的来源、日期、支持关系与冲突 |
 | `/super-pm` | 根技能入口 - 关键词语义路由 + 流程推荐引擎 |
 
 ---
@@ -133,4 +134,4 @@ pm-business-model / pm-decision / pm-funnel / pm-portfolio / pm-resource(独立)
 
 ---
 
-**更新日期**: 2026-07-30
+**更新日期**: 2026-09-24

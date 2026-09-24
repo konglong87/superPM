@@ -22,7 +22,7 @@
     "claude-code": ">=2.0.0"
   },
   "skills": {
-    "total": 55,
+    "total": 56,
     "modules": {
       "demand-insight": 11,
       "solution-design": 9,
@@ -31,7 +31,7 @@
       "product-strategy": 5,
       "experts": 1,
       "career": 3,
-      "tools": 5,
+      "tools": 6,
       "workflows": 6
     }
   },

@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥2.0.0-orange.svg)](https://claude.ai/code)
 [![GitHub Stars](https://img.shields.io/github/stars/konglong87/super-pm)](https://github.com/konglong87/superPM)
-[![Skills](https://img.shields.io/badge/skills-55-informational)](./skills/INDEX.md)
+[![Skills](https://img.shields.io/badge/skills-56-informational)](./skills/INDEX.md)
 
 </div>
 
@@ -15,11 +15,11 @@
 
 ## 📖 About
 
-**super-pm** is a comprehensive Product Manager Skill Pack for Claude Code, Cursor, Codex, and OpenCode. It provides full lifecycle product management workflow support through **49 functional/tool skills and 6 installable workflows** across **7 modules**.
+**super-pm** is a comprehensive Product Manager Skill Pack for Claude Code, Cursor, Codex, and OpenCode. It provides full lifecycle product management workflow support through **50 functional/tool skills and 6 installable workflows** across **7 modules**.
 
 ### Key Features
 
-- ✅ **55 discoverable entries** (49 skills + 6 workflows) — Covering demand insight, solution design, growth iteration, risk management, product strategy, career development, and expert perspectives
+- ✅ **56 discoverable entries** (50 skills + 6 workflows) — Covering demand insight, solution design, growth iteration, risk management, product strategy, career development, and expert perspectives
 - ✅ **6 chain workflows** — Predefined multi-step commands for common PM scenarios
 - ✅ **Lightweight core** — Markdown skills; optional preview requires Node.js (no npm install or CDN)
 - ✅ **Smart interaction** — One question at a time, step-by-step guidance
@@ -159,9 +159,9 @@ Or step by step:
 
 ## Verification
 
-Run `npm test` for installation, workflow-dependency, preview, and script checks. `npm run eval:report` reports the 19 behavioral scenarios as **NOT RUN** until independently reviewed agent transcripts are supplied. See [`evals/README.md`](./evals/README.md); static tests do not certify model behavior.
+Run `npm test` for installation, workflow-dependency, preview, and script checks. `npm run eval:report` reports the 20 behavioral scenarios as **NOT RUN** until independently reviewed agent transcripts are supplied. See [`evals/README.md`](./evals/README.md); static tests do not certify model behavior.
 
-## 📊 Skill Catalog (49 skills + 6 workflows)
+## 📊 Skill Catalog (50 skills + 6 workflows)
 
 ### Demand Insight (11 skills)
 
@@ -242,7 +242,7 @@ Run `npm test` for installation, workflow-dependency, preview, and script checks
 |-------|-------------|
 | `/steve-jobs-perspective` | Steve Jobs thinking and expression DNA — conversational advisor |
 
-### Tools (5 skills)
+### Tools (6 skills)
 
 | Skill | Description |
 |-------|-------------|
@@ -250,6 +250,8 @@ Run `npm test` for installation, workflow-dependency, preview, and script checks
 | `super-pm-upgrade` | Version upgrade tool |
 | `/pm-preview` | Live document preview |
 | `/pm-selfcheck` | Health check for skill pack integrity |
+| `/pm-evidence-audit` | Audit claims against dated sources, inference and conflicting evidence |
+| `/super-pm` | Root routing entry |
 | `/super-pm` | Root entry — keyword semantic router plus flow recommendation engine |
 
 ---
