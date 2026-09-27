@@ -9,7 +9,7 @@
     {
       "name": "super-pm",
       "description": "Product Manager Skills Pack - 50 core/tool skills plus 6 installable workflows across 7 modules: demand insight, solution design, growth iteration, risk management, product strategy, career, and expert perspectives",
-      "version": "2.6.2",
+      "version": "2.7.0",
       "source": "./",
       "author": {
         "name": "Kong Long",
@@ -19,7 +19,7 @@
     {
       "name": "pm-demand-insight",
       "description": "Demand Insight Module - 11 skills: brainstorm, demand, clarify, market, search, priority, mvp, pool, journey, competitor, interview",
-      "version": "2.6.2",
+      "version": "2.7.0",
       "source": "./plugins/pm-demand-insight",
       "author": {
         "name": "Kong Long",
@@ -29,7 +29,7 @@
     {
       "name": "pm-solution-design",
       "description": "Solution Design Module - 9 skills: docs, proto, brand-motion, tech, feature, data, position, user-story, prd-review",
-      "version": "2.6.2",
+      "version": "2.7.0",
       "source": "./plugins/pm-solution-design",
       "author": {
         "name": "Kong Long",
@@ -39,7 +39,7 @@
     {
       "name": "pm-growth-iteration",
       "description": "Growth Iteration Module - 10 skills: aarrr, growth, report, feedback, abtest, iteration, retro, roadmap, geo, okr",
-      "version": "2.6.2",
+      "version": "2.7.0",
       "source": "./plugins/pm-growth-iteration",
       "author": {
         "name": "Kong Long",
@@ -49,7 +49,7 @@
     {
       "name": "pm-risk-management",
       "description": "Risk Management Module - 5 skills: agile, cross, risk, release, change",
-      "version": "2.6.2",
+      "version": "2.7.0",
       "source": "./plugins/pm-risk-management",
       "author": {
         "name": "Kong Long",
@@ -59,7 +59,7 @@
     {
       "name": "pm-product-strategy",
       "description": "Product Strategy Module - 5 skills: business-model, decision, funnel, portfolio, resource",
-      "version": "2.6.2",
+      "version": "2.7.0",
       "source": "./plugins/pm-product-strategy",
       "author": {
         "name": "Kong Long",
@@ -69,7 +69,7 @@
     {
       "name": "pm-career",
       "description": "Career Development Module - 3 skills: career-coach, interview-prep, resume",
-      "version": "2.6.2",
+      "version": "2.7.0",
       "source": "./plugins/pm-career",
       "author": {
         "name": "Kong Long",

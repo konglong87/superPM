@@ -35,7 +35,8 @@ test('selfcheck scans the installed repository from an unrelated project', () =>
   foreignCwd(cwd => {
     const result = spawnSync('bash', [selfcheck], { cwd, encoding: 'utf8' });
     assert.equal(result.status, 0, result.stderr + result.stdout);
-    assert.match(result.stdout, /super-pm v2\.6\.2/);
+    const version = fs.readFileSync(path.join(root, 'VERSION'), 'utf8').trim();
+    assert.ok(result.stdout.includes(`super-pm ${version}`), result.stdout);
     const total = require('../package.json').skills.total;
     assert.match(result.stdout, new RegExp(`skills=${total}/${total}`));
   });
