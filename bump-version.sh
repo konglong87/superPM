@@ -39,6 +39,9 @@ printf "v%s" "$NEW_VERSION" > "$VERSION_FILE"
 # 同步到 repo root VERSION
 printf "v%s" "$NEW_VERSION" > "${SCRIPT_DIR}/VERSION"
 
+# 同步技能包说明中的展示版本
+sed -i '' "s/\*\*版本\*\*: v[0-9.]*/**版本**: v${NEW_VERSION}/" "${SCRIPT_DIR}/skills/README.md"
+
 # 同步到 package.json
 sed -i '' "s/\"version\": \"[0-9.]*\"/\"version\": \"${NEW_VERSION}\"/" "${SCRIPT_DIR}/package.json"
 

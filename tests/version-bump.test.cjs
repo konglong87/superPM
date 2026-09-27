@@ -20,6 +20,7 @@ test('version bump synchronizes every distributable manifest', () => {
     fs.copyFileSync(path.join(root, 'bump-version.sh'), path.join(fixture, 'bump-version.sh'));
     execFileSync('git', ['init', '-q', fixture]);
     write('skills/VERSION', 'v0.1.0');
+    write('skills/README.md', '**版本**: v0.1.0\n');
     write('VERSION', 'v0.1.0');
     for (const name of ['package.json', '.claude-plugin/plugin.json', '.cursor-plugin/plugin.json',
       ...pluginNames.map(plugin => `plugins/${plugin}/plugin.json`)]) {
@@ -35,6 +36,7 @@ test('version bump synchronizes every distributable manifest', () => {
       .plugins.map(plugin => plugin.version), ['0.2.0', '0.2.0']);
     assert.equal(fs.readFileSync(path.join(fixture, 'VERSION'), 'utf8'), 'v0.2.0');
     assert.equal(fs.readFileSync(path.join(fixture, 'skills/VERSION'), 'utf8'), 'v0.2.0');
+    assert.match(fs.readFileSync(path.join(fixture, 'skills/README.md'), 'utf8'), /\*\*版本\*\*: v0\.2\.0/);
   } finally {
     fs.rmSync(fixture, { recursive: true, force: true });
   }
