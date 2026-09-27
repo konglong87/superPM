@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # super-pm 版本号同步脚本
-# VERSION 文件为唯一版本号源头，此脚本同步到 plugin.json、marketplace.json 并创建 git tag
+# skills/VERSION 为版本号源头；本脚本只同步版本文件，提交/tag/push 由发布流程执行
 # 用法: ./bump-version.sh <新版本号>
 #   如: ./bump-version.sh 2.5.0
 
@@ -21,10 +21,15 @@ NEW_VERSION="$1"
 NEW_VERSION="${NEW_VERSION#v}"
 TAG="v${NEW_VERSION}"
 
+if [[ ! "$NEW_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+  echo "❌ 版本号必须是 X.Y.Z（可选 v 前缀）"
+  exit 1
+fi
+
 # 检查 tag 是否已存在
 if git tag -l "$TAG" | grep -q "$TAG"; then
   echo "❌ tag ${TAG} 已存在"
-  echo "   如需覆盖，先执行: git tag -d ${TAG} && git push origin :refs/tags/${TAG}"
+  echo "   历史 tag 不得覆盖，请选择新的版本号"
   exit 1
 fi
 
@@ -41,10 +46,16 @@ sed -i '' "s/\"version\": \"[0-9.]*\"/\"version\": \"${NEW_VERSION}\"/" "${SCRIP
 sed -i '' "s/\"version\": \"[0-9.]*\"/\"version\": \"${NEW_VERSION}\"/" "${SCRIPT_DIR}/.claude-plugin/plugin.json"
 
 # 同步到 .claude-plugin/marketplace.json
-sed -i '' "s/\"version\": \"[0-9.]*\"/\"version\": \"${NEW_VERSION}\"/" "${SCRIPT_DIR}/.claude-plugin/marketplace.json"
+sed -i '' "s/\"version\": \"[0-9.]*\"/\"version\": \"${NEW_VERSION}\"/g" "${SCRIPT_DIR}/.claude-plugin/marketplace.json"
 
 # 同步到 .cursor-plugin/plugin.json
 sed -i '' "s/\"version\": \"[0-9.]*\"/\"version\": \"${NEW_VERSION}\"/" "${SCRIPT_DIR}/.cursor-plugin/plugin.json"
+
+# 六个可独立安装的模块插件也属于发布物，不能遗漏。
+for plugin_manifest in "${SCRIPT_DIR}"/plugins/*/plugin.json; do
+  [ -f "$plugin_manifest" ] || continue
+  sed -i '' "s/\"version\": \"[0-9.]*\"/\"version\": \"${NEW_VERSION}\"/" "$plugin_manifest"
+done
 
 echo "✅ 版本号已同步至 v${NEW_VERSION}"
 echo ""
@@ -53,6 +64,7 @@ echo "   VERSION (root):      v${NEW_VERSION}"
 echo "   package.json:        ${NEW_VERSION}"
 echo "   .claude-plugin:      ${NEW_VERSION}"
 echo "   .cursor-plugin:      ${NEW_VERSION}"
+echo "   plugins/*:          ${NEW_VERSION}"
 echo ""
 echo "💡 下一步:"
 echo "   1. git add -A && git commit -m 'chore: bump version to v${NEW_VERSION}'"

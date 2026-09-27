@@ -14,7 +14,13 @@ test('published version and skill count match the files', () => {
   const version = fs.readFileSync(path.join(root, 'VERSION'), 'utf8').trim().replace(/^v/, '');
   assert.equal(manifest.version, version);
   assert.equal(plugin.version, version);
-  assert.equal(marketplace.plugins[0].version, version);
+  for (const entry of marketplace.plugins) assert.equal(entry.version, version, `marketplace ${entry.name}`);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(root, '.cursor-plugin/plugin.json'))).version, version);
+  assert.equal(fs.readFileSync(path.join(root, 'skills/VERSION'), 'utf8').trim(), `v${version}`);
+  for (const entry of fs.readdirSync(path.join(root, 'plugins'))) {
+    const manifest = path.join(root, 'plugins', entry, 'plugin.json');
+    if (fs.existsSync(manifest)) assert.equal(JSON.parse(fs.readFileSync(manifest)).version, version, entry);
+  }
   assert.equal(manifest.skills.total, skillFiles.length);
 });
 
