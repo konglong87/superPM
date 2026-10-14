@@ -17,7 +17,9 @@ function section(name) {
 
 test('prompt-pe is a standalone prompt enhancement tool with repository metadata', () => {
   assert.match(skill, /^name: prompt-pe$/m);
-  assert.match(skill, /^description: .*structured prompt$/m);
+  assert.match(skill, /^description: \|$/m);
+  assert.match(skill, /explicitly invokes \/prompt-pe/);
+  assert.match(skill, /leave existing super-pm\/start-super-pm routing unchanged/);
   assert.match(skill, /^allowed-tools:\n  - Read\n  - AskUserQuestion$/m);
   assert.match(skill, /^# Prompt PE（提示词具象化增强器）$/m);
   assert.doesNotMatch(skill, /name: prompt-enhancer/);

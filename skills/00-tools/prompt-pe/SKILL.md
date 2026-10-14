@@ -1,6 +1,8 @@
 ---
 name: prompt-pe
-description: Use when a user prompt is vague, incomplete, or ambiguous and needs clarification, entity completion, terminology normalization, or conversion into an executable structured prompt
+description: |
+  Use when the user explicitly invokes /prompt-pe or explicitly asks to clarify, enhance, or rewrite a vague prompt
+  Do NOT use for ordinary product-management requests; leave existing super-pm/start-super-pm routing unchanged
 allowed-tools:
   - Read
   - AskUserQuestion
