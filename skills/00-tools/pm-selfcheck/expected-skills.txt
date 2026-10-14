@@ -48,6 +48,7 @@ pm-search
 pm-selfcheck
 pm-tech
 pm-user-story
+prompt-pe
 start-super-pm
 steve-jobs-perspective
 super-pm
