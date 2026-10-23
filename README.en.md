@@ -41,6 +41,8 @@
 | Plan a launch | `/plan-launch` | Risks, owners and rollback plan |
 | Improve a live product | `/analyze-growth` | Funnel diagnosis and iteration proposal |
 
+Use `/pm-brainstorm` to explore ideas when the direction is unclear; use `/pm-deep-talk` to analyze trade-offs and constraints for an existing idea. It is optional and not part of the default golden path.
+
 ## 🚀 Quick Start
 
 ### One-line Install

@@ -43,6 +43,8 @@
 | 为上线做准备 | `/plan-launch` | 方案、当前交付状态 | 风险、责任人、回滚与上线检查 |
 | 优化已上线产品 | `/analyze-growth` | 实际指标与时间范围 | 漏斗诊断、增长实验和迭代建议 |
 
+`/pm-brainstorm` 用于方向不明确时发散创意；`/pm-deep-talk` 用于已有具体想法后分析利弊与限制，按需使用，不属于默认黄金路径。
+
 新产品链会先检查是否需要 `/pm-brainstorm`；已有相关产物可复用，用户明确跳过时不强迫走完整流程。每个环节应区分**事实（来源与日期）/假设/决策**，文档是否生成以实际结果为准，而非预先承诺。完整步骤见 [`skills/_shared/workflow-contract.md`](./skills/_shared/workflow-contract.md)。
 
 ## 🚀 快速开始
