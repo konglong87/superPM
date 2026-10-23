@@ -6,6 +6,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥2.0.0-orange.svg)](https://claude.ai/code)
+[![Codex](https://img.shields.io/badge/Codex-App%20%26%20CLI-412991.svg)](#codex-app)
 
 **[English](./README.en.md)** | 中文
 
@@ -17,7 +18,7 @@
 
 <img align="right" src="./assets/slogan.png" alt="PM 的 AI 超能力" width="280">
 
-**super-pm** 是专为产品经理设计的 Claude Code Skill Pack，提供全生命周期的产品管理工作流支持。
+**super-pm** 是专为产品经理设计的 AI 技能包，支持 Claude Code、Codex（App / CLI）、Cursor 和 OpenCode，提供全生命周期的产品管理工作流支持。
 
 ### 核心特性
 
@@ -76,21 +77,23 @@ npx skills add https://github.com/konglong87/superPM
 
 ### 🔧 手动安装（各平台）
 
-所有平台统一模式：**git clone → 创建链接 → 重启**
+支持 Claude Code、Codex App / CLI、Cursor 和 OpenCode。各平台共享同一套 Markdown 技能内容；安装方式和平台集成功能有所不同。
+
+需要手动安装的平台按统一流程操作：**git clone → 创建链接 → 重启**
 
 | 平台 | clone 目标路径 | skills 链接路径 | 验证命令 |
 |------|---------------|----------------|---------|
-| Claude Code ⭐ | — | Marketplace 一键安装 | `/super-pm` |
+| Claude Code | — | Marketplace 一键安装 | `/super-pm` |
 | OpenCode | `~/.config/opencode/super-pm` | `~/.config/opencode/skills/super-pm` | `use skill tool to list all skills` |
-| Codex | `~/.codex/super-pm` | `~/.agents/skills/super-pm` | `list available skills` |
+| Codex App / CLI | `~/.codex/super-pm` | `~/.agents/skills/super-pm` | `list available skills` |
 | Cursor | `~/.cursor/super-pm` | `~/.cursor/skills/super-pm` | `list skills` |
 
-> 💡 Claude Code 最推荐：Marketplace 一键安装，自动注册 plugin + SessionStart hook，无需手动 clone。
+> 💡 Claude Code 提供 Marketplace 一键安装，可自动注册 plugin 和 SessionStart hook。
 
 ### macOS / Linux
 
 ```bash
-# Claude Code（最推荐 ⭐ — Marketplace 一键安装）
+# Claude Code（Marketplace 一键安装）
 /plugin marketplace add konglong87/super-pm
 /plugin install super-pm@super-pm-marketplace
 
@@ -110,7 +113,7 @@ mkdir -p ~/.cursor/skills && ln -s ~/.cursor/super-pm/skills ~/.cursor/skills/su
 ### Windows (PowerShell)
 
 ```powershell
-# Claude Code（最推荐 ⭐ — Marketplace 一键安装）
+# Claude Code（Marketplace 一键安装）
 /plugin marketplace add konglong87/super-pm
 /plugin install super-pm@super-pm-marketplace
 
@@ -371,7 +374,19 @@ npm run eval:report                     # 25 个 Agent 场景；未运行时如�
 
 ### 支持哪些 AI 编程工具？
 
-支持四大主流平台：Claude Code（最推荐，支持 Marketplace 一键安装）、Cursor、Codex CLI、OpenCode。通过 `--agent` 参数指定目标平台。
+支持 Claude Code、Codex App / CLI、Cursor 和 OpenCode。技能内容以 Markdown 提供；使用 `npx skills add` 时，可通过 `--agent` 指定该命令支持的平台。Codex App 用户也可按上方专门的安装步骤配置技能目录；Claude Code 另支持 Marketplace 安装。
+
+<a id="codex-app"></a>
+
+### 如何在 Codex App 中使用 super-pm？
+
+按上方 Codex 安装说明完成技能目录链接后，重启 Codex App，在对话中直接提出任务，例如：
+
+```text
+请使用 pm-priority 技能，帮我给下面的需求排优先级。
+```
+
+也可以让 Codex 列出当前可用技能，确认 `pm-priority` 已被发现。详细步骤见 [Codex 安装指南](./.codex/INSTALL.md)。
 
 ### 如何从零开始做一个产品需求？
 

@@ -1,6 +1,6 @@
-# Super-PM for Codex
+# Super-PM for Codex App & CLI
 
-Guide for using Super-PM with OpenAI Codex via native skill discovery.
+Guide for using Super-PM with OpenAI Codex App and CLI via native skill discovery.
 
 ## Quick Install
 
@@ -20,7 +20,7 @@ Clone https://github.com/konglong87/superPM to ~/.codex/super-pm, then create di
 
 ### Prerequisites
 
-- OpenAI Codex CLI
+- OpenAI Codex App or CLI
 - Git
 
 ### Steps (macOS / Linux)
@@ -36,7 +36,7 @@ Clone https://github.com/konglong87/superPM to ~/.codex/super-pm, then create di
    ln -s ~/.codex/super-pm/skills ~/.agents/skills/super-pm
    ```
 
-3. Restart Codex.
+3. Restart the Codex App or CLI session so it discovers the newly linked skills.
 
 ### Windows
 
@@ -52,12 +52,12 @@ New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills"
 # 3. Create junction
 cmd /c mklink /J "$env:USERPROFILE\.agents\skills\super-pm" "$env:USERPROFILE\.codex\super-pm\skills"
 
-# 4. Restart Codex
+# 4. Restart the Codex App or CLI session
 ```
 
 ## How It Works
 
-Codex has native skill discovery — it scans `~/.agents/skills/` at startup, parses SKILL.md frontmatter, and loads skills on demand. Super-PM skills are made visible through a single symlink:
+Codex App and CLI have native skill discovery — they scan `~/.agents/skills/` at startup, parse SKILL.md frontmatter, and load skills on demand. Super-PM skills are made visible through a single symlink:
 
 ```
 ~/.agents/skills/super-pm/ → ~/.codex/super-pm/skills/
@@ -71,7 +71,7 @@ Each skill includes:
 
 ## Usage
 
-Skills are discovered automatically. Codex activates them when:
+Skills are discovered automatically. Codex App and CLI activate them when:
 - You mention a skill by name (e.g., "use pm-demand")
 - The task matches a skill's description
 - You explicitly request a product management workflow
@@ -185,7 +185,7 @@ Remove-Item -Recurse -Force "$env:USERPROFILE\.codex\super-pm"
 
 1. Verify the symlink: `ls -la ~/.agents/skills/super-pm`
 2. Check skills exist: `ls ~/.codex/super-pm/skills`
-3. Restart Codex — skills are discovered at startup
+3. Restart the Codex App or CLI session — skills are discovered at startup
 
 ### Windows junction issues
 

@@ -6,6 +6,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥2.0.0-orange.svg)](https://claude.ai/code)
+[![Codex](https://img.shields.io/badge/Codex-App%20%26%20CLI-412991.svg)](#codex-app)
 [![GitHub Stars](https://img.shields.io/github/stars/konglong87/super-pm)](https://github.com/konglong87/superPM)
 [![Skills](https://img.shields.io/badge/skills-58-informational)](./skills/INDEX.md)
 
@@ -15,7 +16,7 @@
 
 ## 📖 About
 
-**super-pm** is a comprehensive Product Manager Skill Pack for Claude Code, Cursor, Codex, and OpenCode. It provides full lifecycle product management workflow support through **51 functional/tool skills and 6 installable workflows** across **7 modules**.
+**super-pm** is a comprehensive AI skill pack for product managers, supporting Claude Code, Codex (App / CLI), Cursor, and OpenCode. It provides full lifecycle product management workflow support through **51 functional/tool skills and 6 installable workflows** across **7 modules**.
 
 ### Key Features
 
@@ -64,7 +65,7 @@ npx skills add https://github.com/konglong87/superPM --skill validate-idea pm-de
 
 The entry checks for missing skills and stops with an installation hint; it never claims skipped steps were completed. A relevant existing brainstorm artifact or explicit opt-out can bypass the new-idea gate.
 
-### Claude Code (Recommended ⭐ — Marketplace)
+### Claude Code (Marketplace install)
 
 ```
 /plugin marketplace add konglong87/super-pm
@@ -78,7 +79,7 @@ git clone https://github.com/konglong87/superPM.git ~/.config/opencode/super-pm
 mkdir -p ~/.config/opencode/skills && ln -s ~/.config/opencode/super-pm/skills ~/.config/opencode/skills/super-pm
 ```
 
-### Codex (macOS/Linux)
+### Codex App / CLI (macOS/Linux)
 
 ```bash
 git clone https://github.com/konglong87/superPM.git ~/.codex/super-pm
@@ -95,7 +96,7 @@ mkdir -p ~/.cursor/skills && ln -s ~/.cursor/super-pm/skills ~/.cursor/skills/su
 ### Windows (PowerShell)
 
 ```powershell
-# Claude Code (Recommended — Marketplace)
+# Claude Code (Marketplace install)
 /plugin marketplace add konglong87/super-pm
 /plugin install super-pm@super-pm-marketplace
 
@@ -116,6 +117,18 @@ New-Item -ItemType Junction -Path "$env:USERPROFILE\.cursor\skills\super-pm" -Ta
 ```
 
 ---
+
+<a id="codex-app"></a>
+
+### Using Super-PM in the Codex App
+
+After linking the skills directory, restart the Codex App and ask for a task, for example:
+
+```text
+Use the pm-priority skill to prioritize the following requirements.
+```
+
+You can also ask Codex to list available skills and confirm that `pm-priority` is discovered. See the [Codex installation guide](./.codex/INSTALL.md) for details.
 
 ## 🛤️ Chain Workflows
 
