@@ -77,3 +77,41 @@ test('discussion routing distinguishes positioning from new-product brainstormin
   assert.equal(brainstorming.expectedRoute, 'pm-brainstorm');
   assert.match(brainstorming.prompt, /还没有确定/);
 });
+
+test('deep-talk stays distinct from brainstorm and only composes when requested', () => {
+  const deepTalk = read('skills/01-demand-insight/pm-deep-talk/SKILL.md');
+  const brainstorm = read('skills/01-demand-insight/pm-brainstorm/SKILL.md');
+  const router = read('skills/start-super-pm/SKILL.md');
+  const card = read('skills/start-super-pm/routing-card.md');
+
+  assert.match(deepTalk, /目标与价值/);
+  assert.match(deepTalk, /证据与替代方案/);
+  assert.match(deepTalk, /分析视角/);
+  assert.match(deepTalk, /每轮只问一个问题/);
+  assert.match(deepTalk, /已核实事实、用户决策和待验证假设/);
+  assert.match(deepTalk, /事实.*假设.*决策/s);
+  assert.match(deepTalk, /尊重用户.*停止|用户说停止/);
+  assert.match(router, /pm-deep-talk/);
+  assert.match(card, /pm-deep-talk/);
+  assert.match(brainstorm, /明确要求.*进一步分析|主动要求分析可行性/);
+  assert.match(brainstorm, /不是默认|不得默认追加盘问/);
+});
+
+test('deep-talk routing does not hijack open-ended ideation or fact-finding', () => {
+  const router = read('skills/start-super-pm/SKILL.md');
+  const deepTalk = read('skills/01-demand-insight/pm-deep-talk/SKILL.md');
+  assert.match(router, /想法尚未成形.*pm-brainstorm/);
+  assert.match(router, /事实调研.*对应技能/);
+  assert.match(deepTalk, /还没有方向.*pm-brainstorm/);
+  assert.match(deepTalk, /只需要事实调研.*对应 skill/);
+});
+
+test('deep-talk evaluation scenarios cover routing, interaction, evidence and composition', () => {
+  const scenarios = JSON.parse(read('evals/scenarios.json'));
+  const deepTalkScenarios = scenarios.filter(item => item.expectedRoute === 'pm-deep-talk');
+  assert.equal(deepTalkScenarios.length, 4);
+  assert.ok(deepTalkScenarios.some(item => item.id === 'deep-talk-explicit-plan-review'));
+  assert.ok(deepTalkScenarios.some(item => item.id === 'deep-talk-facts-are-agent-work'));
+  assert.ok(deepTalkScenarios.some(item => item.id === 'deep-talk-respects-stop-and-surfaces-open-items'));
+  assert.ok(deepTalkScenarios.some(item => item.id === 'deep-talk-optional-from-brainstorm'));
+});

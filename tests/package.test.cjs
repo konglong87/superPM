@@ -22,6 +22,8 @@ test('published version and skill count match the files', () => {
     if (fs.existsSync(manifest)) assert.equal(JSON.parse(fs.readFileSync(manifest)).version, version, entry);
   }
   assert.equal(manifest.skills.total, skillFiles.length);
+  assert.equal(manifest.skills.modules['demand-insight'], 12);
+  assert.equal(skillFiles.filter(entry => entry.startsWith('01-demand-insight/')).length, 12);
 });
 
 test('every modular plugin skill link stays inside the package and exists', () => {

@@ -1,6 +1,6 @@
 {
   "name": "super-pm",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "Product Manager Skills Pack for Claude Code, Cursor, Codex and OpenCode",
   "license": "MIT",
   "keywords": [
@@ -22,9 +22,9 @@
     "claude-code": ">=2.0.0"
   },
   "skills": {
-    "total": 57,
+    "total": 58,
     "modules": {
-      "demand-insight": 11,
+      "demand-insight": 12,
       "solution-design": 9,
       "growth-iteration": 10,
       "risk-management": 5,

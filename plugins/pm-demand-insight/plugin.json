@@ -1,7 +1,7 @@
 {
   "name": "pm-demand-insight",
-  "description": "Demand Insight Module - 11 skills: brainstorm, demand, clarify, market, search, priority, mvp, pool, journey, competitor, interview",
-  "version": "2.7.0",
+  "description": "Demand Insight Module - 12 skills: brainstorm, deep-talk, demand, clarify, market, search, priority, mvp, pool, journey, competitor, interview",
+  "version": "2.8.0",
   "author": {
     "name": "Kong Long",
     "email": "2235998553@qq.com"
@@ -11,6 +11,7 @@
     "product-manager",
     "demand-insight",
     "brainstorm",
+    "deep-talk",
     "market-research",
     "prioritization",
     "mvp"

@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-≥2.0.0-orange.svg)](https://claude.ai/code)
 [![GitHub Stars](https://img.shields.io/github/stars/konglong87/super-pm)](https://github.com/konglong87/superPM)
-[![Skills](https://img.shields.io/badge/skills-57-informational)](./skills/INDEX.md)
+[![Skills](https://img.shields.io/badge/skills-58-informational)](./skills/INDEX.md)
 
 </div>
 
@@ -19,7 +19,7 @@
 
 ### Key Features
 
-- ✅ **57 discoverable entries** (51 skills + 6 workflows) — Covering demand insight, solution design, growth iteration, risk management, product strategy, career development, and expert perspectives
+- ✅ **58 discoverable entries** (52 skills + 6 workflows) — Covering demand insight, solution design, growth iteration, risk management, product strategy, career development, and expert perspectives
 - ✅ **6 chain workflows** — Predefined multi-step commands for common PM scenarios
 - ✅ **Lightweight core** — Markdown skills; optional preview requires Node.js (no npm install or CDN)
 - ✅ **Smart interaction** — One question at a time, step-by-step guidance
@@ -34,6 +34,7 @@
 
 | Goal | Entry point | Checkable result |
 |---|---|---|
+| Deep-dive an existing plan or decision | `/pm-deep-talk` | Decision brief (in conversation by default) |
 | Validate a new idea | `/validate-idea` | Evidence, priorities and MVP boundary |
 | Write a PRD | `/write-prd` | Traceable requirements and acceptance criteria |
 | Plan a launch | `/plan-launch` | Risks, owners and rollback plan |
@@ -162,13 +163,14 @@ Or step by step:
 
 Run `npm test` for installation, workflow-dependency, preview, and script checks. `npm run eval:report` shows **NOT RUN** without a run file. Six isolated with/without-skill scenarios now have raw transcripts and a clearly labeled **self-review**; the post-fix merged view is 5 SELF-REVIEW, 1 FAIL, and 14 NOT RUN, with no independently reviewed PASS. See [`evals/README.md`](./evals/README.md) and the dated results under `evals/results/`; static tests do not certify model behavior.
 
-## 📊 Skill Catalog (51 skills + 6 workflows)
+## 📊 Skill Catalog (52 skills + 6 workflows)
 
-### Demand Insight (11 skills)
+### Demand Insight (12 skills)
 
 | Skill | Description |
 |-------|-------------|
-| `/pm-brainstorm` | Brainstorming — diverge then converge, with inspiration spark mode |
+| `/pm-brainstorm` | Brainstorming — generate and explore product directions |
+| `/pm-deep-talk` | Deep decision dialogue — review goals, evidence, constraints, and trade-offs |
 | `/pm-demand` | Demand validation — systematic pain point analysis |
 | `/pm-clarify` | Requirement clarification — define details and edge cases |
 | `/pm-market` | Market analysis — competitive and industry research |

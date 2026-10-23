@@ -1,6 +1,6 @@
 # super-pm 技能索引
 
-**可发现的技能总数**: 57 (44核心+7工具+6工作流) | 版本号见 `VERSION` 文件
+**可发现的技能总数**: 58 (45核心+7工具+6工作流) | 版本号见 `VERSION` 文件
 
 ---
 
@@ -19,11 +19,12 @@
 
 六个入口同时位于 `skills/workflows/`（跨平台 skill 发现）与 `commands/`（完整插件命令），后者以相对符号链接指向前者，不维护两套正文。排序和交接规则见 [`_shared/workflow-contract.md`](./_shared/workflow-contract.md)。
 
-## 01 需求洞察模块（11个）
+## 01 需求洞察模块（12个）
 
 | Skill | 说明 | 输出文档 |
 |-------|------|---------|
-| `/pm-brainstorm` | 头脑风暴 ⭐ 先发散再收敛 - Subagent 并行搜索灵感火花，4维度同时爆发 | 创意方案库 |
+| `/pm-brainstorm` | 头脑风暴 - 发散创意方向并按用户选择深入探索 | 创意方案库（用户要求时） |
+| `/pm-deep-talk` | 深度决策对话 - 分析已有方案的目标、证据、限制与取舍 | 对话内共识简报（文件可选） |
 | `/pm-demand` | 需求调研入口 - 系统化收集产品信息并验证痛点 | 需求调研报告 |
 | `/pm-clarify` | 需求细化 - 明确每个需求的细节和边界条件 | 确认需求清单 |
 | `/pm-market` | 市场分析 - 竞品与行业研究 | 市场调研报告 |
@@ -116,10 +117,12 @@
 
 ```
 pm-brainstorm → pm-demand → pm-clarify → pm-market(可选) → pm-competitor / pm-interview(需求洞察补充)
+
+pm-brainstorm --(选定方向后用户主动要求深挖)--> pm-deep-talk（可选，完成后由用户决定回到 brainstorm、转需求验证或结束）
 → pm-priority → pm-mvp
 ```
 
-> 自然语言请求必须先走 start-super-pm 路由；显式 /pm-demand 可直达但需通过前置门禁
+> 自然语言请求必须先走 start-super-pm 路由；deep-talk 为独立可选能力，不属于默认新产品链；显式 /pm-demand 可直达但需通过前置门禁
 
 ```
 pm-docs(依赖MVP) → pm-preview(验证文档) → pm-proto → pm-brand-motion → pm-tech → pm-feature → pm-data → pm-user-story

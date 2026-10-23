@@ -270,5 +270,62 @@
       "next_verification_action"
     ],
     "reviewGuidance": "必须逐条区分无来源与已核实，不联网、不覆盖原报告。"
+  },
+  {
+    "id": "deep-talk-explicit-plan-review",
+    "category": "routing",
+    "prompt": "我准备把免费功能全部砍掉改成订阅制，帮我分析一下这个决策，先别写文档。",
+    "context": "existing product; concrete decision; no artifact request",
+    "expectedRoute": "pm-deep-talk",
+    "checks": [
+      "route",
+      "one_question",
+      "recommendation_with_reason",
+      "no_write_before_confirmation"
+    ],
+    "reviewGuidance": "这是对已有决策做产品分析；每轮只问一个会影响建议的问题，说明理由和适用条件，不把建议当成用户决定。"
+  },
+  {
+    "id": "deep-talk-facts-are-agent-work",
+    "category": "evidence",
+    "prompt": "我想判断是否该把小团队协作工具卖给设计工作室。可以先查公开资料，再带着关键问题和我讨论。",
+    "context": "user permits public research; product decision depends on current market facts",
+    "expectedRoute": "pm-deep-talk",
+    "checks": [
+      "route",
+      "agent_verifies_facts",
+      "source_and_date",
+      "one_question"
+    ],
+    "reviewGuidance": "公开事实应由 Agent 搜索核查并注明来源日期，不应要求用户代查；之后每轮仍只问一个决策问题。"
+  },
+  {
+    "id": "deep-talk-respects-stop-and-surfaces-open-items",
+    "category": "interaction",
+    "prompt": "帮我把这个方案问透，但我可能中途停。",
+    "context": "user later says stop before all decisions are settled",
+    "expectedRoute": "pm-deep-talk",
+    "checks": [
+      "route",
+      "honor_stop",
+      "summarize_unresolved",
+      "no_completion_claim",
+      "no_write"
+    ],
+    "reviewGuidance": "用户停止后立刻结束，说明已经讨论与尚未处理的事项，不声称已完成分析，也不保存草稿。"
+  },
+  {
+    "id": "deep-talk-optional-from-brainstorm",
+    "category": "handoff",
+    "prompt": "我选了头脑风暴的方向二，请先分析它最需要验证的依据和实施限制，再决定要不要做需求验证。",
+    "context": "brainstorm produced candidate directions; user explicitly opts into deeper review",
+    "expectedRoute": "pm-deep-talk",
+    "checks": [
+      "route",
+      "optional_composition",
+      "preserve_brainstorm_context",
+      "no_automatic_handoff"
+    ],
+    "reviewGuidance": "用户明确要求后才从 brainstorm 接入 deep-talk；复用方向二上下文，分析结束后由用户选择是否进入需求验证。"
   }
 ]

@@ -21,6 +21,8 @@
 | 用户意图 | 路由 | 备注 |
 |----------|------|------|
 | 新产品/想法模糊/"我想做一个XX" | /pm-brainstorm | 完整规划时默认推荐；局部请求可直达 |
+| 已有具体方案/决策，要求分析利弊、比较方案或梳理选择条件 | /pm-deep-talk | 按需梳理目标、证据、限制与方案取舍；一次一问；不自动执行或写文件 |
+| brainstorm 中选定方向后主动要求进一步分析 | /pm-deep-talk | 按需组合；结束后由用户决定继续 brainstorm、验证或结束 |
 | 方向明确/验证需求/调研痛点 | /pm-demand | 由需求技能检查证据；完整新产品链建议先 brainstorm |
 | 竞品分析 | /pm-search --type=competitor | |
 | 行业数据/市场规模 | /pm-search --type=data | |
@@ -75,4 +77,4 @@
 战略决策: business-model → decision → portfolio → resource
 
 ### 调用方式
-使用 Skill 工具调用对应 skill（如 Skill pm-brainstorm），不要用 Read 读 SKILL.md 文件。
+使用 Skill 工具调用对应 skill（如 Skill pm-brainstorm 或 pm-deep-talk），不要用 Read 读 SKILL.md 文件。

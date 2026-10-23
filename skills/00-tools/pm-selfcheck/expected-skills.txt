@@ -15,6 +15,7 @@ pm-competitor
 pm-cross
 pm-data
 pm-decision
+pm-deep-talk
 pm-demand
 pm-docs
 pm-evidence-audit
