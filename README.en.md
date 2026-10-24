@@ -35,6 +35,7 @@
 
 | Goal | Entry point | Checkable result |
 |---|---|---|
+| Explore ideas when the direction is unclear | `/pm-brainstorm` | An initial problem, scenario, or rough idea | Candidate directions and exploration focus |
 | Deep-dive an existing plan or decision | `/pm-deep-talk` | Decision brief (in conversation by default) |
 | Validate a new idea | `/validate-idea` | Evidence, priorities and MVP boundary |
 | Write a PRD | `/write-prd` | Traceable requirements and acceptance criteria |
